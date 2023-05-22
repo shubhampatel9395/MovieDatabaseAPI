@@ -1,7 +1,5 @@
 package com.moviesdbapi.model;
 
-import java.util.List;
-
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.annotations.ColumnDefault;
@@ -11,7 +9,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
@@ -37,6 +34,7 @@ public class EnuUserRoleEntity {
 	@ColumnDefault(value = "1")
 	private boolean isActive;
 	
-	@OneToMany(mappedBy = "userRoleId")
-	private List<UserDetailsEntity> users;
+	public EnuUserRoleEntity(String role) {
+		this.role = role;
+	}
 }

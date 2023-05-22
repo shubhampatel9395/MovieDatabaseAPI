@@ -1,7 +1,5 @@
 package com.moviesdbapi.model;
 
-import java.util.List;
-
 import org.hibernate.annotations.ColumnDefault;
 
 import jakarta.persistence.Column;
@@ -9,7 +7,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
@@ -32,7 +29,10 @@ public class EnuCountryEntity {
 	@Column(name="isActive",nullable = false)
 	@ColumnDefault(value = "1")
 	private boolean isActive;
+
+	public EnuCountryEntity(String country) {
+		super();
+		this.country = country;
+	}
 	
-	@OneToMany(mappedBy = "countryId")
-	private List<UserDetailsEntity> users;
 }

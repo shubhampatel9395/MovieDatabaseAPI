@@ -22,7 +22,7 @@ public class UserPrincipal implements UserDetails {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-		authorities.add(new SimpleGrantedAuthority(user.getUserRoleId().getRole()));
+		authorities.add(new SimpleGrantedAuthority(user.getUserRole().getRole()));
 		return authorities;
 	}
 
@@ -37,7 +37,7 @@ public class UserPrincipal implements UserDetails {
 	}
 	
 	public String getRoleName() {
-		return user.getUserRoleId().getRole();
+		return user.getUserRole().getRole();
 	}
 
 	@Override

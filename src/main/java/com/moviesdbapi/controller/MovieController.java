@@ -10,7 +10,7 @@ import com.moviesdbapi.dao.IMovieDAO;
 import com.moviesdbapi.model.MovieEntity;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/api/v1")
 public class MovieController {
 	
 	@Autowired

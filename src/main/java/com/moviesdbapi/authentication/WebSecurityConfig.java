@@ -50,6 +50,7 @@ public class WebSecurityConfig {
 //                .and()
 //                .logout().permitAll();
  
+    	http.csrf().disable();
         http.headers().frameOptions().sameOrigin();
  
         return http.build();

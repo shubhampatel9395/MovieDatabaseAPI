@@ -49,14 +49,14 @@ public class UserDetailsEntity extends Auditable<String> {
 	@ManyToOne
 	@JoinColumns(value = { @JoinColumn(name = "countryId", referencedColumnName = "countryId"),
 			@JoinColumn(name = "countryName", referencedColumnName = "country") })
-	private EnuCountryEntity countryId;
+	private EnuCountryEntity country;
 
 	@ManyToOne
 	@JoinColumns(value = { @JoinColumn(name = "userRoleId", referencedColumnName = "userRoleId", nullable = false),
 			@JoinColumn(name = "userRole", referencedColumnName = "role", nullable = false) })
-	private EnuUserRoleEntity userRoleId;
-	
-	@Column(name="isActive",nullable = false)
+	private EnuUserRoleEntity userRole;
+
+	@Column(name = "isActive", nullable = false)
 	@ColumnDefault(value = "1")
 	private boolean isActive;
 }
