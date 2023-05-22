@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.moviesdbapi.model.UserDetailsEntity;
 import com.moviesdbapi.service.IUserDetailsService;
 
@@ -27,9 +28,10 @@ public class UserDetailsController {
 	}
 	
 	@PostMapping("/users")
-	public ResponseEntity<UserDetailsEntity> addUser(@RequestBody UserDetailsEntity userDetailsEntity) {
-		System.out.println(userDetailsEntity);
-		UserDetailsEntity insertedUser = userDetailsService.insert(userDetailsEntity);
-		return new ResponseEntity<UserDetailsEntity>(insertedUser, HttpStatus.CREATED);
+	public ResponseEntity<UserDetailsEntity> addUser(@RequestBody JsonNode payload) {
+//		UserDetailsEntity entity = payload.has
+//		UserDetailsEntity insertedUser = userDetailsService.insert(userDetailsEntity);
+//		return new ResponseEntity<UserDetailsEntity>(insertedUser, HttpStatus.CREATED);
+		return null;
 	}
 }
