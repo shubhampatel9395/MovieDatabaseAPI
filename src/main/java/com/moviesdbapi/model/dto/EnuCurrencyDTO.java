@@ -11,5 +11,5 @@ public class EnuCurrencyDTO {
 	private Long currencyId;
 	private String currencyName;
 	private String currencySymbol;
-	private boolean isActive;
+	private Boolean isActive;
 }

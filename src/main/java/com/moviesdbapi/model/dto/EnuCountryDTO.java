@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 public class EnuCountryDTO {
 	private Long countryId;
 	private String country;
-	private boolean isActive;
+	private Boolean isActive;
 }

@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import com.moviesdbapi.dao.CustomizedUserDetailsDAO;
 import com.moviesdbapi.model.UserDetailsEntity;
+import com.moviesdbapi.model.dto.UserDetailsDTO;
 
 public class CustomizedUserDetailsDAOImpl implements CustomizedUserDetailsDAO {
 	@Autowired
@@ -27,12 +28,12 @@ public class CustomizedUserDetailsDAOImpl implements CustomizedUserDetailsDAO {
 	}
 	
 	@Override
-	public List<UserDetailsEntity> findByNamedParameters(MapSqlParameterSource paramSource) {
+	public List<UserDetailsDTO> findByNamedParameters(MapSqlParameterSource paramSource) {
 		String sql = "select * from moviesdb.MST_USERDETAILS where 1=1 ";
 		for (Entry<String, Object> param : paramSource.getValues().entrySet()) {
 			sql += " and " + param.getKey() + " = :" + param.getKey();
 		}
 
-		return jdbcTemplate.query(sql, paramSource, new BeanPropertyRowMapper<UserDetailsEntity>(UserDetailsEntity.class));
+		return jdbcTemplate.query(sql, paramSource, new BeanPropertyRowMapper<UserDetailsDTO>(UserDetailsDTO.class));
 	}
 }

@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ExceptionDetails {
 	private LocalDateTime timestamp;
+	private Long errorCode;
 	private String message;
 	private String description;
 }

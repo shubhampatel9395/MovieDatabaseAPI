@@ -30,7 +30,7 @@ public class MovieDTO {
 	private Date releaseDate;
 	private Time duration;
 	private double avgRatings;
-	private boolean isActive;
+	private Boolean isActive;
 	private Timestamp createdDate;
 	private String createdBy;
 	private Timestamp lastModifiedDate;

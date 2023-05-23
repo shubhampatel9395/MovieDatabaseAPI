@@ -56,7 +56,7 @@ public class UserDetailsEntity extends Auditable<String> {
 			@JoinColumn(name = "userRole", referencedColumnName = "role", nullable = false) })
 	private EnuUserRoleEntity userRole;
 
-	@Column(name = "isActive", nullable = false)
+	@Column(name = "isActive", nullable = false, columnDefinition = "BOOLEAN")
 	@ColumnDefault(value = "1")
-	private boolean isActive;
+	private Boolean isActive = true;
 }

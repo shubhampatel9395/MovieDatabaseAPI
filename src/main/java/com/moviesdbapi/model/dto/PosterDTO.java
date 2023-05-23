@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class PosterDTO {
 	private Long posterId;
 	private Blob poster;
-	private boolean isActive;
+	private Boolean isActive;
 	private Timestamp createdDate;
 	private String createdBy;
 	private Timestamp lastModifiedDate;

@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 public class EnuGenreDTO {
 	private Long genreId;
 	private String genre;
-	private boolean isActive;
+	private Boolean isActive;
 }

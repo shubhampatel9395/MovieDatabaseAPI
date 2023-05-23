@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 public class EnuLanguageDTO {
 	private Long languageId;
 	private String language;
-	private boolean isActive;
+	private Boolean isActive;
 }

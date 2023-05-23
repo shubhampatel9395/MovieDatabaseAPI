@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 public class EnuMovieCastTypeDTO {
 	private Long movieCastTypeId;
 	private String movieCastType;
-	private boolean isActive;
+	private Boolean isActive;
 }

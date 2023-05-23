@@ -22,7 +22,7 @@ public class UserDetailsDTO {
 	private String countryName;
 	private Long userRoleId;
 	private String userRole;
-	private boolean isActive;
+	private Boolean isActive;
 	private Timestamp createdDate;
 	private String createdBy;
 	private Timestamp lastModifiedDate;

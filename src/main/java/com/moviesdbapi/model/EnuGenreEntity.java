@@ -30,7 +30,7 @@ public class EnuGenreEntity {
 	@NotEmpty(message = "Genre must not be empty.")
 	private String genre;
 	
-	@Column(name="isActive",nullable = false)
+	@Column(name="isActive",nullable = false, columnDefinition = "BOOLEAN")
 	@ColumnDefault(value = "1")
-	private boolean isActive;
+	private Boolean isActive = true;
 }

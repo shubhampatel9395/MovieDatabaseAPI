@@ -9,10 +9,19 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.moviesdbapi.core.DateTimeValidator;
 import com.moviesdbapi.dao.IEnuCountryDAO;
 import com.moviesdbapi.dao.IEnuUserRoleDAO;
 import com.moviesdbapi.dao.IUserDetailsDAO;
+import com.moviesdbapi.exception.DuplicateEmailException;
+import com.moviesdbapi.exception.InvalidCountryException;
+import com.moviesdbapi.exception.InvalidDateException;
+import com.moviesdbapi.exception.InvalidPasswordException;
+import com.moviesdbapi.exception.InvalidUserRoleException;
+import com.moviesdbapi.model.EnuCountryEntity;
+import com.moviesdbapi.model.EnuUserRoleEntity;
 import com.moviesdbapi.model.UserDetailsEntity;
+import com.moviesdbapi.model.dto.UserDetailsDTO;
 import com.moviesdbapi.service.IUserDetailsService;
 
 @Service
@@ -21,13 +30,13 @@ public class UserDetailsService implements IUserDetailsService {
 
 	@Autowired
 	IUserDetailsDAO userDetailsDAO;
-	
+
 	@Autowired
 	IEnuUserRoleDAO enuUserRoleDAO;
 
 	@Autowired
 	IEnuCountryDAO enuCountryDAO;
-	
+
 //	@PersistenceContext
 //	private EntityManager entityManager;
 
@@ -37,7 +46,7 @@ public class UserDetailsService implements IUserDetailsService {
 	}
 
 	@Override
-	public List<UserDetailsEntity> findAllActive() {
+	public List<UserDetailsDTO> findAllActive() {
 		MapSqlParameterSource paramSource = new MapSqlParameterSource();
 		paramSource.addValue("isActive", true);
 		return userDetailsDAO.findByNamedParameters(paramSource);
@@ -62,20 +71,52 @@ public class UserDetailsService implements IUserDetailsService {
 	}
 
 	@Override
-	public UserDetailsEntity insert(UserDetailsEntity entity) {
+	public UserDetailsEntity insert(UserDetailsEntity entity) throws DuplicateEmailException, InvalidPasswordException,
+			InvalidCountryException, InvalidUserRoleException, InvalidCountryException, InvalidDateException {
+		// Unique Email
+		List<UserDetailsEntity> emailDTO = userDetailsDAO.findByEmail(entity.getEmail());
+		if (emailDTO.isEmpty() != true) {
+			throw new DuplicateEmailException();
+		}
+
+		// Password Rules
+		String pattern = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}";
+		boolean isValidPassword = entity.getPassword().matches(pattern);
+		if (isValidPassword == false) {
+			throw new InvalidPasswordException();
+		}
+
 		// Set Password
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String encodedPassword = passwordEncoder.encode(entity.getPassword());
 		entity.setPassword(encodedPassword);
 
 		// Set User Role
-		entity.setUserRole((DataAccessUtils.singleResult(enuUserRoleDAO.findByRole(entity.getUserRole().getRole()))));
-		
-		// Set Country
-		if(entity.getCountry() != null) {
-			entity.setCountry(DataAccessUtils.singleResult(enuCountryDAO.findByCountry(entity.getCountry().getCountry())));
+		List<EnuUserRoleEntity> userRoles = enuUserRoleDAO.findByRole(entity.getUserRole().getRole());
+		if (userRoles.isEmpty() == true) {
+			throw new InvalidUserRoleException();
+		} else {
+			entity.setUserRole(DataAccessUtils.singleResult(userRoles));
 		}
-		
+
+		// Set Country
+		if (entity.getCountry() != null) {
+			List<EnuCountryEntity> countries = enuCountryDAO.findByCountry(entity.getCountry().getCountry());
+
+			if (countries.isEmpty() == true) {
+				throw new InvalidCountryException();
+			} else {
+				entity.setCountry(DataAccessUtils.singleResult(countries));
+			}
+		}
+
+		// Check DOB
+		if (entity.getDob() != null) {
+			if (DateTimeValidator.isValid(entity.getDob().toString()) == false) {
+				throw new InvalidDateException();
+			}
+		}
+
 		return userDetailsDAO.save(entity);
 	}
 
@@ -95,12 +136,6 @@ public class UserDetailsService implements IUserDetailsService {
 	public void delete(UserDetailsEntity entity) {
 		// TODO Auto-generated method stub
 
-	}
-
-	@Override
-	public List<UserDetailsEntity> isUniqueEmail(String email) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override

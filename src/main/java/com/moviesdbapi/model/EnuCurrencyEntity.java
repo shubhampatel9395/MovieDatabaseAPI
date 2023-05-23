@@ -33,7 +33,7 @@ public class EnuCurrencyEntity {
 	@Column(name="currencySymbol", length = 5)
 	private String currencySymbol;
 	
-	@Column(name="isActive",nullable = false)
+	@Column(name="isActive",nullable = false, columnDefinition = "BOOLEAN")
 	@ColumnDefault(value = "1")
-	private boolean isActive;
+	private Boolean isActive = true;
 }

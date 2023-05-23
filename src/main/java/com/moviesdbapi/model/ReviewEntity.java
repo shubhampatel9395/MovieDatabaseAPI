@@ -49,7 +49,7 @@ public class ReviewEntity extends Auditable<String> {
 	@Column(length = 5000)
 	private String reviewContent;
 	
-	@Column(name="isActive",nullable = false)
+	@Column(name="isActive",nullable = false, columnDefinition = "BOOLEAN")
 	@ColumnDefault(value = "1")
-	private boolean isActive;
+	private Boolean isActive = true;
 }

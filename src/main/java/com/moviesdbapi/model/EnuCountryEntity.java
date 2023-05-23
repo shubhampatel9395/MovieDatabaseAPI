@@ -22,17 +22,17 @@ public class EnuCountryEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long countryId;
-	
+
 	@Column(nullable = false)
 	private String country;
-	
-	@Column(name="isActive",nullable = false)
+
+	@Column(name = "isActive", nullable = false, columnDefinition = "BOOLEAN")
 	@ColumnDefault(value = "1")
-	private boolean isActive;
+	private Boolean isActive = true;
 
 	public EnuCountryEntity(String country) {
 		super();
 		this.country = country;
 	}
-	
+
 }

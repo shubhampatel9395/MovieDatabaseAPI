@@ -19,7 +19,7 @@ public class ReviewDTO {
 	private double rating;
 	private String reviewTitle;
 	private String reviewContent;
-	private boolean isActive;
+	private Boolean isActive;
 	private Timestamp createdDate;
 	private String createdBy;
 	private Timestamp lastModifiedDate;

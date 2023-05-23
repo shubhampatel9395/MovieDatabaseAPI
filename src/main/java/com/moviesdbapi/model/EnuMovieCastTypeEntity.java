@@ -30,7 +30,7 @@ public class EnuMovieCastTypeEntity {
 	@NotEmpty(message = "Cast type must not be empty.")
 	private String movieCastType;
 	
-	@Column(name="isActive",nullable = false)
+	@Column(name="isActive",nullable = false, columnDefinition = "BOOLEAN")
 	@ColumnDefault(value = "1")
-	private boolean isActive;
+	private Boolean isActive = true;
 }

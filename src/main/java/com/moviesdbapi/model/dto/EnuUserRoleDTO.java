@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 public class EnuUserRoleDTO {
 	private Long userRoleId;
 	private String role;
-	private boolean isActive;
+	private Boolean isActive;
 }

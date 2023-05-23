@@ -52,4 +52,59 @@ public class CustomExceptionHandler {
 		return new ResponseEntity<ExceptionDetails>(exceptionDetails,HttpStatus.BAD_REQUEST);
 	}
 	
+	@ExceptionHandler(DuplicateEmailException.class)
+	public ResponseEntity<ExceptionDetails> DuplicateEmailExceptionHandler(DuplicateEmailException exp, WebRequest req) {
+		ExceptionDetails exceptionDetails = new ExceptionDetails();
+		exceptionDetails.setErrorCode(MessageConstants.DUPLICATE_EMAIL_ERROR_CODE);
+		exceptionDetails.setTimestamp(LocalDateTime.now());
+		exceptionDetails.setMessage(MessageConstants.DUPLICATE_EMAIL_ERROR_MESSAGE);
+		exceptionDetails.setDescription(req.getDescription(false));
+		
+		return new ResponseEntity<ExceptionDetails>(exceptionDetails,HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(InvalidPasswordException.class)
+	public ResponseEntity<ExceptionDetails> InvalidPasswordExceptionExceptionHandler(InvalidPasswordException exp, WebRequest req) {
+		ExceptionDetails exceptionDetails = new ExceptionDetails();
+		exceptionDetails.setErrorCode(MessageConstants.INVALID_PASSWORD_ERROR_CODE);
+		exceptionDetails.setTimestamp(LocalDateTime.now());
+		exceptionDetails.setMessage(MessageConstants.INVALID_PASSWORD_ERROR_MESSAGE);
+		exceptionDetails.setDescription(req.getDescription(false));
+		
+		return new ResponseEntity<ExceptionDetails>(exceptionDetails,HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(InvalidCountryException.class)
+	public ResponseEntity<ExceptionDetails> InvalidCountryExceptionHandler(InvalidCountryException exp, WebRequest req) {
+		ExceptionDetails exceptionDetails = new ExceptionDetails();
+		exceptionDetails.setErrorCode(MessageConstants.INVALID_COUNTRY_ERROR_CODE);
+		exceptionDetails.setTimestamp(LocalDateTime.now());
+		exceptionDetails.setMessage(MessageConstants.INVALID_COUNTRY_ERROR_MESSAGE);
+		exceptionDetails.setDescription(req.getDescription(false));
+		
+		return new ResponseEntity<ExceptionDetails>(exceptionDetails,HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(InvalidUserRoleException.class)
+	public ResponseEntity<ExceptionDetails> InvalidUserRoleExceptionHandler(InvalidUserRoleException exp, WebRequest req) {
+		ExceptionDetails exceptionDetails = new ExceptionDetails();
+		exceptionDetails.setErrorCode(MessageConstants.INVALID_USER_ROLE_ERROR_CODE);
+		exceptionDetails.setTimestamp(LocalDateTime.now());
+		exceptionDetails.setMessage(MessageConstants.INVALID_USER_ROLE_ERROR_MESSAGE);
+		exceptionDetails.setDescription(req.getDescription(false));
+		
+		return new ResponseEntity<ExceptionDetails>(exceptionDetails,HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(InvalidDateException.class)
+	public ResponseEntity<ExceptionDetails> InvalidDateExceptionHandler(InvalidDateException exp, WebRequest req) {
+		ExceptionDetails exceptionDetails = new ExceptionDetails();
+		exceptionDetails.setErrorCode(MessageConstants.INVALID_DATE_ERROR_CODE);
+		exceptionDetails.setTimestamp(LocalDateTime.now());
+		exceptionDetails.setMessage(MessageConstants.INVALID_DATE_ERROR_MESSAGE);
+		exceptionDetails.setDescription(req.getDescription(false));
+		
+		return new ResponseEntity<ExceptionDetails>(exceptionDetails,HttpStatus.BAD_REQUEST);
+	}
+	
 }

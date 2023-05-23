@@ -18,7 +18,7 @@ public class MovieCastDTO {
 	private String originalLastName;
 	private String movieFirstName;
 	private String movieLastName;
-	private boolean isActive;
+	private Boolean isActive;
 	private Timestamp createdDate;
 	private String createdBy;
 	private Timestamp lastModifiedDate;
