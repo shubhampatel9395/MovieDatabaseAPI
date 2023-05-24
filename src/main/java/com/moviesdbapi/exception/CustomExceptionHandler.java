@@ -32,15 +32,15 @@ public class CustomExceptionHandler {
 		return new ResponseEntity<ExceptionDetails>(exceptionDetails,HttpStatus.FORBIDDEN);
 	}
 	
-	@ExceptionHandler(Exception.class)
-	public ResponseEntity<ExceptionDetails> OtherExceptionHandler(Exception exp, WebRequest req){
-		ExceptionDetails exceptionDetails = new ExceptionDetails();
-		exceptionDetails.setTimestamp(LocalDateTime.now());
-		exceptionDetails.setMessage(exp.getMessage());
-		exceptionDetails.setDescription(req.getDescription(false));
-		
-		return new ResponseEntity<ExceptionDetails>(exceptionDetails,HttpStatus.BAD_REQUEST);
-	}
+//	@ExceptionHandler(Exception.class)
+//	public ResponseEntity<ExceptionDetails> OtherExceptionHandler(Exception exp, WebRequest req){
+//		ExceptionDetails exceptionDetails = new ExceptionDetails();
+//		exceptionDetails.setTimestamp(LocalDateTime.now());
+//		exceptionDetails.setMessage(exp.getLocalizedMessage());
+//		exceptionDetails.setDescription(req.getDescription(false));
+//		
+//		return new ResponseEntity<ExceptionDetails>(exceptionDetails,HttpStatus.BAD_REQUEST);
+//	}
 	
 	@ExceptionHandler(ParameterMissingException.class)
 	public ResponseEntity<ExceptionDetails> ParameterMissingExceptionHandler(ParameterMissingException exp, WebRequest req) {
@@ -102,6 +102,17 @@ public class CustomExceptionHandler {
 		exceptionDetails.setErrorCode(MessageConstants.INVALID_DATE_ERROR_CODE);
 		exceptionDetails.setTimestamp(LocalDateTime.now());
 		exceptionDetails.setMessage(MessageConstants.INVALID_DATE_ERROR_MESSAGE);
+		exceptionDetails.setDescription(req.getDescription(false));
+		
+		return new ResponseEntity<ExceptionDetails>(exceptionDetails,HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(IdNotFoundException.class)
+	public ResponseEntity<ExceptionDetails> IdNotFoundExceptionHandler(IdNotFoundException exp, WebRequest req) {
+		ExceptionDetails exceptionDetails = new ExceptionDetails();
+		exceptionDetails.setErrorCode(MessageConstants.INVALID_ID_ERROR_CODE);
+		exceptionDetails.setTimestamp(LocalDateTime.now());
+		exceptionDetails.setMessage(exp.getMessage());
 		exceptionDetails.setDescription(req.getDescription(false));
 		
 		return new ResponseEntity<ExceptionDetails>(exceptionDetails,HttpStatus.BAD_REQUEST);

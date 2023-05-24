@@ -1,6 +1,7 @@
 package com.moviesdbapi.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.support.DataAccessUtils;
@@ -53,9 +54,8 @@ public class UserDetailsService implements IUserDetailsService {
 	}
 
 	@Override
-	public UserDetailsEntity findById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Optional<UserDetailsEntity> findById(Long id) {
+		return userDetailsDAO.findById(id);
 	}
 
 	@Override
@@ -70,15 +70,21 @@ public class UserDetailsService implements IUserDetailsService {
 		return null;
 	}
 
-	@Override
-	public UserDetailsEntity insert(UserDetailsEntity entity) throws DuplicateEmailException, InvalidPasswordException,
-			InvalidCountryException, InvalidUserRoleException, InvalidCountryException, InvalidDateException {
-		// Unique Email
+	@Transactional
+	public void isValidUserDetails(UserDetailsEntity entity) throws RuntimeException {
 		List<UserDetailsEntity> emailDTO = userDetailsDAO.findByEmail(entity.getEmail());
-		if (emailDTO.isEmpty() != true) {
-			throw new DuplicateEmailException();
+		if(entity.getUserId() == null) {
+			if (emailDTO.isEmpty() != true) {
+				throw new DuplicateEmailException();
+			}
+		} else {
+			if (emailDTO.isEmpty() != true) {
+				if(emailDTO.get(0).getUserId() != entity.getUserId()) {
+					throw new DuplicateEmailException();
+				}
+			}
 		}
-
+		
 		// Password Rules
 		String pattern = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}";
 		boolean isValidPassword = entity.getPassword().matches(pattern);
@@ -92,7 +98,8 @@ public class UserDetailsService implements IUserDetailsService {
 		entity.setPassword(encodedPassword);
 
 		// Set User Role
-		List<EnuUserRoleEntity> userRoles = enuUserRoleDAO.findByRole(entity.getUserRole().getRole());
+		String role = entity.getUserRole().getRole();
+		List<EnuUserRoleEntity> userRoles = enuUserRoleDAO.findByRole(role);
 		if (userRoles.isEmpty() == true) {
 			throw new InvalidUserRoleException();
 		} else {
@@ -116,20 +123,23 @@ public class UserDetailsService implements IUserDetailsService {
 				throw new InvalidDateException();
 			}
 		}
+	}
 
+	@Override
+	public UserDetailsEntity insert(UserDetailsEntity entity) throws RuntimeException {
+		isValidUserDetails(entity);
 		return userDetailsDAO.save(entity);
 	}
 
 	@Override
-	public UserDetailsEntity update(UserDetailsEntity entity) {
-		// TODO Auto-generated method stub
-		return null;
+	public UserDetailsEntity update(UserDetailsEntity entity) throws RuntimeException {
+		isValidUserDetails(entity);
+		return userDetailsDAO.save(entity);
 	}
 
 	@Override
 	public void delete(Long id) {
-		// TODO Auto-generated method stub
-
+		userDetailsDAO.deleteById(id);
 	}
 
 	@Override

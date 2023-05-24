@@ -19,5 +19,7 @@ public class MessageConstants {
 	
 	public static final Long INVALID_DATE_ERROR_CODE = 603L;
 
-	public static final String INVALID_DATE_ERROR_MESSAGE = "Invalid Date Format";
+	public static final String INVALID_DATE_ERROR_MESSAGE = "Invalid Date";
+	
+	public static final Long INVALID_ID_ERROR_CODE = 604L;
 }

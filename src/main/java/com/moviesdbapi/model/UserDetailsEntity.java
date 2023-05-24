@@ -1,9 +1,16 @@
 package com.moviesdbapi.model;
 
-import java.sql.Date;
+import java.util.Date;
+
+import javax.validation.constraints.PastOrPresent;
 
 import org.hibernate.annotations.ColumnDefault;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -43,6 +50,9 @@ public class UserDetailsEntity extends Auditable<String> {
 
 	private String gender;
 
+	@JsonSerialize(as = Date.class)
+	@JsonFormat(pattern = "dd/MM/yyyy", shape = Shape.STRING)
+	@PastOrPresent
 	@Temporal(TemporalType.DATE)
 	private Date dob;
 
