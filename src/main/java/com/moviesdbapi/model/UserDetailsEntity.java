@@ -2,15 +2,13 @@ package com.moviesdbapi.model;
 
 import java.util.Date;
 
-import javax.validation.constraints.PastOrPresent;
-
 import org.hibernate.annotations.ColumnDefault;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.moviesdbapi.validation.NotNullEntity;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -24,6 +22,11 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.persistence.UniqueConstraint;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.PastOrPresent;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -39,13 +42,19 @@ public class UserDetailsEntity extends Auditable<String> {
 	@Column(name = "userId")
 	private Long userId;
 
+	@Valid
 	@Embedded
 	private UserBasicDetailsEntity basicDetails;
 
 	@Column(nullable = false)
+	@Email(message = "Invalid Email Address")
+	@NotEmpty(message = "Email must not be empty.")
+	@NotBlank(message = "Email must not be blank.")
 	private String email;
 
 	@Column(nullable = false)
+	@NotEmpty(message = "Password must not be empty.")
+	@NotBlank(message = "Password must not be blank.")
 	private String password;
 
 	private String gender;
@@ -56,11 +65,14 @@ public class UserDetailsEntity extends Auditable<String> {
 	@Temporal(TemporalType.DATE)
 	private Date dob;
 
+	@Valid
 	@ManyToOne
 	@JoinColumns(value = { @JoinColumn(name = "countryId", referencedColumnName = "countryId"),
 			@JoinColumn(name = "countryName", referencedColumnName = "country") })
 	private EnuCountryEntity country;
 
+	@Valid
+	@NotNullEntity
 	@ManyToOne
 	@JoinColumns(value = { @JoinColumn(name = "userRoleId", referencedColumnName = "userRoleId", nullable = false),
 			@JoinColumn(name = "userRole", referencedColumnName = "role", nullable = false) })
