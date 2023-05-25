@@ -60,14 +60,12 @@ public class UserDetailsService implements IUserDetailsService {
 
 	@Override
 	public List<UserDetailsEntity> findByFieldValue(String fieldName, Object fieldValue) {
-		// TODO Auto-generated method stub
-		return null;
+		return userDetailsDAO.findByFieldValue(fieldName, fieldValue);
 	}
 
 	@Override
-	public List<UserDetailsEntity> findByNamedParameters(MapSqlParameterSource paramSource) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<UserDetailsDTO> findByNamedParameters(MapSqlParameterSource paramSource) {
+		return userDetailsDAO.findByNamedParameters(paramSource);
 	}
 
 	@Transactional
@@ -158,6 +156,11 @@ public class UserDetailsService implements IUserDetailsService {
 	public boolean softDelete(Long id) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public UserDetailsEntity findOneByEmail(String email) {
+		return userDetailsDAO.findOneByEmail(email);
 	}
 
 }

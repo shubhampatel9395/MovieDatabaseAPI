@@ -22,7 +22,6 @@ public class CustomizedUserDetailsDAOImpl implements CustomizedUserDetailsDAO {
 		MapSqlParameterSource namedParameters = new MapSqlParameterSource();
 		namedParameters.addValue("fieldName", fieldName);
 		namedParameters.addValue("fieldValue", fieldValue);
-		System.out.println(sql);
 
 		return jdbcTemplate.query(sql, namedParameters, new BeanPropertyRowMapper<UserDetailsEntity>(UserDetailsEntity.class));
 	}

@@ -1,6 +1,8 @@
 package com.moviesdbapi.exception;
 
 public class MessageConstants {
+	public static final String SUCCESS_MESSAGE = "Operation success";
+	
 	public static final Long DUPLICATE_EMAIL_ERROR_CODE = 701L;
 
 	public static final String DUPLICATE_EMAIL_ERROR_MESSAGE = "Email id is already registered in the system.";

@@ -14,10 +14,12 @@ public interface IUserDetailsService {
 	public List<UserDetailsDTO> findAllActive();
 
 	public Optional<UserDetailsEntity> findById(Long id);
+	
+	public UserDetailsEntity findOneByEmail(String email);
 
 	public List<UserDetailsEntity> findByFieldValue(String fieldName, Object fieldValue);
 
-	public List<UserDetailsEntity> findByNamedParameters(MapSqlParameterSource paramSource);
+	public List<UserDetailsDTO> findByNamedParameters(MapSqlParameterSource paramSource);
 
 	public UserDetailsEntity insert(UserDetailsEntity entity) throws RuntimeException;
 
