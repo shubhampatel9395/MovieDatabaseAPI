@@ -1,12 +1,11 @@
 package com.moviesdbapi.model;
 
-import java.util.Date;
+import java.sql.Date;
 
 import org.hibernate.annotations.ColumnDefault;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonFormat.Shape;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.moviesdbapi.validation.NotNullEntity;
 
 import jakarta.persistence.Column;
@@ -19,8 +18,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinColumns;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
@@ -43,6 +40,7 @@ public class UserDetailsEntity extends Auditable<String> {
 	private Long userId;
 
 	@Valid
+	@NotNullEntity
 	@Embedded
 	private UserBasicDetailsEntity basicDetails;
 
@@ -59,10 +57,10 @@ public class UserDetailsEntity extends Auditable<String> {
 
 	private String gender;
 
-	@JsonSerialize(as = Date.class)
-	@JsonFormat(pattern = "dd/MM/yyyy", shape = Shape.STRING)
 	@PastOrPresent
-	@Temporal(TemporalType.DATE)
+	@Valid
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date dob;
 
 	@Valid

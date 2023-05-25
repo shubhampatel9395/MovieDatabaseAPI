@@ -58,7 +58,7 @@ public class UserDetailsController {
 	public Map<String, Object> addUser(@Valid @RequestBody UserDetailsEntity userDetailsEntity)
 			throws RuntimeException {
 		return ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE, HttpStatus.CREATED.value(),
-				userDetailsService.insert(userDetailsEntity), null);
+				userDetailsService.insert(userDetailsEntity), "User Created Successfully.");
 	}
 
 	@PutMapping("/users/{id}")
@@ -72,17 +72,30 @@ public class UserDetailsController {
 
 		UserDetailsEntity existingEntity = new UserDetailsEntity();
 		new ModelMapper().map(existingUser.get(), existingEntity);
-		existingEntity.setBasicDetails(userDetailsEntity.getBasicDetails());
+		
+		if (!(existingEntity.getBasicDetails().equals(userDetailsEntity.getBasicDetails()))) {
+			existingEntity.setBasicDetails(userDetailsEntity.getBasicDetails());
+		}
+		
 		if (!(existingEntity.getEmail().equals(userDetailsEntity.getEmail()))) {
 			existingEntity.setEmail(userDetailsEntity.getEmail());
 		}
+		
 		existingEntity.setPassword(userDetailsEntity.getPassword());
-		existingEntity.setGender(userDetailsEntity.getGender());
+		
+		if(userDetailsEntity.getGender() != null)
+			existingEntity.setGender(userDetailsEntity.getGender());
+		
+		if(userDetailsEntity.getDob() != null)
+			existingEntity.setDob(userDetailsEntity.getDob());
+		
 		existingEntity.setUserRole(userDetailsEntity.getUserRole());
-		existingEntity.setCountry(userDetailsEntity.getCountry());
+		
+		if(userDetailsEntity.getCountry() != null)
+			existingEntity.setCountry(userDetailsEntity.getCountry());
 
 		return ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE, HttpStatus.OK.value(),
-				userDetailsService.update(existingEntity), null);
+				userDetailsService.update(existingEntity), "User updated successfully.");
 	}
 
 	@DeleteMapping("/users/{id}")

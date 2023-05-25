@@ -10,13 +10,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.moviesdbapi.core.DateTimeValidator;
 import com.moviesdbapi.dao.IEnuCountryDAO;
 import com.moviesdbapi.dao.IEnuUserRoleDAO;
 import com.moviesdbapi.dao.IUserDetailsDAO;
 import com.moviesdbapi.exception.DuplicateEmailException;
 import com.moviesdbapi.exception.InvalidCountryException;
-import com.moviesdbapi.exception.InvalidDateException;
 import com.moviesdbapi.exception.InvalidPasswordException;
 import com.moviesdbapi.exception.InvalidUserRoleException;
 import com.moviesdbapi.model.EnuCountryEntity;
@@ -116,11 +114,11 @@ public class UserDetailsService implements IUserDetailsService {
 		}
 
 		// Check DOB
-		if (entity.getDob() != null) {
-			if (DateTimeValidator.isValid(entity.getDob().toString()) == false) {
-				throw new InvalidDateException();
-			}
-		}
+//		if (entity.getDob() != null) {
+//			if (DateTimeValidator.isValid(entity.getDob().toString()) == false) {
+//				throw new InvalidDateException();
+//			}
+//		}
 	}
 
 	@Override

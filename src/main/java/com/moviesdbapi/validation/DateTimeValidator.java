@@ -1,7 +1,7 @@
-package com.moviesdbapi.core;
+package com.moviesdbapi.validation;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.format.DateTimeParseException;
 
 public class DateTimeValidator {
@@ -9,9 +9,13 @@ public class DateTimeValidator {
 		boolean valid = false;
 
 		try {
-			LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy")).atStartOfDay();;
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			sdf.setLenient(false);
+			sdf.parse(date);
 			valid = true;
 		} catch (DateTimeParseException e) {
+			valid = false;
+		} catch (ParseException e) {
 			valid = false;
 		}
 
