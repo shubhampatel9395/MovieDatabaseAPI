@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,10 +27,15 @@ public class EnuGenreEntity {
 	private Long genreId;
 	
 	@Column(name="genre", length = 50, nullable = false)
-	@NotEmpty(message = "Genre must not be empty.")
+	@NotEmpty(message = "Movie Genre must not be empty.")
+	@NotBlank(message = "Movie Genre must not be blank.")
 	private String genre;
 	
 	@Column(name="isActive",nullable = false, columnDefinition = "BOOLEAN")
 	@ColumnDefault(value = "1")
 	private Boolean isActive = true;
+	
+	public EnuGenreEntity(String genre) {
+		this.genre = genre;
+	}
 }

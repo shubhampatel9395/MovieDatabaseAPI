@@ -140,8 +140,7 @@ public class UserDetailsService implements IUserDetailsService {
 
 	@Override
 	public void delete(UserDetailsEntity entity) {
-		// TODO Auto-generated method stub
-
+		userDetailsDAO.delete(entity);
 	}
 
 	@Override

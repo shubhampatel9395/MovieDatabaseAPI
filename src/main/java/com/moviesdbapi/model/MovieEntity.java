@@ -5,6 +5,11 @@ import java.sql.Time;
 import java.util.List;
 
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.validator.constraints.URL;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.moviesdbapi.validation.NotNullEntity;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -16,12 +21,18 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinColumns;
 import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.persistence.UniqueConstraint;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,87 +41,93 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name = "MST_MOVIE", uniqueConstraints = { @UniqueConstraint(columnNames = {"title", "releaseDate"}) })
+@Table(name = "MST_MOVIE", uniqueConstraints = { @UniqueConstraint(columnNames = { "title", "releaseDate" }) })
 public class MovieEntity extends Auditable<String> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long movieId;
-	
+
 	@Column(nullable = false)
+	@NotEmpty(message = "Movie title must not be empty.")
+	@NotBlank(message = "Movie title must not be blank.")
 	private String title;
-	
+
 	@Column(length = 100)
+	@Size(max = 100, message = "Movie tagline must be within 100 characters.")
 	private String tagline;
-	
-	@Column(length = 1000, nullable = false)
+
+	@Column(length = 10000, nullable = false)
+	@Size(max = 10000, message = "Movie overview must be within 10000 characters.")
 	private String overview;
-	
-	@OneToMany(fetch = FetchType.EAGER)
+
+	@NotNullEntity
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "moviegenremapping", joinColumns = {
-			@JoinColumn(name="movieId", referencedColumnName = "movieId")
-	}, inverseJoinColumns = {
-			@JoinColumn(name="genreId", referencedColumnName = "genreId")
-	})
+			@JoinColumn(name = "movieId", referencedColumnName = "movieId") }, inverseJoinColumns = {
+					@JoinColumn(name = "genreId", referencedColumnName = "genreId") })
 	private List<EnuGenreEntity> genres;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumns(value = {
-			@JoinColumn(name="originCountryId", referencedColumnName = "countryId"),
-			@JoinColumn(name="originCountryName", referencedColumnName = "country")
-	})
-	private EnuCountryEntity originCountryId;
-	
-	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumns(value = { @JoinColumn(name = "originCountryId", referencedColumnName = "countryId"),
+			@JoinColumn(name = "originCountryName", referencedColumnName = "country") })
+	private EnuCountryEntity originCountry;
+
+	@NotNullEntity
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "movielanguagemapping", joinColumns = {
-			@JoinColumn(name="movieId", referencedColumnName = "movieId")
-	}, inverseJoinColumns = {
-			@JoinColumn(name="languageId", referencedColumnName = "languageId")
-	})
+			@JoinColumn(name = "movieId", referencedColumnName = "movieId") }, inverseJoinColumns = {
+					@JoinColumn(name = "languageId", referencedColumnName = "languageId") })
 	private List<EnuLanguageEntity> languages;
-	
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "moviepostermapping", joinColumns = {
-			@JoinColumn(name="movieId", referencedColumnName = "movieId")
-	}, inverseJoinColumns = {
-			@JoinColumn(name="posterId", referencedColumnName = "posterId")
-	})
+			@JoinColumn(name = "movieId", referencedColumnName = "movieId") }, inverseJoinColumns = {
+					@JoinColumn(name = "posterId", referencedColumnName = "posterId") })
 	private List<PosterEntity> posters;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="budgetCurrencyId")
-	private EnuCurrencyEntity budgetCurrency;
-	
+	@JoinColumn(name = "currencyId")
+	private EnuCurrencyEntity currency;
+
 	@Column(columnDefinition = "DECIMAL(20,2)")
 	private double budget;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="revenueCurrencyId")
-	private EnuCurrencyEntity revenueCurrency;
 
 	@Column(columnDefinition = "DECIMAL(20,2)")
 	private double revenue;
-	
+
+	@URL
 	private String websiteURL;
+
+	@URL
 	private String facebookPage;
+
+	@URL
 	private String instagramPage;
+
+	@URL
 	private String trailorLink;
+
 	private String certificate;
-	
+
 	@Column(nullable = false)
-	@Temporal(TemporalType.DATE)
+	@PastOrPresent
+	@Valid
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date releaseDate;
-	
+
+	@Valid
 	@Column(nullable = false)
 	@Temporal(TemporalType.TIME)
 	private Time duration;
-	
+
 	@Column(columnDefinition = "DECIMAL(5,2)")
 	private double avgRatings;
-	
-	@Column(name="isActive",nullable = false, columnDefinition = "BOOLEAN")
+
+	@Column(name = "isActive", nullable = false, columnDefinition = "BOOLEAN")
 	@ColumnDefault(value = "1")
 	private Boolean isActive = true;
-	
+
 //	@Column(nullable = false)
 //	private List<String> productionHouses;
 }

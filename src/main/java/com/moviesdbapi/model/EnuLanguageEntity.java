@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,9 +28,15 @@ public class EnuLanguageEntity {
 	
 	@Column(name="language", length = 50, nullable = false)
 	@NotEmpty(message = "Language must not be empty.")
+	@NotBlank(message = "Language must not be blank.")
 	private String language;
 	
 	@Column(name="isActive",nullable = false, columnDefinition = "BOOLEAN")
 	@ColumnDefault(value = "1")
 	private Boolean isActive = true;
+
+	public EnuLanguageEntity(
+			@NotEmpty(message = "Language must not be empty.") @NotBlank(message = "Language must not be blank.") String language) {
+		this.language = language;
+	}
 }
