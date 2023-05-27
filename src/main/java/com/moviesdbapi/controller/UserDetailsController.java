@@ -21,7 +21,6 @@ import com.moviesdbapi.core.ResponseEntityUtil;
 import com.moviesdbapi.exception.IdNotFoundException;
 import com.moviesdbapi.exception.MessageConstants;
 import com.moviesdbapi.model.UserDetailsEntity;
-import com.moviesdbapi.model.dto.UserDetailsDTO;
 import com.moviesdbapi.service.IUserDetailsService;
 
 import jakarta.validation.Valid;
@@ -32,37 +31,39 @@ public class UserDetailsController {
 	@Autowired
 	IUserDetailsService userDetailsService;
 
+//	@GetMapping("/users")
+//	public ResponseEntity<List<UserDetailsDTO>> getAllActiveUsers() {
+//		return new ResponseEntity<List<UserDetailsDTO>>(userDetailsService.findAllActive(), HttpStatus.OK);
+//	}
+
 	@GetMapping("/users")
-	public ResponseEntity<List<UserDetailsDTO>> getAllActiveUsers() {
-		return new ResponseEntity<List<UserDetailsDTO>>(userDetailsService.findAllActive(), HttpStatus.OK);
+	public ResponseEntity<List<UserDetailsEntity>> getAllUsers() {
+		return new ResponseEntity<List<UserDetailsEntity>>(userDetailsService.findAll(), HttpStatus.OK);
 	}
 
-//	@GetMapping("/users")
-//	public ResponseEntity<List<UserDetailsEntity>> getAllUsers() {
-//		return new ResponseEntity<List<UserDetailsEntity>>(userDetailsService.findAll(), HttpStatus.OK);
-//	}
-	
 	@GetMapping("/users/{id}")
-	public Map<String, Object> getEmployee(@PathVariable Long id) {
+	public ResponseEntity<Map<String, Object>> getEmployee(@PathVariable Long id) {
 		Optional<UserDetailsEntity> existingUser = userDetailsService.findById(id);
 
 		if (existingUser.isEmpty()) {
 			throw new IdNotFoundException(id);
 		}
 
-		return ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE, HttpStatus.OK.value(),
-				existingUser.get(), "Record fetched successfully.");
+		return new ResponseEntity<>(ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE,
+				HttpStatus.OK.value(), existingUser.get(), "Record fetched successfully."), HttpStatus.OK);
 	}
 
 	@PostMapping("/users")
-	public Map<String, Object> addUser(@Valid @RequestBody UserDetailsEntity userDetailsEntity)
+	public ResponseEntity<Map<String, Object>> addUser(@Valid @RequestBody UserDetailsEntity userDetailsEntity)
 			throws RuntimeException {
-		return ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE, HttpStatus.CREATED.value(),
-				userDetailsService.insert(userDetailsEntity), "User Created Successfully.");
+		return new ResponseEntity<>(
+				ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE, HttpStatus.CREATED.value(),
+						userDetailsService.insert(userDetailsEntity), "User Created Successfully."),
+				HttpStatus.CREATED);
 	}
 
 	@PutMapping("/users/{id}")
-	public Map<String, Object> updateUser(@Valid @RequestBody UserDetailsEntity userDetailsEntity,
+	public ResponseEntity<Map<String, Object>> updateUser(@Valid @RequestBody UserDetailsEntity userDetailsEntity,
 			@PathVariable Long id) throws RuntimeException {
 		Optional<UserDetailsEntity> existingUser = userDetailsService.findById(id);
 
@@ -72,34 +73,35 @@ public class UserDetailsController {
 
 		UserDetailsEntity existingEntity = new UserDetailsEntity();
 		new ModelMapper().map(existingUser.get(), existingEntity);
-		
+
 		if (!(existingEntity.getBasicDetails().equals(userDetailsEntity.getBasicDetails()))) {
 			existingEntity.setBasicDetails(userDetailsEntity.getBasicDetails());
 		}
-		
+
 		if (!(existingEntity.getEmail().equals(userDetailsEntity.getEmail()))) {
 			existingEntity.setEmail(userDetailsEntity.getEmail());
 		}
-		
+
 		existingEntity.setPassword(userDetailsEntity.getPassword());
-		
-		if(userDetailsEntity.getGender() != null)
+
+		if (userDetailsEntity.getGender() != null)
 			existingEntity.setGender(userDetailsEntity.getGender());
-		
-		if(userDetailsEntity.getDob() != null)
+
+		if (userDetailsEntity.getDob() != null)
 			existingEntity.setDob(userDetailsEntity.getDob());
-		
+
 		existingEntity.setUserRole(userDetailsEntity.getUserRole());
-		
-		if(userDetailsEntity.getCountry() != null)
+
+		if (userDetailsEntity.getCountry() != null)
 			existingEntity.setCountry(userDetailsEntity.getCountry());
 
-		return ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE, HttpStatus.OK.value(),
-				userDetailsService.update(existingEntity), "User updated successfully.");
+		return new ResponseEntity<>(ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE,
+				HttpStatus.OK.value(), userDetailsService.update(existingEntity), "User updated successfully."),
+				HttpStatus.OK);
 	}
 
 	@DeleteMapping("/users/{id}")
-	public Map<String, Object> deleteEmployee(@PathVariable Long id) {
+	public ResponseEntity<Map<String, Object>> deleteEmployee(@PathVariable Long id) {
 		Optional<UserDetailsEntity> existingUser = userDetailsService.findById(id);
 
 		if (existingUser.isEmpty()) {
@@ -109,8 +111,8 @@ public class UserDetailsController {
 
 		userDetailsService.delete(id);
 
-		return ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE, HttpStatus.OK.value(),
-				returnEntity, "Record deleted and returned successfully.");
+		return new ResponseEntity<>(ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE,
+				HttpStatus.OK.value(), returnEntity, "Record deleted and returned successfully."), HttpStatus.OK);
 	}
 
 }

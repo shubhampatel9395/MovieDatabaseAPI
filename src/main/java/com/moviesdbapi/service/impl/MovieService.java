@@ -1,7 +1,7 @@
 package com.moviesdbapi.service.impl;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +15,7 @@ import com.moviesdbapi.dao.IEnuCurrencyDAO;
 import com.moviesdbapi.dao.IEnuGenreDAO;
 import com.moviesdbapi.dao.IEnuLanguageDAO;
 import com.moviesdbapi.dao.IMovieDAO;
+import com.moviesdbapi.exception.DuplicateMovieException;
 import com.moviesdbapi.exception.InvalidCountryException;
 import com.moviesdbapi.exception.InvalidCurrencyException;
 import com.moviesdbapi.exception.InvalidGenreException;
@@ -67,10 +68,15 @@ public class MovieService implements IMovieService {
 	}
 
 	public void isValidMovieDetails(MovieEntity entity) throws RuntimeException {
+		// Check Unique Movie Title and Release Date
+		if(movieDAO.findByTitleAndReleaseDate(entity.getTitle(), entity.getReleaseDate()) != null) {
+			throw new DuplicateMovieException();
+		}
+		
 		// Check Movie Genres
 		List<EnuGenreEntity> genres = new ArrayList<>(entity.getGenres());
 		
-		entity.setGenres(new ArrayList<>());
+		entity.setGenres(new HashSet<>());
 		genres.forEach(genre -> {
 			EnuGenreEntity temp = enuGenreDAO.findOneByGenre(genre.getGenre());
 			if (temp == null) {
@@ -93,7 +99,7 @@ public class MovieService implements IMovieService {
 
 		// Check Languages
 		List<EnuLanguageEntity> languages = new ArrayList<>(entity.getLanguages());
-		entity.setLanguages(new ArrayList<>());
+		entity.setLanguages(new HashSet<>());
 		languages.forEach(language -> {
 			EnuLanguageEntity temp = enuLanguageDAO.findOneByLanguage(language.getLanguage());
 			if (temp == null) {

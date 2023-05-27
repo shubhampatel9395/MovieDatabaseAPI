@@ -12,10 +12,10 @@ import jakarta.validation.Payload;
 @Target( { ElementType.FIELD, ElementType.PARAMETER })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@Constraint(validatedBy = NotNullEntityImpl.class)
-public @interface NotNullEntity {
+@Constraint(validatedBy = { NotNullEntityGenreImpl.class, NotNullEntityLanguageImpl.class })
+public @interface NotNullEntityCollection {
 	//error message
-    public String message() default "must not be null.";
+    public String message() default "must not be empty.";
     //represents group of constraints
     public Class<?>[] groups() default {};
     //represents additional information about annotation

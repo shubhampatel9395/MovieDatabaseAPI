@@ -27,53 +27,53 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping("/api/v1")
 public class MovieController {
-	
+
 	@Autowired
 	IMovieService iMovieService;
-	
 
 	@GetMapping("/movies")
 	public ResponseEntity<List<MovieEntity>> getAllUsers() {
 		return new ResponseEntity<List<MovieEntity>>(iMovieService.findAll(), HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/movies/{id}")
-	public Map<String, Object> getEmployee(@PathVariable Long id) {
+	public ResponseEntity<Map<String, Object>> getEmployee(@PathVariable Long id) {
 		Optional<MovieEntity> existingUser = iMovieService.findById(id);
 
 		if (existingUser.isEmpty()) {
 			throw new IdNotFoundException(id);
 		}
 
-		return ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE, HttpStatus.OK.value(),
-				existingUser.get(), "Record fetched successfully.");
+		return new ResponseEntity<>(ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE,
+				HttpStatus.OK.value(), existingUser.get(), "Record fetched successfully."), HttpStatus.OK);
 	}
 
 	@PostMapping("/movies")
-	public Map<String, Object> addUser(@Valid @RequestBody MovieEntity MovieEntity)
+	public ResponseEntity<Map<String, Object>> addUser(@Valid @RequestBody MovieEntity MovieEntity)
 			throws RuntimeException {
-		return ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE, HttpStatus.CREATED.value(),
-				iMovieService.insert(MovieEntity), "User Created Successfully.");
+		return new ResponseEntity<>(ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE,
+				HttpStatus.CREATED.value(), iMovieService.insert(MovieEntity), "User Created Successfully."),
+				HttpStatus.CREATED);
 	}
 
 	@PutMapping("/movies/{id}")
-	public Map<String, Object> updateUser(@Valid @RequestBody MovieEntity MovieEntity,
+	public ResponseEntity<Map<String, Object>> updateUser(@Valid @RequestBody MovieEntity MovieEntity,
 			@PathVariable Long id) throws RuntimeException {
 		Optional<MovieEntity> existingUser = iMovieService.findById(id);
 
 		if (existingUser.isEmpty()) {
 			throw new IdNotFoundException(id);
 		}
-		
+
 		// TODO : Update Movie
 
-//		return ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE, HttpStatus.OK.value(),
-//				iMovieService.update(existingEntity), "User updated successfully.");
+//		return new ResponseEntity<>(ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE, HttpStatus.OK.value(),
+//				iMovieService.update(existingEntity), "User updated successfully."), HttpStatus.OK);
 		return null;
 	}
 
 	@DeleteMapping("/movies/{id}")
-	public Map<String, Object> deleteEmployee(@PathVariable Long id) {
+	public ResponseEntity<Map<String, Object>> deleteEmployee(@PathVariable Long id) {
 		Optional<MovieEntity> existingUser = iMovieService.findById(id);
 
 		if (existingUser.isEmpty()) {
@@ -83,7 +83,7 @@ public class MovieController {
 
 		iMovieService.delete(id);
 
-		return ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE, HttpStatus.OK.value(),
-				returnEntity, "Record deleted and returned successfully.");
+		return new ResponseEntity<>(ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE,
+				HttpStatus.OK.value(), returnEntity, "Record deleted and returned successfully."), HttpStatus.OK);
 	}
 }

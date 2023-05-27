@@ -161,5 +161,17 @@ public class CustomExceptionHandler {
 
 		return new ResponseEntity<ExceptionDetails>(exceptionDetails, HttpStatus.BAD_REQUEST);
 	}
+	
+	@ExceptionHandler(DuplicateMovieException.class)
+	public ResponseEntity<ExceptionDetails> DuplicateMovieExceptionHandler(DuplicateMovieException exp,
+			WebRequest req) {
+		ExceptionDetails exceptionDetails = new ExceptionDetails();
+		exceptionDetails.setErrorCode(MessageConstants.DUPLICATE_MOVIE_ERROR_CODE);
+		exceptionDetails.setTimestamp(LocalDateTime.now());
+		exceptionDetails.setMessage(MessageConstants.DUPLICATE_MOVIE_ERROR_MESSAGE);
+		exceptionDetails.setDescription(req.getDescription(false));
+
+		return new ResponseEntity<ExceptionDetails>(exceptionDetails, HttpStatus.BAD_REQUEST);
+	}
 
 }
