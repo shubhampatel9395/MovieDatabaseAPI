@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -79,7 +80,8 @@ public class MovieController {
 		if (existingUser.isEmpty()) {
 			throw new IdNotFoundException(id);
 		}
-		MovieEntity returnEntity = existingUser.get();
+		MovieEntity returnEntity = new MovieEntity();
+		new ModelMapper().map(existingUser.get(), returnEntity);
 
 		iMovieService.delete(id);
 
