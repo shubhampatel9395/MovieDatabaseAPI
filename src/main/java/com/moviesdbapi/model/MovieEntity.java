@@ -1,14 +1,16 @@
 package com.moviesdbapi.model;
 
-import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.Set;
 
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.validator.constraints.URL;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.moviesdbapi.validation.NotNullEntity;
 import com.moviesdbapi.validation.NotNullEntityCollection;
@@ -124,9 +126,9 @@ public class MovieEntity extends Auditable<String> {
 	@Column(nullable = false)
 	@PastOrPresent
 	@Valid
-	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-	@JsonFormat(pattern = "dd/MM/yyyy")
-	private Date releaseDate;
+	@DateTimeFormat(pattern = "dd/MM/yyyy", iso = ISO.DATE)
+	@JsonFormat(pattern = "dd/MM/yyyy", shape = Shape.STRING)
+	private LocalDate releaseDate;
 
 	@NotNullEntity
 	@Valid

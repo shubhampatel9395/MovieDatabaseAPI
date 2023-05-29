@@ -69,13 +69,26 @@ public class MovieService implements IMovieService {
 
 	public void isValidMovieDetails(MovieEntity entity) throws RuntimeException {
 		// Check Unique Movie Title and Release Date
-		if(movieDAO.findByTitleAndReleaseDate(entity.getTitle(), entity.getReleaseDate()) != null) {
-			throw new DuplicateMovieException();
+		MovieEntity duplicateMovieCheckEntity = movieDAO.findByTitleAndReleaseDate(entity.getTitle(),
+				entity.getReleaseDate());
+		if (entity.getMovieId() == null) {
+			if (duplicateMovieCheckEntity != null) {
+				throw new DuplicateMovieException();
+			}
+		} else {
+			if (duplicateMovieCheckEntity != null) {
+				if (duplicateMovieCheckEntity.getMovieId() != entity.getMovieId()) {
+					if (duplicateMovieCheckEntity.getTitle().equals(entity.getTitle())
+							&& duplicateMovieCheckEntity.getReleaseDate().equals(entity.getReleaseDate())) {
+						throw new DuplicateMovieException();
+					}
+				}
+			}
 		}
-		
+
 		// Check Movie Genres
 		List<EnuGenreEntity> genres = new ArrayList<>(entity.getGenres());
-		
+
 		entity.setGenres(new HashSet<>());
 		genres.forEach(genre -> {
 			EnuGenreEntity temp = enuGenreDAO.findOneByGenre(genre.getGenre());

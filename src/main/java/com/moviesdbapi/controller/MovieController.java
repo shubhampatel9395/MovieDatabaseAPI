@@ -58,7 +58,7 @@ public class MovieController {
 	}
 
 	@PutMapping("/movies/{id}")
-	public ResponseEntity<Map<String, Object>> updateUser(@Valid @RequestBody MovieEntity MovieEntity,
+	public ResponseEntity<Map<String, Object>> updateUser(@Valid @RequestBody MovieEntity updatedMovieEntity,
 			@PathVariable Long id) throws RuntimeException {
 		Optional<MovieEntity> existingUser = iMovieService.findById(id);
 
@@ -66,11 +66,69 @@ public class MovieController {
 			throw new IdNotFoundException(id);
 		}
 
-		// TODO : Update Movie
+		MovieEntity existingMovieEntity = new MovieEntity();
+		new ModelMapper().map(existingUser.get(), existingMovieEntity);
 
-//		return new ResponseEntity<>(ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE, HttpStatus.OK.value(),
-//				iMovieService.update(existingEntity), "User updated successfully."), HttpStatus.OK);
-		return null;
+		if (!(existingMovieEntity.getTitle().equals(updatedMovieEntity.getTitle()))) {
+			existingMovieEntity.setTitle(updatedMovieEntity.getTitle());
+		}
+
+		if (!(existingMovieEntity.getReleaseDate().equals(updatedMovieEntity.getReleaseDate()))) {
+			existingMovieEntity.setReleaseDate(updatedMovieEntity.getReleaseDate());
+		}
+
+		if (!(existingMovieEntity.getDuration().equals(updatedMovieEntity.getDuration()))) {
+			existingMovieEntity.setDuration(updatedMovieEntity.getDuration());
+		}
+
+		if (updatedMovieEntity.getTagline() != null) {
+			existingMovieEntity.setTagline(updatedMovieEntity.getTagline());
+		}
+
+		if (!(existingMovieEntity.getOverview().equals(updatedMovieEntity.getOverview()))) {
+			existingMovieEntity.setOverview(updatedMovieEntity.getOverview());
+		}
+
+		if (!(existingMovieEntity.getGenres().equals(updatedMovieEntity.getGenres()))) {
+			existingMovieEntity.setGenres(updatedMovieEntity.getGenres());
+		}
+
+		if (!(existingMovieEntity.getLanguages().equals(updatedMovieEntity.getLanguages()))) {
+			existingMovieEntity.setLanguages(updatedMovieEntity.getLanguages());
+		}
+
+		if (updatedMovieEntity.getOriginCountry() != null) {
+			existingMovieEntity.setOriginCountry(updatedMovieEntity.getOriginCountry());
+		}
+
+		if (updatedMovieEntity.getCurrency() != null) {
+			existingMovieEntity.setCurrency(updatedMovieEntity.getCurrency());
+		}
+
+		if (updatedMovieEntity.getBudget() != 0) 
+			existingMovieEntity.setBudget(updatedMovieEntity.getBudget());
+			
+		if (updatedMovieEntity.getRevenue() != 0) 
+			existingMovieEntity.setRevenue(updatedMovieEntity.getRevenue());
+			
+		if (updatedMovieEntity.getWebsiteURL() != null)
+			existingMovieEntity.setWebsiteURL(updatedMovieEntity.getWebsiteURL());
+		
+		if (updatedMovieEntity.getFacebookPage() != null)
+			existingMovieEntity.setFacebookPage(updatedMovieEntity.getFacebookPage());
+		
+		if (updatedMovieEntity.getInstagramPage() != null)
+			existingMovieEntity.setInstagramPage(updatedMovieEntity.getInstagramPage());
+		
+		if (updatedMovieEntity.getTrailorLink() != null)
+			existingMovieEntity.setTrailorLink(updatedMovieEntity.getTrailorLink());
+		
+		if (updatedMovieEntity.getCertificate() != null)
+			existingMovieEntity.setCertificate(updatedMovieEntity.getCertificate());
+
+		return new ResponseEntity<>(ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE,
+				HttpStatus.OK.value(), iMovieService.update(existingMovieEntity), "User updated successfully."),
+				HttpStatus.OK);
 	}
 
 	@DeleteMapping("/movies/{id}")

@@ -1,6 +1,6 @@
 package com.moviesdbapi.model;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 import org.hibernate.annotations.ColumnDefault;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -61,7 +61,7 @@ public class UserDetailsEntity extends Auditable<String> {
 	@Valid
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 	@JsonFormat(pattern = "dd/MM/yyyy")
-	private Date dob;
+	private LocalDate dob;
 
 	@Valid
 	@ManyToOne
