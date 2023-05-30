@@ -56,6 +56,11 @@ public class MovieService implements IMovieService {
 	public Optional<MovieEntity> findById(Long id) {
 		return movieDAO.findById(id);
 	}
+	
+	@Override
+	public MovieEntity findOneByMovieId(Long id) {
+		return movieDAO.findOneByMovieId(id);
+	}
 
 	@Override
 	public List<MovieDTO> findByFieldValue(String fieldName, Object fieldValue) {

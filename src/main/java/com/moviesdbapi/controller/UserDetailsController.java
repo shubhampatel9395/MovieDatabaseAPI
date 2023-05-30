@@ -42,7 +42,7 @@ public class UserDetailsController {
 	}
 
 	@GetMapping("/users/{id}")
-	public ResponseEntity<Map<String, Object>> getEmployee(@PathVariable Long id) {
+	public ResponseEntity<Map<String, Object>> getUser(@PathVariable Long id) {
 		Optional<UserDetailsEntity> existingUser = userDetailsService.findById(id);
 
 		if (existingUser.isEmpty()) {
@@ -101,7 +101,7 @@ public class UserDetailsController {
 	}
 
 	@DeleteMapping("/users/{id}")
-	public ResponseEntity<Map<String, Object>> deleteEmployee(@PathVariable Long id) {
+	public ResponseEntity<Map<String, Object>> deleteUser(@PathVariable Long id) {
 		Optional<UserDetailsEntity> existingUser = userDetailsService.findById(id);
 
 		if (existingUser.isEmpty()) {

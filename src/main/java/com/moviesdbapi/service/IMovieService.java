@@ -13,6 +13,8 @@ public interface IMovieService {
 
 	public Optional<MovieEntity> findById(Long id);
 	
+	public MovieEntity findOneByMovieId(Long id);
+	
 	public List<MovieDTO> findByFieldValue(String fieldName, Object fieldValue);
 
 	public List<MovieDTO> findByNamedParameters(MapSqlParameterSource paramSource);

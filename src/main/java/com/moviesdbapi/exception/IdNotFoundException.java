@@ -6,5 +6,9 @@ public class IdNotFoundException extends RuntimeException {
 	public IdNotFoundException(Long id) {
 		super("Could not find " + id);
 	}
+	
+	public IdNotFoundException(String columnName, Long id) {
+		super("Could not find " + id + " for " + columnName);
+	}
 
 }

@@ -11,6 +11,7 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.moviesdbapi.validation.NotNullEntity;
 import com.moviesdbapi.validation.NotNullEntityCollection;
@@ -27,6 +28,7 @@ import jakarta.persistence.JoinColumns;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -86,16 +88,23 @@ public class MovieEntity extends Auditable<String> {
 					@JoinColumn(name = "languageId", referencedColumnName = "languageId") })
 	private Set<EnuLanguageEntity> languages;
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "moviepostermapping", joinColumns = {
-			@JoinColumn(name = "movieId", referencedColumnName = "movieId") }, inverseJoinColumns = {
-					@JoinColumn(name = "posterId", referencedColumnName = "posterId") })
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "movieId", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+//	@JoinTable(name = "moviepostermapping", joinColumns = {
+//			@JoinColumn(name = "movieId", referencedColumnName = "movieId") }, inverseJoinColumns = {
+//					@JoinColumn(name = "posterId", referencedColumnName = "posterId") })
 	private Set<PosterEntity> posters;
+
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "movie", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+	private Set<MovieCastEntity> cast;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "currencyId")
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-//  For lazy initialization of objects
+	// For lazy initialization of objects
 	private EnuCurrencyEntity currency;
 
 	@DecimalMin(value = "0", message = "Movie budget must be positive.")

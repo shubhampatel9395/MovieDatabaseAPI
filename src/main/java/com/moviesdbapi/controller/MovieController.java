@@ -33,41 +33,41 @@ public class MovieController {
 	IMovieService iMovieService;
 
 	@GetMapping("/movies")
-	public ResponseEntity<List<MovieEntity>> getAllUsers() {
+	public ResponseEntity<List<MovieEntity>> getAllMovies() {
 		return new ResponseEntity<List<MovieEntity>>(iMovieService.findAll(), HttpStatus.OK);
 	}
 
 	@GetMapping("/movies/{id}")
-	public ResponseEntity<Map<String, Object>> getEmployee(@PathVariable Long id) {
-		Optional<MovieEntity> existingUser = iMovieService.findById(id);
+	public ResponseEntity<Map<String, Object>> getMovie(@PathVariable Long id) {
+		Optional<MovieEntity> existing = iMovieService.findById(id);
 
-		if (existingUser.isEmpty()) {
+		if (existing.isEmpty()) {
 			throw new IdNotFoundException(id);
 		}
 
 		return new ResponseEntity<>(ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE,
-				HttpStatus.OK.value(), existingUser.get(), "Record fetched successfully."), HttpStatus.OK);
+				HttpStatus.OK.value(), existing.get(), "Record fetched successfully."), HttpStatus.OK);
 	}
 
 	@PostMapping("/movies")
-	public ResponseEntity<Map<String, Object>> addUser(@Valid @RequestBody MovieEntity MovieEntity)
+	public ResponseEntity<Map<String, Object>> addMovie(@Valid @RequestBody MovieEntity MovieEntity)
 			throws RuntimeException {
 		return new ResponseEntity<>(ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE,
-				HttpStatus.CREATED.value(), iMovieService.insert(MovieEntity), "User Created Successfully."),
+				HttpStatus.CREATED.value(), iMovieService.insert(MovieEntity), "Movie Created Successfully."),
 				HttpStatus.CREATED);
 	}
 
 	@PutMapping("/movies/{id}")
-	public ResponseEntity<Map<String, Object>> updateUser(@Valid @RequestBody MovieEntity updatedMovieEntity,
+	public ResponseEntity<Map<String, Object>> updateMovie(@Valid @RequestBody MovieEntity updatedMovieEntity,
 			@PathVariable Long id) throws RuntimeException {
-		Optional<MovieEntity> existingUser = iMovieService.findById(id);
+		Optional<MovieEntity> existing = iMovieService.findById(id);
 
-		if (existingUser.isEmpty()) {
+		if (existing.isEmpty()) {
 			throw new IdNotFoundException(id);
 		}
 
 		MovieEntity existingMovieEntity = new MovieEntity();
-		new ModelMapper().map(existingUser.get(), existingMovieEntity);
+		new ModelMapper().map(existing.get(), existingMovieEntity);
 
 		if (!(existingMovieEntity.getTitle().equals(updatedMovieEntity.getTitle()))) {
 			existingMovieEntity.setTitle(updatedMovieEntity.getTitle());
@@ -105,41 +105,41 @@ public class MovieController {
 			existingMovieEntity.setCurrency(updatedMovieEntity.getCurrency());
 		}
 
-		if (updatedMovieEntity.getBudget() != 0) 
+		if (updatedMovieEntity.getBudget() != 0)
 			existingMovieEntity.setBudget(updatedMovieEntity.getBudget());
-			
-		if (updatedMovieEntity.getRevenue() != 0) 
+
+		if (updatedMovieEntity.getRevenue() != 0)
 			existingMovieEntity.setRevenue(updatedMovieEntity.getRevenue());
-			
+
 		if (updatedMovieEntity.getWebsiteURL() != null)
 			existingMovieEntity.setWebsiteURL(updatedMovieEntity.getWebsiteURL());
-		
+
 		if (updatedMovieEntity.getFacebookPage() != null)
 			existingMovieEntity.setFacebookPage(updatedMovieEntity.getFacebookPage());
-		
+
 		if (updatedMovieEntity.getInstagramPage() != null)
 			existingMovieEntity.setInstagramPage(updatedMovieEntity.getInstagramPage());
-		
+
 		if (updatedMovieEntity.getTrailorLink() != null)
 			existingMovieEntity.setTrailorLink(updatedMovieEntity.getTrailorLink());
-		
+
 		if (updatedMovieEntity.getCertificate() != null)
 			existingMovieEntity.setCertificate(updatedMovieEntity.getCertificate());
 
 		return new ResponseEntity<>(ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE,
-				HttpStatus.OK.value(), iMovieService.update(existingMovieEntity), "User updated successfully."),
+				HttpStatus.OK.value(), iMovieService.update(existingMovieEntity), "Movie updated successfully."),
 				HttpStatus.OK);
 	}
 
 	@DeleteMapping("/movies/{id}")
-	public ResponseEntity<Map<String, Object>> deleteEmployee(@PathVariable Long id) {
-		Optional<MovieEntity> existingUser = iMovieService.findById(id);
+	public ResponseEntity<Map<String, Object>> deleteMovie(@PathVariable Long id) {
+		Optional<MovieEntity> existing = iMovieService.findById(id);
 
-		if (existingUser.isEmpty()) {
+		if (existing.isEmpty()) {
 			throw new IdNotFoundException(id);
 		}
 		MovieEntity returnEntity = new MovieEntity();
-		new ModelMapper().map(existingUser.get(), returnEntity);
+		new ModelMapper().map(existing.get(), returnEntity);
 
 		iMovieService.delete(id);
 

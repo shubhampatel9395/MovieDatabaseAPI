@@ -17,7 +17,7 @@ public class CustomizedMovieDAOImpl implements CustomizedMovieDAO  {
 	
 	@Override
 	public List<MovieDTO> findByFieldValue(String fieldName, Object fieldValue) {
-		String sql = "select * from moviesdb.MST_USERDETAILS where :fieldName = :fieldValue";
+		String sql = "select * from moviesdb.MST_MOVIE where :fieldName = :fieldValue";
 		MapSqlParameterSource namedParameters = new MapSqlParameterSource();
 		namedParameters.addValue("fieldName", fieldName);
 		namedParameters.addValue("fieldValue", fieldValue);
@@ -27,7 +27,7 @@ public class CustomizedMovieDAOImpl implements CustomizedMovieDAO  {
 	
 	@Override
 	public List<MovieDTO> findByNamedParameters(MapSqlParameterSource paramSource) {
-		String sql = "select * from moviesdb.MST_USERDETAILS where 1=1 ";
+		String sql = "select * from moviesdb.MST_MOVIE where 1=1 ";
 		for (Entry<String, Object> param : paramSource.getValues().entrySet()) {
 			sql += " and " + param.getKey() + " = :" + param.getKey();
 		}
