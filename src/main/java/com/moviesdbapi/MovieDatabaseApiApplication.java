@@ -8,10 +8,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import com.moviesdbapi.authentication.SpringSecurityAuditorAware;
 
-@EnableJpaAuditing(auditorAwareRef="auditorAware")
+@EnableJpaAuditing(auditorAwareRef = "auditorAware")
 @SpringBootApplication
 public class MovieDatabaseApiApplication {
-	
+
 	@Bean
 	public AuditorAware<String> auditorAware() {
 		return new SpringSecurityAuditorAware();

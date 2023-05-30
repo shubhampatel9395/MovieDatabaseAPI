@@ -11,5 +11,5 @@ import lombok.experimental.Delegate;
 public class ValidList<E> implements List<E> {
 	@Valid
 	@Delegate
-    private List<E> list = new ArrayList<>();;
+    private List<E> list = new ArrayList<>();
 }
