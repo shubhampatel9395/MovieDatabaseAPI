@@ -36,6 +36,10 @@ public class UserPrincipal implements UserDetails {
 		return user.getBasicDetails().getFirstName();
 	}
 	
+	public UserDetailsEntity getUser() {
+		return user;
+	}
+	
 	public String getRoleName() {
 		return user.getUserRole().getRole();
 	}

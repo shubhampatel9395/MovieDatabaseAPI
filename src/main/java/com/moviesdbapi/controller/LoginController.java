@@ -22,17 +22,18 @@ import com.moviesdbapi.model.dto.LoginDTO;
 @RestController
 @RequestMapping("/api/v1")
 public class LoginController {
-	
+
 	@Autowired
 	private ApplicationContext applicationContext;
 
 	@PostMapping("/login")
-	public Map<String, Object> login(jakarta.servlet.http.HttpServletRequest request,
-			@RequestBody LoginDTO user) throws Exception {
-		
-		UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
+	public Map<String, Object> login(jakarta.servlet.http.HttpServletRequest request, @RequestBody LoginDTO user)
+			throws Exception {
+
+		UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(user.getUsername(),
+				user.getPassword());
 		authToken.setDetails(new WebAuthenticationDetails(request));
-		
+
 		try {
 			Authentication authentication = applicationContext.getBean(AuthenticationConfiguration.class)
 					.getAuthenticationManager().authenticate(authToken);
