@@ -10,8 +10,13 @@ public interface CustomizedMovieCastDAO {
 	public List<MovieCastDTO> findByFieldValue(String fieldName, Object fieldValue);
 
 	public List<MovieCastDTO> findByNamedParameters(MapSqlParameterSource paramSource);
-	
+
 	public List<MovieCastDTO> findAllByMovieId(Long movieId);
+
+	public MovieCastDTO findOneByMovieAndCastTypeAndOriginalNames(Long movieId, Long movieCastTypeId,
+			String originalFirstName, String originalLastName);
+
+	public List<MovieCastDTO> findAllByCastTypeId(Long movieId, Long movieCastTypeId);
 
 	public default boolean softDelete(Long id) {
 		return false;

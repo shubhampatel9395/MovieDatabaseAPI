@@ -173,5 +173,29 @@ public class CustomExceptionHandler {
 
 		return new ResponseEntity<ExceptionDetails>(exceptionDetails, HttpStatus.BAD_REQUEST);
 	}
+	
+	@ExceptionHandler(InvalidMovieCastTypeException.class)
+	public ResponseEntity<ExceptionDetails> InvalidMovieCastTypeExceptionHandler(InvalidMovieCastTypeException exp,
+			WebRequest req) {
+		ExceptionDetails exceptionDetails = new ExceptionDetails();
+		exceptionDetails.setErrorCode(MessageConstants.INVALID_MOVIE_CAST_TYPE_ERROR_CODE);
+		exceptionDetails.setTimestamp(LocalDateTime.now());
+		exceptionDetails.setMessage(MessageConstants.INVALID_MOVIE_CAST_TYPE_ERROR_MESSAGE);
+		exceptionDetails.setDescription(req.getDescription(false));
+
+		return new ResponseEntity<ExceptionDetails>(exceptionDetails, HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(DuplicateMovieCastException.class)
+	public ResponseEntity<ExceptionDetails> DuplicateMovieCastExceptionHandler(DuplicateMovieCastException exp,
+			WebRequest req) {
+		ExceptionDetails exceptionDetails = new ExceptionDetails();
+		exceptionDetails.setErrorCode(MessageConstants.DUPLICATE_MOVIE_CAST_ERROR_CODE);
+		exceptionDetails.setTimestamp(LocalDateTime.now());
+		exceptionDetails.setMessage(MessageConstants.DUPLICATE_MOVIE_CAST_ERROR_MESSAGE);
+		exceptionDetails.setDescription(req.getDescription(false));
+
+		return new ResponseEntity<ExceptionDetails>(exceptionDetails, HttpStatus.BAD_REQUEST);
+	}
 
 }

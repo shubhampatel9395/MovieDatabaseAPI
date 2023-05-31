@@ -45,5 +45,13 @@ public class MessageConstants {
 
 	public static final String INVALID_GENRE_ERROR_MESSAGE = "Invalid Movie Genre";
 	
+	// Movie Cast Type
+	public static final Long DUPLICATE_MOVIE_CAST_ERROR_CODE = 705L;
+
+	public static final String DUPLICATE_MOVIE_CAST_ERROR_MESSAGE = "Cast already exists for the given movie.";
+	
+	public static final Long INVALID_MOVIE_CAST_TYPE_ERROR_CODE = 706L;
+
+	public static final String INVALID_MOVIE_CAST_TYPE_ERROR_MESSAGE = "Invalid Movie Cast Type";
 	
 }

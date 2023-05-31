@@ -5,8 +5,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.modelmapper.AbstractConverter;
-import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,13 +21,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.moviesdbapi.core.ResponseEntityUtil;
 import com.moviesdbapi.core.ValidList;
+import com.moviesdbapi.dao.IEnuMovieCastTypeDAO;
 import com.moviesdbapi.exception.IdNotFoundException;
+import com.moviesdbapi.exception.InvalidMovieCastTypeException;
 import com.moviesdbapi.exception.MessageConstants;
+import com.moviesdbapi.model.EnuMovieCastTypeEntity;
 import com.moviesdbapi.model.MovieCastEntity;
 import com.moviesdbapi.model.MovieEntity;
-import com.moviesdbapi.model.UserBasicDetailsEntity;
 import com.moviesdbapi.model.dto.MovieCastCreateDTO;
 import com.moviesdbapi.model.dto.MovieCastDTO;
+import com.moviesdbapi.model.dto.MovieCastUpdateDTO;
 import com.moviesdbapi.service.IMovieCastService;
 import com.moviesdbapi.service.IMovieService;
 
@@ -43,6 +44,9 @@ public class MovieCastController {
 
 	@Autowired
 	IMovieService iMovieService;
+
+	@Autowired
+	IEnuMovieCastTypeDAO movieCastTypeDAO;
 
 	@Autowired
 	ModelMapper modelMapper;
@@ -63,7 +67,7 @@ public class MovieCastController {
 		return new ResponseEntity<List<MovieCastDTO>>(iMovieCastService.findAllByMovieId(movieId), HttpStatus.OK);
 	}
 
-	@GetMapping("/cast/{castId}")
+	@RequestMapping(method = RequestMethod.GET, value = "/cast/{castId}", headers = "type=id")
 	public ResponseEntity<Map<String, Object>> getCast(@PathVariable Long movieId, @PathVariable Long castId) {
 		checkValidMovie(movieId);
 
@@ -73,10 +77,44 @@ public class MovieCastController {
 			throw new IdNotFoundException(castId);
 		}
 
-		return new ResponseEntity<>(ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE,
-				HttpStatus.OK.value(), existing.get(), "Record fetched successfully."), HttpStatus.OK);
+		if (!(existing.get().getMovie().getMovieId().equals(movieId))) {
+			return new ResponseEntity<>(
+					ResponseEntityUtil.getRes(MessageConstants.SUCCESS_MESSAGE,
+							"There exists no cast with id " + castId + " for the given movie.", HttpStatus.OK.value()),
+					HttpStatus.OK);
+		}
+
+		return new ResponseEntity<>(
+				ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE, HttpStatus.OK.value(),
+						modelMapper.map(existing.get(), MovieCastDTO.class), "Record fetched successfully."),
+				HttpStatus.OK);
 	}
-	
+
+	@RequestMapping(method = RequestMethod.GET, value = "/cast/{castType}", headers = "type=type")
+	public ResponseEntity<Map<String, Object>> getCastByType(@PathVariable Long movieId,
+			@PathVariable String castType) {
+		checkValidMovie(movieId);
+
+		EnuMovieCastTypeEntity castTypeEntity = movieCastTypeDAO.findOneByMovieCastType(castType);
+
+		if (castTypeEntity == null) {
+			throw new InvalidMovieCastTypeException();
+		}
+
+		List<MovieCastDTO> returnDTOs = iMovieCastService.findAllByCastTypeId(movieId,
+				castTypeEntity.getMovieCastTypeId());
+
+		if (returnDTOs.isEmpty()) {
+			return new ResponseEntity<>(
+					ResponseEntityUtil.getRes(MessageConstants.SUCCESS_MESSAGE,
+							"There exists no cast for the given cast type and movie.", HttpStatus.OK.value()),
+					HttpStatus.OK);
+		}
+
+		return new ResponseEntity<>(ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE,
+				HttpStatus.OK.value(), returnDTOs, "Record(s) fetched successfully."), HttpStatus.OK);
+	}
+
 	@RequestMapping(method = RequestMethod.POST, value = "/cast", headers = "action=individual")
 	public ResponseEntity<Map<String, Object>> addCast(@PathVariable Long movieId,
 			@Valid @RequestBody MovieCastCreateDTO castDTO) throws RuntimeException {
@@ -100,51 +138,82 @@ public class MovieCastController {
 	}
 
 	@PutMapping("/cast/{castId}")
-	public ResponseEntity<Map<String, Object>> updateCast(@PathVariable Long movieId,
-			@Valid @RequestBody MovieCastEntity updatedMovieCastEntity, @PathVariable Long id) throws RuntimeException {
-		Optional<MovieCastEntity> existingUser = iMovieCastService.findById(id);
+	public ResponseEntity<Map<String, Object>> updateCast(@PathVariable Long movieId, @PathVariable Long castId,
+			@Valid @RequestBody MovieCastUpdateDTO updatedMovieCastDTO) throws RuntimeException {
+		checkValidMovie(movieId);
 
-		if (existingUser.isEmpty()) {
-			throw new IdNotFoundException(id);
+		Optional<MovieCastEntity> existing = iMovieCastService.findById(castId);
+
+		if (existing.isEmpty()) {
+			throw new IdNotFoundException(castId);
 		}
 
-		// TODO: Update Cast
+		if (!(existing.get().getMovie().getMovieId().equals(movieId))) {
+			return new ResponseEntity<>(
+					ResponseEntityUtil.getRes(MessageConstants.SUCCESS_MESSAGE,
+							"There exists no cast with id " + castId + " for the given movie.", HttpStatus.OK.value()),
+					HttpStatus.OK);
+		}
 
-//		return new ResponseEntity<>(ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE,
-//				HttpStatus.OK.value(), iMovieCastService.update(existingMovieCastEntity), "Record updated successfully."),
-//				HttpStatus.OK);
-		return null;
+		MovieCastEntity updatedMovieCastEntity = modelMapper.map((MovieCastCreateDTO) updatedMovieCastDTO,
+				MovieCastEntity.class);
+		MovieCastEntity existingMovieCastEntity = existing.get();
+
+		// TODO: Update Cast
+		existingMovieCastEntity.setCastType(updatedMovieCastEntity.getCastType());
+		existingMovieCastEntity.setOriginalNames(updatedMovieCastEntity.getOriginalNames());
+		existingMovieCastEntity.setMovieNames(updatedMovieCastEntity.getMovieNames());
+
+		return new ResponseEntity<>(
+				ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE, HttpStatus.OK.value(),
+						iMovieCastService.update(existingMovieCastEntity), "Record updated successfully."),
+				HttpStatus.OK);
 	}
 
 	@DeleteMapping("/cast/{castId}")
-	public ResponseEntity<Map<String, Object>> deleteCast(@PathVariable Long movieId, @PathVariable Long id) {
-		Optional<MovieCastEntity> existingUser = iMovieCastService.findById(id);
+	public ResponseEntity<Map<String, Object>> deleteCast(@PathVariable Long movieId, @PathVariable Long castId) {
+		checkValidMovie(movieId);
 
-		if (existingUser.isEmpty()) {
-			throw new IdNotFoundException(id);
+		Optional<MovieCastEntity> existing = iMovieCastService.findById(castId);
+
+		if (existing.isEmpty()) {
+			throw new IdNotFoundException(castId);
 		}
-		MovieCastEntity returnEntity = new MovieCastEntity();
-		new ModelMapper().map(existingUser.get(), returnEntity);
 
-		iMovieCastService.delete(id);
+		if (!(existing.get().getMovie().getMovieId().equals(movieId))) {
+			return new ResponseEntity<>(
+					ResponseEntityUtil.getRes(MessageConstants.SUCCESS_MESSAGE,
+							"There exists no cast with id " + castId + " for the given movie.", HttpStatus.OK.value()),
+					HttpStatus.OK);
+		}
 
-		return new ResponseEntity<>(ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE,
-				HttpStatus.OK.value(), returnEntity, "Record deleted and returned successfully."), HttpStatus.OK);
+		MovieCastDTO returnDTO = modelMapper.map(existing.get(), MovieCastDTO.class);
+
+		iMovieCastService.delete(castId);
+
+		return new ResponseEntity<>(
+				ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE, HttpStatus.OK.value(),
+						modelMapper.map(returnDTO, MovieCastDTO.class), "Record deleted and returned successfully."),
+				HttpStatus.OK);
 	}
 
 	@DeleteMapping("/cast")
-	public ResponseEntity<Map<String, Object>> deleteAllCast(@PathVariable Long movieId, @PathVariable Long id) {
-		Optional<MovieCastEntity> existingUser = iMovieCastService.findById(id);
+	public ResponseEntity<Map<String, Object>> deleteAllCast(@PathVariable Long movieId) {
+		MovieEntity movie = checkValidMovie(movieId);
 
-		if (existingUser.isEmpty()) {
-			throw new IdNotFoundException(id);
+		List<MovieCastEntity> existing = iMovieCastService.findAllByMovie(movie);
+
+		if (existing.isEmpty()) {
+			return new ResponseEntity<>(ResponseEntityUtil.getRes(MessageConstants.SUCCESS_MESSAGE,
+					"There exists no cast for the given movie.", HttpStatus.OK.value()), HttpStatus.OK);
 		}
-		MovieCastEntity returnEntity = new MovieCastEntity();
-		new ModelMapper().map(existingUser.get(), returnEntity);
 
-		iMovieCastService.delete(id);
+		List<MovieCastDTO> returnDTOs = existing.stream().map(obj -> modelMapper.map(obj, MovieCastDTO.class))
+				.collect(Collectors.toList());
+
+		iMovieCastService.deleteAll(existing);
 
 		return new ResponseEntity<>(ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE,
-				HttpStatus.OK.value(), returnEntity, "Record deleted and returned successfully."), HttpStatus.OK);
+				HttpStatus.OK.value(), returnDTOs, "Record(s) deleted and returned successfully."), HttpStatus.OK);
 	}
 }

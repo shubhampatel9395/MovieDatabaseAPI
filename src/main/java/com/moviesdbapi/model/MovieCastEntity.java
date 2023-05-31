@@ -17,6 +17,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinColumns;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,7 +27,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name = "MST_MOVIECAST")
+@Table(name = "MST_MOVIECAST", uniqueConstraints = {
+		@UniqueConstraint(columnNames = { "movieId", "movieCastTypeId", "originalFirstName", "originalLastName" }) })
 public class MovieCastEntity extends Auditable<String> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,8 +38,7 @@ public class MovieCastEntity extends Auditable<String> {
 	@Valid
 	@NotNullEntity
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumns(value = {
-			@JoinColumn(name = "movieId", referencedColumnName = "movieId", nullable = false),
+	@JoinColumns(value = { @JoinColumn(name = "movieId", referencedColumnName = "movieId", nullable = false),
 			@JoinColumn(name = "movieTitle", referencedColumnName = "title", nullable = false) })
 	private MovieEntity movie;
 
