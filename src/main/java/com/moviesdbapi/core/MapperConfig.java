@@ -1,7 +1,6 @@
 package com.moviesdbapi.core;
 
 import org.modelmapper.AbstractConverter;
-import org.modelmapper.Condition;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;

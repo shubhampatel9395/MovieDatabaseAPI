@@ -60,6 +60,13 @@ public class MovieController {
 	@PutMapping("/movies/{id}")
 	public ResponseEntity<Map<String, Object>> updateMovie(@Valid @RequestBody MovieEntity updatedMovieEntity,
 			@PathVariable Long id) throws RuntimeException {
+		
+//		if (!(updatedMovieEntity.getMovieId().equals(id))) {
+//			return new ResponseEntity<>(ResponseEntityUtil.getRes("Error",
+//					"URI movie id and body movie id must be same. Please enter same movie id",
+//					HttpStatus.BAD_REQUEST.value()), HttpStatus.OK);
+//		}
+		
 		Optional<MovieEntity> existing = iMovieService.findById(id);
 
 		if (existing.isEmpty()) {

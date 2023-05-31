@@ -65,6 +65,13 @@ public class UserDetailsController {
 	@PutMapping("/users/{id}")
 	public ResponseEntity<Map<String, Object>> updateUser(@Valid @RequestBody UserDetailsEntity userDetailsEntity,
 			@PathVariable Long id) throws RuntimeException {
+//		
+//		if (!(userDetailsEntity.getUserId().equals(id))) {
+//			return new ResponseEntity<>(ResponseEntityUtil.getRes("Error",
+//					"URI user id and body user id must be same. Please enter same user id",
+//					HttpStatus.BAD_REQUEST.value()), HttpStatus.OK);
+//		}
+		
 		Optional<UserDetailsEntity> existingUser = userDetailsService.findById(id);
 
 		if (existingUser.isEmpty()) {

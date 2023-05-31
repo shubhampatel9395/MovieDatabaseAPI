@@ -30,7 +30,6 @@ import com.moviesdbapi.model.MovieCastEntity;
 import com.moviesdbapi.model.MovieEntity;
 import com.moviesdbapi.model.dto.MovieCastCreateDTO;
 import com.moviesdbapi.model.dto.MovieCastDTO;
-import com.moviesdbapi.model.dto.MovieCastUpdateDTO;
 import com.moviesdbapi.service.IMovieCastService;
 import com.moviesdbapi.service.IMovieService;
 
@@ -139,7 +138,13 @@ public class MovieCastController {
 
 	@PutMapping("/cast/{castId}")
 	public ResponseEntity<Map<String, Object>> updateCast(@PathVariable Long movieId, @PathVariable Long castId,
-			@Valid @RequestBody MovieCastUpdateDTO updatedMovieCastDTO) throws RuntimeException {
+			@Valid @RequestBody MovieCastCreateDTO updatedMovieCastDTO) throws RuntimeException {
+
+//		if (!(updatedMovieCastDTO.getMovieCastId().equals(castId))) {
+//			return new ResponseEntity<>(ResponseEntityUtil.getRes("Error",
+//					"URI cast id and body cast id must be same. Please enter same cast id",
+//					HttpStatus.BAD_REQUEST.value()), HttpStatus.OK);
+//		}
 		checkValidMovie(movieId);
 
 		Optional<MovieCastEntity> existing = iMovieCastService.findById(castId);
@@ -155,11 +160,10 @@ public class MovieCastController {
 					HttpStatus.OK);
 		}
 
-		MovieCastEntity updatedMovieCastEntity = modelMapper.map((MovieCastCreateDTO) updatedMovieCastDTO,
-				MovieCastEntity.class);
-		MovieCastEntity existingMovieCastEntity = existing.get();
+		MovieCastEntity updatedMovieCastEntity = modelMapper.map(updatedMovieCastDTO, MovieCastEntity.class);
+		MovieCastEntity existingMovieCastEntity = new MovieCastEntity();
+		new ModelMapper().map(existing.get(), existingMovieCastEntity);
 
-		// TODO: Update Cast
 		existingMovieCastEntity.setCastType(updatedMovieCastEntity.getCastType());
 		existingMovieCastEntity.setOriginalNames(updatedMovieCastEntity.getOriginalNames());
 		existingMovieCastEntity.setMovieNames(updatedMovieCastEntity.getMovieNames());
