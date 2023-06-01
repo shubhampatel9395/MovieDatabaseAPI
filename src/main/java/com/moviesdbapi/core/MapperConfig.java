@@ -4,17 +4,28 @@ import org.modelmapper.AbstractConverter;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.moviesdbapi.model.EnuMovieCastTypeEntity;
 import com.moviesdbapi.model.MovieCastEntity;
+import com.moviesdbapi.model.ReviewEntity;
 import com.moviesdbapi.model.UserBasicDetailsEntity;
 import com.moviesdbapi.model.dto.MovieCastCreateDTO;
 import com.moviesdbapi.model.dto.MovieCastDTO;
+import com.moviesdbapi.model.dto.ReviewDTO;
+import com.moviesdbapi.service.IMovieService;
+import com.moviesdbapi.service.IUserDetailsService;
 
 @Configuration
 public class MapperConfig {
+	
+	@Autowired
+	IMovieService iMovieService;
+	
+	@Autowired
+	IUserDetailsService iUserDetailsService;
 
 	@Bean
 	public ModelMapper modelMapper() {
@@ -59,9 +70,29 @@ public class MapperConfig {
 				return dto;
 			}
 		};
+		
+		Converter<ReviewDTO,ReviewEntity> reviewDTOtoEntityConverter = new AbstractConverter<ReviewDTO,ReviewEntity>() {
+			@Override
+			protected ReviewEntity convert(ReviewDTO dto) {
+				ReviewEntity entity = new ReviewEntity();
+				entity.setCreatedBy(dto.getCreatedBy());
+				entity.setCreatedDate(dto.getCreatedDate());
+				entity.setIsActive(dto.getIsActive());
+				entity.setLastModifiedBy(dto.getLastModifiedBy());
+				entity.setLastModifiedDate(dto.getLastModifiedDate());
+				entity.setMovie(iMovieService.findOneByMovieId(dto.getMovieId()));
+				entity.setRating(dto.getRating());
+				entity.setReviewContent(dto.getReviewContent());
+				entity.setReviewId(dto.getReviewId());
+				entity.setReviewTitle(dto.getReviewTitle());
+				entity.setUser(iUserDetailsService.findById(dto.getUserId()).get());
+				return entity;
+			}
+		};
 
 		modelMapper.addConverter(castDTOtoEntityConverter);
 		modelMapper.addConverter(castEntitytoDTOConverter);
+		modelMapper.addConverter(reviewDTOtoEntityConverter);
 		return modelMapper;
 	}
 }

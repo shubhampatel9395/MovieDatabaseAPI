@@ -36,9 +36,9 @@ public class ReviewEntity extends Auditable<String> {
 
 	@Valid
 	@ManyToOne
-	@JoinColumns({ @JoinColumn(name = "userId", referencedColumnName = "userId", nullable = false),
-			@JoinColumn(name = "userFirstName", referencedColumnName = "firstName", nullable = false),
-			@JoinColumn(name = "userLastName", referencedColumnName = "lastName", nullable = false) })
+	@JoinColumns({ @JoinColumn(name = "firstName", referencedColumnName = "firstName", nullable = false),
+			@JoinColumn(name = "lastName", referencedColumnName = "lastName", nullable = false),
+			@JoinColumn(name = "userId", referencedColumnName = "userId", nullable = false) })
 	private UserDetailsEntity user;
 
 	@Valid
@@ -47,12 +47,12 @@ public class ReviewEntity extends Auditable<String> {
 			@JoinColumn(name = "movieTitle", referencedColumnName = "title", nullable = false) })
 	private MovieEntity movie;
 
-	@NotNull
 	@DecimalMin(value = "0", message = "Movie rating must be between 0 to 10.")
 	@DecimalMax(value = "10", message = "Movie rating must be between 0 to 10.")
 	@Digits(integer = 4, fraction = 2, message = "Double range exceeds.")
 	@Column(columnDefinition = "DECIMAL(4,2) NOT NULL")
-	private double rating;
+	@NotNull
+	private Double rating;
 
 	@Column(length = 100)
 	@NotBlankString(message = "Movie's review title must not be blank.")

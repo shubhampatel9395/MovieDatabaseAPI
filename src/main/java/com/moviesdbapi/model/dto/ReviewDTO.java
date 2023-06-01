@@ -16,7 +16,7 @@ public class ReviewDTO {
 	private Long userId;
 	private String userFirstName;
 	private String userLastName;
-	private double rating;
+	private Double rating;
 	private String reviewTitle;
 	private String reviewContent;
 	private Boolean isActive;

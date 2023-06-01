@@ -2,8 +2,6 @@ package com.moviesdbapi.controller;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,21 +15,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.moviesdbapi.authentication.UserPrincipal;
 import com.moviesdbapi.core.ResponseEntityUtil;
-import com.moviesdbapi.core.ValidList;
 import com.moviesdbapi.exception.IdNotFoundException;
-import com.moviesdbapi.exception.InvalidMovieCastTypeException;
 import com.moviesdbapi.exception.MessageConstants;
-import com.moviesdbapi.model.EnuMovieCastTypeEntity;
-import com.moviesdbapi.model.MovieCastEntity;
 import com.moviesdbapi.model.MovieEntity;
 import com.moviesdbapi.model.ReviewEntity;
 import com.moviesdbapi.model.UserDetailsEntity;
-import com.moviesdbapi.model.dto.MovieCastCreateDTO;
 import com.moviesdbapi.service.IMovieService;
 import com.moviesdbapi.service.IReviewService;
 
@@ -62,13 +54,25 @@ public class ReviewConroller {
 		return currentUser.getUser();
 	}
 
-	// TODO: Make a method to get all movies review
+	@GetMapping("/reviews")
+	public ResponseEntity<Map<String, Object>> getAllReviews(@PathVariable Long movieId) {
+		MovieEntity movie = checkValidMovie(movieId);
+		List<ReviewEntity> reviews = iReviewService.findByMovie(movie);
+
+		if (reviews.isEmpty()) {
+			return new ResponseEntity<>(ResponseEntityUtil.getRes(MessageConstants.SUCCESS_MESSAGE,
+					"There are no reviews given for the movie.", HttpStatus.OK.value()), HttpStatus.OK);
+		}
+
+		return new ResponseEntity<>(ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE,
+				HttpStatus.OK.value(), reviews, "Record(s) fetched successfully."), HttpStatus.OK);
+	}
 
 	@GetMapping("/review")
-	public ResponseEntity<Map<String, Object>> getAllCast(@PathVariable Long movieId) {
-		checkValidMovie(movieId);
+	public ResponseEntity<Map<String, Object>> getReview(@PathVariable Long movieId) {
+		MovieEntity movie = checkValidMovie(movieId);
 		UserDetailsEntity currentUser = getCurrentUser();
-		ReviewEntity review = iReviewService.findOneByMovieIdUserId(movieId, currentUser.getUserId());
+		ReviewEntity review = iReviewService.findOneByMovieAndUser(movie, currentUser);
 
 		if (review == null) {
 			return new ResponseEntity<>(
@@ -82,27 +86,25 @@ public class ReviewConroller {
 	}
 
 	@PostMapping("/review")
-	public ResponseEntity<Map<String, Object>> addAllCast(@PathVariable Long movieId,
+	public ResponseEntity<Map<String, Object>> addReview(@PathVariable Long movieId,
 			@Valid @RequestBody ReviewEntity newReview) throws RuntimeException {
 		MovieEntity movie = checkValidMovie(movieId);
 		UserDetailsEntity currentUser = getCurrentUser();
-		ReviewEntity review = iReviewService.findOneByMovieIdUserId(movieId, currentUser.getUserId());
+		ReviewEntity review = iReviewService.findOneByMovieAndUser(movie, currentUser);
 
 		if (review != null) {
-			if (newReview.getReviewTitle() != null) {
-				review.setReviewTitle(newReview.getReviewTitle());
-			}
-
-			if (newReview.getReviewContent() != null) {
-				review.setReviewContent(newReview.getReviewContent());
-			}
+			review.setRating(newReview.getRating());
+			review.setReviewTitle(newReview.getReviewTitle());
+			review.setReviewContent(newReview.getReviewContent());
 
 			return new ResponseEntity<>(
 					ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE, HttpStatus.OK.value(),
 							iReviewService.update(review),
-							"There exists a review given by you for the given movie. \nUpdating your review."),
+							"There exists a review given by you for the given movie. Updating your review."),
 					HttpStatus.OK);
 		} else {
+			newReview.setMovie(movie);
+			newReview.setUser(currentUser);
 			return new ResponseEntity<>(ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE,
 					HttpStatus.CREATED.value(), iReviewService.insert(newReview), "Record Created Successfully."),
 					HttpStatus.CREATED);
@@ -110,26 +112,24 @@ public class ReviewConroller {
 	}
 
 	@PutMapping("/review")
-	public ResponseEntity<Map<String, Object>> updateCast(@PathVariable Long movieId, @PathVariable Long castId,
+	public ResponseEntity<Map<String, Object>> updateReview(@PathVariable Long movieId,
 			@Valid @RequestBody ReviewEntity updatedReview) throws RuntimeException {
-		checkValidMovie(movieId);
+		MovieEntity movie = checkValidMovie(movieId);
 		UserDetailsEntity currentUser = getCurrentUser();
-		ReviewEntity review = iReviewService.findOneByMovieIdUserId(movieId, currentUser.getUserId());
+		ReviewEntity review = iReviewService.findOneByMovieAndUser(movie, currentUser);
 
 		if (review == null) {
+			updatedReview.setMovie(movie);
+			updatedReview.setUser(currentUser);
 			return new ResponseEntity<>(
 					ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE, HttpStatus.CREATED.value(),
 							iReviewService.insert(updatedReview),
-							"There is no review given by you for the given movie. \nAdding your review."),
+							"There is no review given by you for the given movie. Adding your review."),
 					HttpStatus.CREATED);
 		} else {
-			if (updatedReview.getReviewTitle() != null) {
-				review.setReviewTitle(updatedReview.getReviewTitle());
-			}
-
-			if (updatedReview.getReviewContent() != null) {
-				review.setReviewContent(updatedReview.getReviewContent());
-			}
+			review.setRating(updatedReview.getRating());
+			review.setReviewTitle(updatedReview.getReviewTitle());
+			review.setReviewContent(updatedReview.getReviewContent());
 
 			return new ResponseEntity<>(ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE,
 					HttpStatus.OK.value(), iReviewService.update(review), "Record updated successfully."),
@@ -138,10 +138,10 @@ public class ReviewConroller {
 	}
 
 	@DeleteMapping("/review")
-	public ResponseEntity<Map<String, Object>> deleteAllCast(@PathVariable Long movieId) {
-		checkValidMovie(movieId);
+	public ResponseEntity<Map<String, Object>> deleteReview(@PathVariable Long movieId) {
+		MovieEntity movie = checkValidMovie(movieId);
 		UserDetailsEntity currentUser = getCurrentUser();
-		ReviewEntity review = iReviewService.findOneByMovieIdUserId(movieId, currentUser.getUserId());
+		ReviewEntity review = iReviewService.findOneByMovieAndUser(movie, currentUser);
 
 		if (review == null) {
 			return new ResponseEntity<>(
