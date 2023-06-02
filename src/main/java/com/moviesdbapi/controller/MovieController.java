@@ -1,5 +1,6 @@
 package com.moviesdbapi.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -21,7 +22,9 @@ import com.moviesdbapi.core.ResponseEntityUtil;
 import com.moviesdbapi.exception.IdNotFoundException;
 import com.moviesdbapi.exception.MessageConstants;
 import com.moviesdbapi.model.MovieEntity;
+import com.moviesdbapi.service.IMovieCastService;
 import com.moviesdbapi.service.IMovieService;
+import com.moviesdbapi.service.IReviewService;
 
 import jakarta.validation.Valid;
 
@@ -31,6 +34,12 @@ public class MovieController {
 
 	@Autowired
 	IMovieService iMovieService;
+	
+	@Autowired
+	IMovieCastService iMovieCastService;
+	
+	@Autowired
+	IReviewService iMovieReviewService;
 
 	@GetMapping("/movies")
 	public ResponseEntity<List<MovieEntity>> getAllMovies() {
@@ -147,7 +156,7 @@ public class MovieController {
 		}
 		MovieEntity returnEntity = new MovieEntity();
 		new ModelMapper().map(existing.get(), returnEntity);
-
+		
 		iMovieService.delete(id);
 
 		return new ResponseEntity<>(ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE,

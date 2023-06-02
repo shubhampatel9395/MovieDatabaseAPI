@@ -76,4 +76,8 @@ public class ReviewService implements IReviewService {
 		return reviewDAO.findOneByMovieAndUser(movie, user);
 	}
 
+	@Override
+	public void deleteAll(List<ReviewEntity> entities) {
+		reviewDAO.deleteAll(entities);
+	}
 }

@@ -129,7 +129,9 @@ public class MovieCastController {
 
 		List<MovieCastEntity> castEntities = castDTOs.getList().stream()
 				.map(obj -> modelMapper.map(obj, MovieCastEntity.class)).collect(Collectors.toList());
-		castEntities.stream().forEach(obj -> obj.setMovie(movie));
+		castEntities.stream().forEach(obj -> {
+			obj.setMovie(movie);
+		});
 
 		return new ResponseEntity<>(ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE,
 				HttpStatus.CREATED.value(), iMovieCastService.insert(castEntities), "Record(s) Created Successfully."),

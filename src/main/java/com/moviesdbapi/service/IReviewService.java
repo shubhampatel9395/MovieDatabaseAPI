@@ -32,4 +32,6 @@ public interface IReviewService {
 	public void delete(Long id);
 
 	public void delete(ReviewEntity entity);
+	
+	public void deleteAll(List<ReviewEntity> entities);
 }

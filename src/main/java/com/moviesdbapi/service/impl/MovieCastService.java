@@ -91,7 +91,9 @@ public class MovieCastService implements IMovieCastService {
 	public List<MovieCastDTO> isValidMovieCasts(List<MovieCastEntity> entities) {
 		List<MovieCastDTO> returnDTOs = new ArrayList<>();
 		for (MovieCastEntity obj : entities) {
-			returnDTOs.add(modelMapper.map(isValidMovieCast(obj), MovieCastDTO.class));
+			MovieCastEntity temp = isValidMovieCast(obj);
+			temp.getMovie().addCast(temp);
+			returnDTOs.add(modelMapper.map(temp, MovieCastDTO.class));
 		}
 		return returnDTOs;
 	}

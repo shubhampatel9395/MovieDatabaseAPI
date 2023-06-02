@@ -6,6 +6,7 @@ import com.moviesdbapi.validation.NotNullEntity;
 
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.AttributeOverrides;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -37,7 +38,7 @@ public class MovieCastEntity extends Auditable<String> {
 
 	@Valid
 	@NotNullEntity
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumns(value = { @JoinColumn(name = "movieId", referencedColumnName = "movieId", nullable = false),
 			@JoinColumn(name = "movieTitle", referencedColumnName = "title", nullable = false) })
 	private MovieEntity movie;

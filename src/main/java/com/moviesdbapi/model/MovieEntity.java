@@ -2,6 +2,7 @@ package com.moviesdbapi.model;
 
 import java.sql.Time;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 import org.hibernate.annotations.ColumnDefault;
@@ -41,12 +42,16 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
+@ToString
 @Entity
 @Table(name = "MST_MOVIE", uniqueConstraints = { @UniqueConstraint(columnNames = { "title", "releaseDate" }) })
 public class MovieEntity extends Auditable<String> {
@@ -89,17 +94,34 @@ public class MovieEntity extends Auditable<String> {
 	private Set<EnuLanguageEntity> languages;
 
 	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "movieId", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-//	@JoinTable(name = "moviepostermapping", joinColumns = {
-//			@JoinColumn(name = "movieId", referencedColumnName = "movieId") }, inverseJoinColumns = {
-//					@JoinColumn(name = "posterId", referencedColumnName = "posterId") })
-	private Set<PosterEntity> posters;
+	private Set<PosterEntity> posters = new HashSet<>();
+
+	public void addPoster(PosterEntity entity) {
+		this.posters.add(entity);
+		entity.setMovie(this);
+	}
 
 	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "movie", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-	private Set<MovieCastEntity> cast;
+	private Set<MovieCastEntity> cast = new HashSet<>();
+
+	public void addCast(MovieCastEntity entity) {
+		this.cast.add(entity);
+		entity.setMovie(this);
+	}
+
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+	private Set<ReviewEntity> reviews = new HashSet<>();
+
+	public void addReview(ReviewEntity entity) {
+		this.reviews.add(entity);
+		entity.setMovie(this);
+	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "currencyId")
