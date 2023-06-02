@@ -141,12 +141,6 @@ public class MovieCastController {
 	@PutMapping("/cast/{castId}")
 	public ResponseEntity<Map<String, Object>> updateCast(@PathVariable Long movieId, @PathVariable Long castId,
 			@Valid @RequestBody MovieCastCreateDTO updatedMovieCastDTO) throws RuntimeException {
-
-//		if (!(updatedMovieCastDTO.getMovieCastId().equals(castId))) {
-//			return new ResponseEntity<>(ResponseEntityUtil.getRes("Error",
-//					"URI cast id and body cast id must be same. Please enter same cast id",
-//					HttpStatus.BAD_REQUEST.value()), HttpStatus.OK);
-//		}
 		checkValidMovie(movieId);
 
 		Optional<MovieCastEntity> existing = iMovieCastService.findById(castId);
@@ -169,6 +163,7 @@ public class MovieCastController {
 		existingMovieCastEntity.setCastType(updatedMovieCastEntity.getCastType());
 		existingMovieCastEntity.setOriginalNames(updatedMovieCastEntity.getOriginalNames());
 		existingMovieCastEntity.setMovieNames(updatedMovieCastEntity.getMovieNames());
+		existingMovieCastEntity.setIsActive(updatedMovieCastEntity.getIsActive());
 
 		return new ResponseEntity<>(
 				ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE, HttpStatus.OK.value(),

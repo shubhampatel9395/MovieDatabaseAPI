@@ -65,13 +65,12 @@ public class UserDetailsController {
 	@PutMapping("/users/{id}")
 	public ResponseEntity<Map<String, Object>> updateUser(@Valid @RequestBody UserDetailsEntity userDetailsEntity,
 			@PathVariable Long id) throws RuntimeException {
-//		
-//		if (!(userDetailsEntity.getUserId().equals(id))) {
-//			return new ResponseEntity<>(ResponseEntityUtil.getRes("Error",
-//					"URI user id and body user id must be same. Please enter same user id",
-//					HttpStatus.BAD_REQUEST.value()), HttpStatus.OK);
-//		}
-		
+		if (!(userDetailsEntity.getUserId().equals(id))) {
+			return new ResponseEntity<>(ResponseEntityUtil.getRes("Error",
+					"URI user id and body user id must be same. Please enter same user id",
+					HttpStatus.BAD_REQUEST.value()), HttpStatus.OK);
+		}
+
 		Optional<UserDetailsEntity> existingUser = userDetailsService.findById(id);
 
 		if (existingUser.isEmpty()) {
@@ -81,26 +80,14 @@ public class UserDetailsController {
 		UserDetailsEntity existingEntity = new UserDetailsEntity();
 		new ModelMapper().map(existingUser.get(), existingEntity);
 
-		if (!(existingEntity.getBasicDetails().equals(userDetailsEntity.getBasicDetails()))) {
-			existingEntity.setBasicDetails(userDetailsEntity.getBasicDetails());
-		}
-
-		if (!(existingEntity.getEmail().equals(userDetailsEntity.getEmail()))) {
-			existingEntity.setEmail(userDetailsEntity.getEmail());
-		}
-
+		existingEntity.setBasicDetails(userDetailsEntity.getBasicDetails());
+		existingEntity.setEmail(userDetailsEntity.getEmail());
 		existingEntity.setPassword(userDetailsEntity.getPassword());
-
-		if (userDetailsEntity.getGender() != null)
-			existingEntity.setGender(userDetailsEntity.getGender());
-
-		if (userDetailsEntity.getDob() != null)
-			existingEntity.setDob(userDetailsEntity.getDob());
-
+		existingEntity.setGender(userDetailsEntity.getGender());
+		existingEntity.setDob(userDetailsEntity.getDob());
 		existingEntity.setUserRole(userDetailsEntity.getUserRole());
-
-		if (userDetailsEntity.getCountry() != null)
-			existingEntity.setCountry(userDetailsEntity.getCountry());
+		existingEntity.setCountry(userDetailsEntity.getCountry());
+		existingEntity.setIsActive(userDetailsEntity.getIsActive());
 
 		return new ResponseEntity<>(ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE,
 				HttpStatus.OK.value(), userDetailsService.update(existingEntity), "User updated successfully."),

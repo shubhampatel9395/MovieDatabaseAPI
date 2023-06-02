@@ -93,9 +93,12 @@ public class ReviewConroller {
 		ReviewEntity review = iReviewService.findOneByMovieAndUser(movie, currentUser);
 
 		if (review != null) {
+			review.setMovie(movie);
+			review.setUser(currentUser);
 			review.setRating(newReview.getRating());
 			review.setReviewTitle(newReview.getReviewTitle());
 			review.setReviewContent(newReview.getReviewContent());
+			review.setIsActive(newReview.getIsActive());
 
 			return new ResponseEntity<>(
 					ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE, HttpStatus.OK.value(),
@@ -129,9 +132,12 @@ public class ReviewConroller {
 							"There is no review given by you for the given movie. Adding your review."),
 					HttpStatus.CREATED);
 		} else {
+			review.setMovie(movie);
+			review.setUser(currentUser);
 			review.setRating(updatedReview.getRating());
 			review.setReviewTitle(updatedReview.getReviewTitle());
 			review.setReviewContent(updatedReview.getReviewContent());
+			review.setIsActive(updatedReview.getIsActive());
 
 			return new ResponseEntity<>(ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE,
 					HttpStatus.OK.value(), iReviewService.update(review), "Record updated successfully."),
