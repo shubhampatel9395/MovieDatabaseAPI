@@ -34,7 +34,7 @@ public class MessageConstants {
 	
 	public static final Long INVALID_PASSWORD_ERROR_CODE = 702L;
 
-	public static final String INVALID_PASSWORD_ERROR_MESSAGE = "Password must be at least 8 characters long, must contain at least one number, one special character and must have a mixture of	uppercase and lowercase letters.";
+	public static final String INVALID_PASSWORD_ERROR_MESSAGE = "Password must be at least 8 characters long, must not contain white-space, must contain at least one number, one special character and must have a mixture of uppercase and lowercase letters.";
 
 	// Movie
 	public static final Long DUPLICATE_MOVIE_ERROR_CODE = 703L;

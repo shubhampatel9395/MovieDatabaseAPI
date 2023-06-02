@@ -14,7 +14,7 @@ public interface IUserDetailsService {
 	public List<UserDetailsDTO> findAllActive();
 
 	public Optional<UserDetailsEntity> findById(Long id);
-	
+
 	public UserDetailsEntity findOneByEmail(String email);
 
 	public List<UserDetailsEntity> findByFieldValue(String fieldName, Object fieldValue);
@@ -22,8 +22,10 @@ public interface IUserDetailsService {
 	public List<UserDetailsDTO> findByNamedParameters(MapSqlParameterSource paramSource);
 
 	public UserDetailsEntity insert(UserDetailsEntity entity) throws RuntimeException;
+	
+	public UserDetailsEntity signup(UserDetailsEntity entity) throws Exception;
 
-	public UserDetailsEntity update(UserDetailsEntity entity) throws RuntimeException ;
+	public UserDetailsEntity update(UserDetailsEntity entity) throws RuntimeException;
 
 	public void delete(Long id);
 

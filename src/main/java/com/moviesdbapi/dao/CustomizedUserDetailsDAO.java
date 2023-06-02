@@ -12,6 +12,8 @@ public interface CustomizedUserDetailsDAO {
 
 	public List<UserDetailsDTO> findByNamedParameters(MapSqlParameterSource paramSource);
 	
+	public Long signup(UserDetailsEntity entity);
+	
 	public default boolean softDelete(Long id) {
 		return false;
 	}

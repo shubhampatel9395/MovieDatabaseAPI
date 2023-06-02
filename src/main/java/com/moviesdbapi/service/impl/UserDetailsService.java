@@ -69,18 +69,18 @@ public class UserDetailsService implements IUserDetailsService {
 	@Transactional
 	public void isValidUserDetails(UserDetailsEntity entity) throws RuntimeException {
 		List<UserDetailsEntity> emailDTO = userDetailsDAO.findByEmail(entity.getEmail());
-		if(entity.getUserId() == null) {
+		if (entity.getUserId() == null) {
 			if (emailDTO.isEmpty() != true) {
 				throw new DuplicateEmailException();
 			}
 		} else {
 			if (emailDTO.isEmpty() != true) {
-				if(emailDTO.get(0).getUserId() != entity.getUserId()) {
+				if (emailDTO.get(0).getUserId() != entity.getUserId()) {
 					throw new DuplicateEmailException();
 				}
 			}
 		}
-		
+
 		// Password Rules
 		String pattern = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}";
 		boolean isValidPassword = entity.getPassword().matches(pattern);
@@ -158,6 +158,20 @@ public class UserDetailsService implements IUserDetailsService {
 	@Override
 	public UserDetailsEntity findOneByEmail(String email) {
 		return userDetailsDAO.findOneByEmail(email);
+	}
+
+	@Override
+	public UserDetailsEntity signup(UserDetailsEntity entity) throws Exception {
+		isValidUserDetails(entity);
+		
+		Long userId = userDetailsDAO.signup(entity);
+		Optional<UserDetailsEntity> returnEntity = findById(userId);
+
+		if (returnEntity.isEmpty()) {
+			throw new Exception("Error in signing up.");
+		}
+		
+		return returnEntity.get();
 	}
 
 }

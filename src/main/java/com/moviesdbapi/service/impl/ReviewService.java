@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.moviesdbapi.dao.IMovieDAO;
 import com.moviesdbapi.dao.IReviewDAO;
 import com.moviesdbapi.model.MovieEntity;
 import com.moviesdbapi.model.ReviewEntity;
@@ -20,6 +21,9 @@ import com.moviesdbapi.service.IReviewService;
 public class ReviewService implements IReviewService {
 	@Autowired
 	IReviewDAO reviewDAO;
+	
+	@Autowired
+	IMovieDAO movieDAO;
 
 	@Override
 	public List<ReviewEntity> findAll() {
@@ -50,14 +54,20 @@ public class ReviewService implements IReviewService {
 	public List<ReviewDTO> findByNamedParameters(MapSqlParameterSource paramSource) {
 		return reviewDAO.findByNamedParameters(paramSource);
 	}
+	
+	public void updateMovieAverageRatings(Long id) {
+		movieDAO.updateAvgRatings(id);
+	}
 
 	@Override
 	public ReviewEntity insert(ReviewEntity entity) throws RuntimeException {
+		updateMovieAverageRatings(entity.getMovie().getMovieId());
 		return reviewDAO.save(entity);
 	}
 
 	@Override
 	public ReviewEntity update(ReviewEntity entity) throws RuntimeException {
+		updateMovieAverageRatings(entity.getMovie().getMovieId());
 		return reviewDAO.save(entity);
 	}
 
