@@ -1,5 +1,6 @@
 package com.moviesdbapi.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,10 +20,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.moviesdbapi.authentication.UserPrincipal;
 import com.moviesdbapi.core.ResponseEntityUtil;
 import com.moviesdbapi.exception.IdNotFoundException;
 import com.moviesdbapi.exception.MessageConstants;
+import com.moviesdbapi.model.ReviewEntity;
 import com.moviesdbapi.model.UserDetailsEntity;
+import com.moviesdbapi.service.IReviewService;
 import com.moviesdbapi.service.IUserDetailsService;
 
 import jakarta.validation.Valid;
@@ -32,11 +37,20 @@ public class UserDetailsController {
 	@Autowired
 	IUserDetailsService userDetailsService;
 
+	@Autowired
+	IReviewService iReviewService;
+
 //	@GetMapping("/users")
 //	@PreAuthorize(value = "hasAuthority('Admin')")
 //	public ResponseEntity<List<UserDetailsDTO>> getAllActiveUsers() {
 //		return new ResponseEntity<List<UserDetailsDTO>>(userDetailsService.findAllActive(), HttpStatus.OK);
 //	}
+
+	public UserDetailsEntity getCurrentUser() {
+		UserPrincipal currentUser = (UserPrincipal) SecurityContextHolder.getContext().getAuthentication()
+				.getPrincipal();
+		return currentUser.getUser();
+	}
 
 	@GetMapping("/users")
 	@PreAuthorize(value = "hasAuthority('Admin')")
@@ -116,4 +130,18 @@ public class UserDetailsController {
 				HttpStatus.OK.value(), returnEntity, "Record deleted and returned successfully."), HttpStatus.OK);
 	}
 
+	@GetMapping("/reviews")
+	@PreAuthorize(value = "hasAnyAuthority('User')")
+	public ResponseEntity<Map<String, Object>> getAllReviews() {
+		UserDetailsEntity currentUser = getCurrentUser();
+		List<ReviewEntity> reviews = new ArrayList<>(currentUser.getReviews());
+
+		if (reviews.isEmpty()) {
+			return new ResponseEntity<>(ResponseEntityUtil.getRes(MessageConstants.SUCCESS_MESSAGE,
+					"There are no reviews given by you.", HttpStatus.OK.value()), HttpStatus.OK);
+		}
+
+		return new ResponseEntity<>(ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE,
+				HttpStatus.OK.value(), reviews, "Record(s) fetched successfully."), HttpStatus.OK);
+	}
 }

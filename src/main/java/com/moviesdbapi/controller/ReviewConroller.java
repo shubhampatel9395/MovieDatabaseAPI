@@ -113,6 +113,7 @@ public class ReviewConroller {
 			newReview.setMovie(movie);
 			newReview.setUser(currentUser);
 			movie.addReview(newReview);
+			currentUser.addReview(newReview);
 			return new ResponseEntity<>(ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE,
 					HttpStatus.CREATED.value(), iReviewService.insert(newReview), "Record Created Successfully."),
 					HttpStatus.CREATED);
@@ -131,6 +132,7 @@ public class ReviewConroller {
 			updatedReview.setMovie(movie);
 			updatedReview.setUser(currentUser);
 			movie.addReview(updatedReview);
+			currentUser.addReview(updatedReview);
 			return new ResponseEntity<>(
 					ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE, HttpStatus.CREATED.value(),
 							iReviewService.insert(updatedReview),

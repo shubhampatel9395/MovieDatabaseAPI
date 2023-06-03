@@ -37,7 +37,7 @@ public class ReviewEntity extends Auditable<String> {
 	private Long reviewId;
 
 	@Valid
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumns({ @JoinColumn(name = "firstName", referencedColumnName = "firstName", nullable = false),
 			@JoinColumn(name = "lastName", referencedColumnName = "lastName", nullable = false),
 			@JoinColumn(name = "userId", referencedColumnName = "userId", nullable = false) })

@@ -73,12 +73,15 @@ public class ReviewService implements IReviewService {
 
 	@Override
 	public void delete(Long id) {
+		Long movieId = findById(id).get().getMovie().getMovieId();
 		reviewDAO.deleteById(id);
+		updateMovieAverageRatings(movieId);
 	}
 
 	@Override
 	public void delete(ReviewEntity entity) {
 		reviewDAO.delete(entity);
+		updateMovieAverageRatings(entity.getMovie().getMovieId());
 	}
 
 	@Override
@@ -88,6 +91,11 @@ public class ReviewService implements IReviewService {
 
 	@Override
 	public void deleteAll(List<ReviewEntity> entities) {
-		reviewDAO.deleteAll(entities);
+		if(!entities.isEmpty()) {
+			Long movieId = entities.get(0).getMovie().getMovieId();
+			reviewDAO.deleteAll(entities);
+			updateMovieAverageRatings(movieId);
+		}
+		
 	}
 }
