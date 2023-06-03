@@ -14,6 +14,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.moviesdbapi.validation.CustomDateDeserializer;
+import com.moviesdbapi.validation.CustomTimeDeserializer;
 import com.moviesdbapi.validation.NotNullEntity;
 import com.moviesdbapi.validation.NotNullEntityCollection;
 
@@ -31,8 +34,6 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.DecimalMin;
@@ -159,12 +160,15 @@ public class MovieEntity extends Auditable<String> {
 	@Valid
 	@DateTimeFormat(pattern = "dd/MM/yyyy", iso = ISO.DATE)
 	@JsonFormat(pattern = "dd/MM/yyyy", shape = Shape.STRING)
+	@JsonDeserialize(using = CustomDateDeserializer.class)
 	private LocalDate releaseDate;
 
 	@NotNullEntity
 	@Valid
 	@Column(nullable = false)
-	@Temporal(TemporalType.TIME)
+	@DateTimeFormat(pattern = "HH:mm:ss", iso = ISO.TIME)
+	@JsonFormat(pattern = "HH:mm:ss", shape = Shape.STRING)
+	@JsonDeserialize(using = CustomTimeDeserializer.class)
 	private Time duration;
 
 	@Column(columnDefinition = "DECIMAL(5,2)")

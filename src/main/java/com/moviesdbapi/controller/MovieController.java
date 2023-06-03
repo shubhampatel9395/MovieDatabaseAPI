@@ -8,6 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,11 +42,13 @@ public class MovieController {
 	IReviewService iMovieReviewService;
 
 	@GetMapping("/movies")
+	@PreAuthorize(value = "hasAnyAuthority('Admin','User')")
 	public ResponseEntity<List<MovieEntity>> getAllMovies() {
 		return new ResponseEntity<List<MovieEntity>>(iMovieService.findAll(), HttpStatus.OK);
 	}
 
 	@GetMapping("/movies/{id}")
+	@PreAuthorize(value = "hasAnyAuthority('Admin','User')")
 	public ResponseEntity<Map<String, Object>> getMovie(@PathVariable Long id) {
 		Optional<MovieEntity> existing = iMovieService.findById(id);
 
@@ -58,6 +61,7 @@ public class MovieController {
 	}
 
 	@PostMapping("/movies")
+	@PreAuthorize(value = "hasAuthority('Admin')")
 	public ResponseEntity<Map<String, Object>> addMovie(@Valid @RequestBody MovieEntity MovieEntity)
 			throws RuntimeException {
 		return new ResponseEntity<>(ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE,
@@ -66,6 +70,7 @@ public class MovieController {
 	}
 
 	@PutMapping("/movies/{id}")
+	@PreAuthorize(value = "hasAuthority('Admin')")
 	public ResponseEntity<Map<String, Object>> updateMovie(@Valid @RequestBody MovieEntity updatedMovieEntity,
 			@PathVariable Long id) throws RuntimeException {
 		if (!(updatedMovieEntity.getMovieId().equals(id))) {
@@ -107,6 +112,7 @@ public class MovieController {
 	}
 
 	@DeleteMapping("/movies/{id}")
+	@PreAuthorize(value = "hasAuthority('Admin')")
 	public ResponseEntity<Map<String, Object>> deleteMovie(@PathVariable Long id) {
 		Optional<MovieEntity> existing = iMovieService.findById(id);
 

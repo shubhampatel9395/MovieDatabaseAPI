@@ -30,7 +30,8 @@ public class CustomExceptionHandler {
 	public ResponseEntity<ExceptionDetails> AccessDeniedExceptionHandler(AccessDeniedException exp, WebRequest req) {
 		ExceptionDetails exceptionDetails = new ExceptionDetails();
 		exceptionDetails.setTimestamp(LocalDateTime.now());
-		exceptionDetails.setMessage(exp.getMessage());
+		exceptionDetails.setErrorCode(Long.valueOf(HttpStatus.FORBIDDEN.value()));
+		exceptionDetails.setMessage(MessageConstants.ACCESS_DENIED_MESSAGE);
 		exceptionDetails.setDescription(req.getDescription(false));
 
 		return new ResponseEntity<ExceptionDetails>(exceptionDetails, HttpStatus.FORBIDDEN);
@@ -111,6 +112,17 @@ public class CustomExceptionHandler {
 		exceptionDetails.setErrorCode(MessageConstants.INVALID_DATE_ERROR_CODE);
 		exceptionDetails.setTimestamp(LocalDateTime.now());
 		exceptionDetails.setMessage(MessageConstants.INVALID_DATE_ERROR_MESSAGE);
+		exceptionDetails.setDescription(req.getDescription(false));
+
+		return new ResponseEntity<ExceptionDetails>(exceptionDetails, HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(InvalidTimeException.class)
+	public ResponseEntity<ExceptionDetails> InvalidTimeExceptionHandler(InvalidTimeException exp, WebRequest req) {
+		ExceptionDetails exceptionDetails = new ExceptionDetails();
+		exceptionDetails.setErrorCode(MessageConstants.INVALID_TIME_ERROR_CODE);
+		exceptionDetails.setTimestamp(LocalDateTime.now());
+		exceptionDetails.setMessage(MessageConstants.INVALID_TIME_ERROR_MESSAGE);
 		exceptionDetails.setDescription(req.getDescription(false));
 
 		return new ResponseEntity<ExceptionDetails>(exceptionDetails, HttpStatus.BAD_REQUEST);

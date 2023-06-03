@@ -9,6 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -61,12 +62,14 @@ public class MovieCastController {
 	}
 
 	@GetMapping("/cast")
+	@PreAuthorize(value = "hasAnyAuthority('User','Admin')")
 	public ResponseEntity<List<MovieCastDTO>> getAllCast(@PathVariable Long movieId) {
 		checkValidMovie(movieId);
 		return new ResponseEntity<List<MovieCastDTO>>(iMovieCastService.findAllByMovieId(movieId), HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/cast/{castId}", headers = "type=id")
+	@PreAuthorize(value = "hasAnyAuthority('User','Admin')")
 	public ResponseEntity<Map<String, Object>> getCast(@PathVariable Long movieId, @PathVariable Long castId) {
 		checkValidMovie(movieId);
 
@@ -90,6 +93,7 @@ public class MovieCastController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/cast/{castType}", headers = "type=type")
+	@PreAuthorize(value = "hasAnyAuthority('User','Admin')")
 	public ResponseEntity<Map<String, Object>> getCastByType(@PathVariable Long movieId,
 			@PathVariable String castType) {
 		checkValidMovie(movieId);
@@ -115,6 +119,7 @@ public class MovieCastController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/cast", headers = "action=individual")
+	@PreAuthorize(value = "hasAuthority('Admin')")
 	public ResponseEntity<Map<String, Object>> addCast(@PathVariable Long movieId,
 			@Valid @RequestBody MovieCastCreateDTO castDTO) throws RuntimeException {
 		ValidList<MovieCastCreateDTO> lst = new ValidList<>();
@@ -123,6 +128,7 @@ public class MovieCastController {
 	}
 
 	@PostMapping("/cast")
+	@PreAuthorize(value = "hasAuthority('Admin')")
 	public ResponseEntity<Map<String, Object>> addAllCast(@PathVariable Long movieId,
 			@Valid @RequestBody ValidList<MovieCastCreateDTO> castDTOs) throws RuntimeException {
 		MovieEntity movie = checkValidMovie(movieId);
@@ -139,6 +145,7 @@ public class MovieCastController {
 	}
 
 	@PutMapping("/cast/{castId}")
+	@PreAuthorize(value = "hasAuthority('Admin')")
 	public ResponseEntity<Map<String, Object>> updateCast(@PathVariable Long movieId, @PathVariable Long castId,
 			@Valid @RequestBody MovieCastCreateDTO updatedMovieCastDTO) throws RuntimeException {
 		checkValidMovie(movieId);
@@ -172,6 +179,7 @@ public class MovieCastController {
 	}
 
 	@DeleteMapping("/cast/{castId}")
+	@PreAuthorize(value = "hasAuthority('Admin')")
 	public ResponseEntity<Map<String, Object>> deleteCast(@PathVariable Long movieId, @PathVariable Long castId) {
 		checkValidMovie(movieId);
 
@@ -199,6 +207,7 @@ public class MovieCastController {
 	}
 
 	@DeleteMapping("/cast")
+	@PreAuthorize(value = "hasAuthority('Admin')")
 	public ResponseEntity<Map<String, Object>> deleteAllCast(@PathVariable Long movieId) {
 		MovieEntity movie = checkValidMovie(movieId);
 

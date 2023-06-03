@@ -8,6 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,16 +33,19 @@ public class UserDetailsController {
 	IUserDetailsService userDetailsService;
 
 //	@GetMapping("/users")
+//	@PreAuthorize(value = "hasAuthority('Admin')")
 //	public ResponseEntity<List<UserDetailsDTO>> getAllActiveUsers() {
 //		return new ResponseEntity<List<UserDetailsDTO>>(userDetailsService.findAllActive(), HttpStatus.OK);
 //	}
 
 	@GetMapping("/users")
+	@PreAuthorize(value = "hasAuthority('Admin')")
 	public ResponseEntity<List<UserDetailsEntity>> getAllUsers() {
 		return new ResponseEntity<List<UserDetailsEntity>>(userDetailsService.findAll(), HttpStatus.OK);
 	}
 
 	@GetMapping("/users/{id}")
+	@PreAuthorize(value = "hasAuthority('Admin')")
 	public ResponseEntity<Map<String, Object>> getUser(@PathVariable Long id) {
 		Optional<UserDetailsEntity> existingUser = userDetailsService.findById(id);
 
@@ -54,6 +58,7 @@ public class UserDetailsController {
 	}
 
 	@PostMapping("/users")
+	@PreAuthorize(value = "hasAuthority('Admin')")
 	public ResponseEntity<Map<String, Object>> addUser(@Valid @RequestBody UserDetailsEntity userDetailsEntity)
 			throws RuntimeException {
 		return new ResponseEntity<>(
@@ -63,6 +68,7 @@ public class UserDetailsController {
 	}
 
 	@PutMapping("/users/{id}")
+	@PreAuthorize(value = "hasAuthority('Admin')")
 	public ResponseEntity<Map<String, Object>> updateUser(@Valid @RequestBody UserDetailsEntity userDetailsEntity,
 			@PathVariable Long id) throws RuntimeException {
 		if (!(userDetailsEntity.getUserId().equals(id))) {
@@ -95,6 +101,7 @@ public class UserDetailsController {
 	}
 
 	@DeleteMapping("/users/{id}")
+	@PreAuthorize(value = "hasAuthority('Admin')")
 	public ResponseEntity<Map<String, Object>> deleteUser(@PathVariable Long id) {
 		Optional<UserDetailsEntity> existingUser = userDetailsService.findById(id);
 

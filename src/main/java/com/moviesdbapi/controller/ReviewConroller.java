@@ -7,6 +7,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -55,6 +56,7 @@ public class ReviewConroller {
 	}
 
 	@GetMapping("/reviews")
+	@PreAuthorize(value = "hasAnyAuthority('Admin','User')")
 	public ResponseEntity<Map<String, Object>> getAllReviews(@PathVariable Long movieId) {
 		MovieEntity movie = checkValidMovie(movieId);
 		List<ReviewEntity> reviews = iReviewService.findByMovie(movie);
@@ -69,6 +71,7 @@ public class ReviewConroller {
 	}
 
 	@GetMapping("/review")
+	@PreAuthorize(value = "hasAuthority('User')")
 	public ResponseEntity<Map<String, Object>> getReview(@PathVariable Long movieId) {
 		MovieEntity movie = checkValidMovie(movieId);
 		UserDetailsEntity currentUser = getCurrentUser();
@@ -86,6 +89,7 @@ public class ReviewConroller {
 	}
 
 	@PostMapping("/review")
+	@PreAuthorize(value = "hasAuthority('User')")
 	public ResponseEntity<Map<String, Object>> addReview(@PathVariable Long movieId,
 			@Valid @RequestBody ReviewEntity newReview) throws RuntimeException {
 		MovieEntity movie = checkValidMovie(movieId);
@@ -116,6 +120,7 @@ public class ReviewConroller {
 	}
 
 	@PutMapping("/review")
+	@PreAuthorize(value = "hasAuthority('User')")
 	public ResponseEntity<Map<String, Object>> updateReview(@PathVariable Long movieId,
 			@Valid @RequestBody ReviewEntity updatedReview) throws RuntimeException {
 		MovieEntity movie = checkValidMovie(movieId);
@@ -146,6 +151,7 @@ public class ReviewConroller {
 	}
 
 	@DeleteMapping("/review")
+	@PreAuthorize(value = "hasAuthority('User')")
 	public ResponseEntity<Map<String, Object>> deleteReview(@PathVariable Long movieId) {
 		MovieEntity movie = checkValidMovie(movieId);
 		UserDetailsEntity currentUser = getCurrentUser();

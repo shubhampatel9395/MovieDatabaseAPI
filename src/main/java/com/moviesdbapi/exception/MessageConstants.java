@@ -5,25 +5,31 @@ public class MessageConstants {
 	// Common
 	public static final String SUCCESS_MESSAGE = "Operation success";
 	
-	public static final Long INVALID_COUNTRY_ERROR_CODE = 601L;
+	public static final String ACCESS_DENIED_MESSAGE = "You are not authorized to access this URI.";
+	
+	public static final Long INVALID_ID_ERROR_CODE = 601L;
+	
+	public static final Long INVALID_COUNTRY_ERROR_CODE = 602L;
 
 	public static final String INVALID_COUNTRY_ERROR_MESSAGE = "Invalid country name";
 	
-	public static final Long INVALID_USER_ROLE_ERROR_CODE = 602L;
+	public static final Long INVALID_USER_ROLE_ERROR_CODE = 603L;
 
 	public static final String INVALID_USER_ROLE_ERROR_MESSAGE = "Invalid user role";
 	
-	public static final Long INVALID_DATE_ERROR_CODE = 603L;
+	public static final Long INVALID_DATE_ERROR_CODE = 604L;
 
-	public static final String INVALID_DATE_ERROR_MESSAGE = "Invalid Date";
+	public static final String INVALID_DATE_ERROR_MESSAGE = "Invalid Date (Date must be valid and must be in dd/MM/yyyy format)";
 	
-	public static final Long INVALID_ID_ERROR_CODE = 604L;
+	public static final Long INVALID_TIME_ERROR_CODE = 605L;
+
+	public static final String INVALID_TIME_ERROR_MESSAGE = "Invalid Time (Time must be valid and must be in HH:mm:ss format)";
 	
-	public static final Long INVALID_LANGUAGE_ERROR_CODE = 605L;
+	public static final Long INVALID_LANGUAGE_ERROR_CODE = 606L;
 
 	public static final String INVALID_LANGUAGE_ERROR_MESSAGE = "Invalid Language";
 	
-	public static final Long INVALID_CURRENCY_ERROR_CODE = 606L;
+	public static final Long INVALID_CURRENCY_ERROR_CODE = 607L;
 
 	public static final String INVALID_CURRENCY_ERROR_MESSAGE = "Invalid Currency";
 	
@@ -39,7 +45,7 @@ public class MessageConstants {
 	// Movie
 	public static final Long DUPLICATE_MOVIE_ERROR_CODE = 703L;
 
-	public static final String DUPLICATE_MOVIE_ERROR_MESSAGE = "Given movie title on given the release date is already present in the system.";
+	public static final String DUPLICATE_MOVIE_ERROR_MESSAGE = "Given movie title on the given release date is already present in the system.";
 	
 	public static final Long INVALID_GENRE_ERROR_CODE = 704L;
 

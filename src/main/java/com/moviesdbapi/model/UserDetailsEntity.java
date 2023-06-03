@@ -6,6 +6,8 @@ import org.hibernate.annotations.ColumnDefault;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.moviesdbapi.validation.CustomDateDeserializer;
 import com.moviesdbapi.validation.NotNullEntity;
 
 import jakarta.persistence.Column;
@@ -61,6 +63,7 @@ public class UserDetailsEntity extends Auditable<String> {
 	@Valid
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 	@JsonFormat(pattern = "dd/MM/yyyy")
+	@JsonDeserialize(using = CustomDateDeserializer.class)
 	private LocalDate dob;
 
 	@Valid

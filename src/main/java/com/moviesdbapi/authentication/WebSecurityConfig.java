@@ -34,8 +34,11 @@ public class WebSecurityConfig {
 
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		return http.csrf().disable().authorizeHttpRequests().requestMatchers("/api/v1/login", "/api/v1/movies/**")
-				.permitAll().requestMatchers("/api/v1/signup").permitAll().requestMatchers("/api/v1/users/**").authenticated().anyRequest().authenticated().and()
-				.logout().logoutUrl("/logout").invalidateHttpSession(true).permitAll().and().httpBasic().and().build();
+		return http.csrf().disable().authorizeHttpRequests().requestMatchers("/api/v1/login", "/api/v1/signup")
+				.permitAll()
+				// .and()
+				// .authorizeHttpRequests().requestMatchers("/api/v1/users/**").authenticated()
+				.anyRequest().authenticated().and().logout().logoutUrl("/logout").invalidateHttpSession(true)
+				.permitAll().and().httpBasic().and().build();
 	}
 }
