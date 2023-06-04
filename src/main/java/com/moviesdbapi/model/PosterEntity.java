@@ -13,8 +13,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinColumns;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,7 +25,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name = "MST_POSTER", uniqueConstraints = { @UniqueConstraint(columnNames = { "poster", "movieId" }) })
+@Table(name = "MST_POSTER")
+// , uniqueConstraints = { @UniqueConstraint(columnNames = { "poster", "movieId" }) })
 public class PosterEntity extends Auditable<String> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,6 +36,10 @@ public class PosterEntity extends Auditable<String> {
 	@NotNull
 	@Column(columnDefinition = "LONGBLOB NOT NULL")
 	private Blob poster;
+	
+	@NotEmpty(message = "Image type must not be empty.")
+	@NotBlank(message = "Image type must not be blank.")
+	private String type;
 
 	@Valid
 	@ManyToOne
