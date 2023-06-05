@@ -71,12 +71,12 @@ public class MovieCastController {
 	@RequestMapping(method = RequestMethod.GET, value = "/cast/{castId}", headers = "type=id")
 	@PreAuthorize(value = "hasAnyAuthority('User','Admin')")
 	public ResponseEntity<Map<String, Object>> getCast(@PathVariable Long movieId, @PathVariable Long castId) {
-		checkValidMovie(movieId);
+		MovieEntity movie = checkValidMovie(movieId);
 
-		Optional<MovieCastEntity> existing = iMovieCastService.findById(castId);
+		Optional<MovieCastEntity> existing = iMovieCastService.findOneByMovieAndMovieCastId(movie, castId);
 
 		if (existing.isEmpty()) {
-			throw new IdNotFoundException(castId);
+			throw new IdNotFoundException(castId, movie.getMovieId());
 		}
 
 		if (!(existing.get().getMovie().getMovieId().equals(movieId))) {
@@ -148,12 +148,12 @@ public class MovieCastController {
 	@PreAuthorize(value = "hasAuthority('Admin')")
 	public ResponseEntity<Map<String, Object>> updateCast(@PathVariable Long movieId, @PathVariable Long castId,
 			@Valid @RequestBody MovieCastCreateDTO updatedMovieCastDTO) throws RuntimeException {
-		checkValidMovie(movieId);
+		MovieEntity movie = checkValidMovie(movieId);
 
-		Optional<MovieCastEntity> existing = iMovieCastService.findById(castId);
+		Optional<MovieCastEntity> existing = iMovieCastService.findOneByMovieAndMovieCastId(movie, castId);
 
 		if (existing.isEmpty()) {
-			throw new IdNotFoundException(castId);
+			throw new IdNotFoundException(castId, movie.getMovieId());
 		}
 
 		if (!(existing.get().getMovie().getMovieId().equals(movieId))) {
@@ -181,12 +181,12 @@ public class MovieCastController {
 	@DeleteMapping("/cast/{castId}")
 	@PreAuthorize(value = "hasAuthority('Admin')")
 	public ResponseEntity<Map<String, Object>> deleteCast(@PathVariable Long movieId, @PathVariable Long castId) {
-		checkValidMovie(movieId);
+		MovieEntity movie = checkValidMovie(movieId);
 
-		Optional<MovieCastEntity> existing = iMovieCastService.findById(castId);
+		Optional<MovieCastEntity> existing = iMovieCastService.findOneByMovieAndMovieCastId(movie, castId);
 
 		if (existing.isEmpty()) {
-			throw new IdNotFoundException(castId);
+			throw new IdNotFoundException(castId, movie.getMovieId());
 		}
 
 		if (!(existing.get().getMovie().getMovieId().equals(movieId))) {

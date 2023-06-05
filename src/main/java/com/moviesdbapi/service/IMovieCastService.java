@@ -17,6 +17,8 @@ public interface IMovieCastService {
 	public List<MovieCastDTO> findAllByMovieId(Long id);
 
 	public List<MovieCastEntity> findAllByMovie(MovieEntity movie);
+	
+	public Optional<MovieCastEntity> findOneByMovieAndMovieCastId(MovieEntity movie, Long castId);
 
 	public List<MovieCastDTO> findByFieldValue(String fieldName, Object fieldValue);
 

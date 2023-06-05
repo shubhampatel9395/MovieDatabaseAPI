@@ -33,6 +33,18 @@ public class MessageConstants {
 
 	public static final String INVALID_CURRENCY_ERROR_MESSAGE = "Invalid Currency";
 	
+	public static final Long NOT_ALLOWED_IMAGE_FILE_EXTENSION_ERROR_CODE = 608L;
+
+	public static final String NOT_ALLOWED_IMAGE_FILE_EXTENSION_ERROR_MESSAGE = "Not allowed extension (Only .jpg,.jpeg and .png are allowed.)";
+	
+	public static final Long ADD_FILE_ERROR_CODE = 609L;
+
+	public static final String ADD_FILE_ERROR_MESSAGE = "Error while adding poster";
+	
+	public static final Long GET_FILE_ERROR_CODE = 610L;
+
+	public static final String GET_FILE_ERROR_MESSAGE = "Error while fetching poster";
+	
 	// User
 	public static final Long DUPLICATE_EMAIL_ERROR_CODE = 701L;
 

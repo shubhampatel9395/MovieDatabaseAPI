@@ -14,6 +14,8 @@ public interface IPosterService {
 	public Optional<PosterEntity> findById(Long id);
 
 	public List<PosterEntity> findAllByMovie(MovieEntity movie);
+	
+	public  Optional<PosterEntity> findOneByMovieAndPosterId(MovieEntity movie, Long posterId);
 
 	public List<PosterEntity> findByFieldValue(String fieldName, Object fieldValue);
 
@@ -22,7 +24,7 @@ public interface IPosterService {
 	public List<PosterEntity> insert(List<PosterEntity> entity) throws RuntimeException;
 	
 	public PosterEntity insert(PosterEntity entity) throws RuntimeException;
-
+	
 	public void delete(Long id);
 
 	public void delete(PosterEntity entity);

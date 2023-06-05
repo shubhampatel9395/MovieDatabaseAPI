@@ -70,4 +70,9 @@ public class PosterService implements IPosterService {
 		return posterDAO.save(entity);
 	}
 
+	@Override
+	public  Optional<PosterEntity> findOneByMovieAndPosterId(MovieEntity movie, Long posterId) {
+		return posterDAO.findOneByMovieAndPosterId(movie, posterId);
+	}
+
 }

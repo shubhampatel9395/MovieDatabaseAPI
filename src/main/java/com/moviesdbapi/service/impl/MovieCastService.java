@@ -133,4 +133,9 @@ public class MovieCastService implements IMovieCastService {
 		return movieCastDAO.findAllByCastTypeId(movieId, movieCastTypeId);
 	}
 
+	@Override
+	public Optional<MovieCastEntity> findOneByMovieAndMovieCastId(MovieEntity movie, Long castId) {
+		return movieCastDAO.findOneByMovieAndMovieCastId(movie, castId);
+	}
+
 }

@@ -11,4 +11,7 @@ public class IdNotFoundException extends RuntimeException {
 		super("Could not find " + id + " for " + columnName);
 	}
 
+	public IdNotFoundException(Long id, Long movieId) {
+		super("Could not find " + id + " for the movie " + movieId);
+	}
 }
