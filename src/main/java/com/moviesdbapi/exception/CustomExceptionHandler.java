@@ -37,15 +37,15 @@ public class CustomExceptionHandler {
 		return new ResponseEntity<ExceptionDetails>(exceptionDetails, HttpStatus.FORBIDDEN);
 	}
 
-//	@ExceptionHandler(Exception.class)
-//	public ResponseEntity<ExceptionDetails> OtherExceptionHandler(Exception exp, WebRequest req) {
-//		ExceptionDetails exceptionDetails = new ExceptionDetails();
-//		exceptionDetails.setTimestamp(LocalDateTime.now());
-//		exceptionDetails.setMessage(exp.getLocalizedMessage());
-//		exceptionDetails.setDescription(req.getDescription(false));
-//
-//		return new ResponseEntity<ExceptionDetails>(exceptionDetails, HttpStatus.BAD_REQUEST);
-//	}
+	@ExceptionHandler(Exception.class)
+	public ResponseEntity<ExceptionDetails> OtherExceptionHandler(Exception exp, WebRequest req) {
+		ExceptionDetails exceptionDetails = new ExceptionDetails();
+		exceptionDetails.setTimestamp(LocalDateTime.now());
+		exceptionDetails.setMessage(exp.getLocalizedMessage());
+		exceptionDetails.setDescription(req.getDescription(false));
+
+		return new ResponseEntity<ExceptionDetails>(exceptionDetails, HttpStatus.BAD_REQUEST);
+	}
 
 	@ExceptionHandler(ParameterMissingException.class)
 	public ResponseEntity<ExceptionDetails> ParameterMissingExceptionHandler(ParameterMissingException exp,

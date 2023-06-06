@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.moviesdbapi.authentication.UserPrincipal;
 import com.moviesdbapi.core.ResponseEntityUtil;
 import com.moviesdbapi.exception.MessageConstants;
 import com.moviesdbapi.model.EnuUserRoleEntity;
@@ -55,7 +56,8 @@ public class LoginController {
 		}
 
 		return ResponseEntityUtil.getSuccessResponse("Login Success", HttpStatus.OK.value(),
-				new String(user.getUsername() + " is a valid user."), "User logged in successfully.");
+				((UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser(),
+				"User logged in successfully.");
 	}
 
 	@PostMapping("/signup")

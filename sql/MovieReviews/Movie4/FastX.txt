@@ -1,0 +1,81 @@
+{ 
+    "title": "Fast X (2023)",
+    "tagline": "The end of the road begins",
+    "overview": "Over many missions and against impossible odds, Dom Toretto and his family have outsmarted, out-nerved and outdriven every foe in their path. Now, they confront the most lethal opponent they've ever faced: A terrifying threat emerging from the shadows of the past who's fueled by blood revenge, and who is determined to shatter this family and destroy everything—and everyone—that Dom loves, forever.",
+    "genres": [
+        "Thriller",
+        "Action",
+        "Crime"
+    ],
+    "originCountry": "United States",
+    "languages": [
+        "English",
+		"Hindi"
+    ],
+    "currency": "USD",
+    "duration": "02:22:00",
+    "releaseDate": "19/05/2023",
+    "budget": 340000000.00,
+    "revenue": 603000000.00,
+    "websiteURL": "https://www.themoviedb.org/movie/385687-fast-x",
+    "facebookPage": "https://www.facebook.com/TheFastSaga",
+    "instagramPage": "https://www.instagram.com/thefastsaga/",
+    "trailorLink": "https://www.youtube.com/watch?v=32RAq6JzY-w",
+    "certificate": "PG-13"
+}
+
+# Cast
+[
+    {
+        "movieCastType": "Directing",
+        "originalFirstName": "Louis",
+        "originalLastName": "Leterrier"
+    },
+    {
+        "movieCastType": "Writing",
+        "originalFirstName": "Dan",
+        "originalLastName": "Mazeau"
+    },
+    {
+        "movieCastType": "Writing",
+        "originalFirstName": "Justin",
+        "originalLastName": "Lin"
+    },
+    {
+        "movieCastType": "Writing",
+        "originalFirstName": "Gary",
+        "originalLastName": "Scott Thompson"
+    },
+    {
+        "movieCastType": "Actors",
+        "originalFirstName": "Vin",
+        "originalLastName": "Diesel",
+        "movieFirstName": "Dominic",
+        "movieLastName": "Toretto"
+    },
+    {
+        "movieCastType": "Actors",
+        "originalFirstName": "Michelle",
+        "originalLastName": "Rodriguez",
+        "movieFirstName": "Letty"
+    },
+    {
+        "movieCastType": "Actors",
+        "originalFirstName": "Jason",
+        "originalLastName": "Statham",
+        "movieFirstName": "Shaw"
+    }
+]
+
+# Review
+{
+    "rating": 5,
+    "reviewTitle": "Fast X",
+    "reviewContent": "By this point, I went to see Fast X without a clue as to what happened in the last one. I think some people went to space.\n \n The F&F series is one where villains become friends, people come back from the dead and cars defy the laws of physics. No one has an idea of the story soon after they watched it.\n \n A plot inspired by Fast 5, where they stole a safe and rode it along the streets of Rio de Janeiro.\n \n Dante Reyes (Jason Momoa) is the sociopathic son of Hernan Reyes (Joaquim de Almeida) and he wants to make Dom Toretto and his family suffer for what happened to his dad.\n \n The main action starts by dropping a big rolling bomb in Rome and aim it for the Vatican.\n \n Plagued with behind the scenes issues. Original director Justin Lin departed soon after shooting started. Director Louis Leterrier does a workmanlike job. As he showed in the Netflix series Lupin, Now You See Me as well as The Transporter movies. He can do car stunts as well as sleight of hand. Some of the CGI looked cheap though.\n \n As for Momoa, the director obviously told him. Man you will never play the Joker, too Polynesian. So Dante is your Joker and dial it up to 12. He is loud, camp and is having a ball. Especially with those two IT guys with a funny grin on their faces.\n \n Some of the regulars are even more tiresome. A few should had showed up but did not like those two Brazilian guys from the earlier movies. John Cena plays lovable Uncle Jacob, he was the main villain in the last one.\n \n The movie actually has four Oscar winning actresses. Not one of them told Vin Diesel how to do dramatic. When Dom had these small tender scenes, I nearly fell asleep."
+}
+
+{
+    "rating": 8,
+    "reviewTitle": "Sit back, switch your brain off and have a great time",
+    "reviewContent": "Admittedly I hadn't seen of these 'Fast' movies in a long time, but I'm not crazy am I - the cast wasn't always this strong, was it? There is a truly insane lineup of stars in this movie, and somehow the movie finds a way to give every one of them a purpose.\n \n Jason Momoa as the bad guy is worth mentioning as being terrific. He looked like he had a lot of fun with the role. It seemed like he was given a lot of leeway to do as he pleased and he used it wisely. He actually gave me a lot of 'Joker' vibes.\n \n The film is long at 2 hours and 21 minutes, but it's a rare time when I felt the film could absolutely justify it. For one thing the pacing is incredible and time really does fly by. For another thing there is so much going on and so many cast members who need time to do their thing that it was absolutely necessary. Actually the fact they were able to cut the run time down to only this was an accomplishment.\n \n The action scenes and the story are as outrageous as we have come to expect from this series. It's at the point now where you simply have to sit back, switch your mind off and enjoy the ride. And to be honest it's pretty easy to do with this film. I had a great time. 8/10."
+}

@@ -1,0 +1,25 @@
+{ 
+    "title": "Stuart Little 2",
+    "tagline": "A Little goes a long way.",
+    "overview": "Stuart, an adorable white mouse, still lives happily with his adoptive family, the Littles, on the east side of Manhattan's Central Park. More crazy mouse adventures are in store as Stuart, his human brother, George, and their mischievous cat, Snowbell, set out to rescue a friend.",
+    "genres": [
+        "Family",
+        "Adventure",
+        "Fantasy"
+    ],
+    "originCountry": "United States",
+    "languages": [
+		"English",
+		"Hindi"
+    ],
+    "currency": "INR",
+    "duration": "01:24:00",
+    "releaseDate": "17/12/1999",
+    "budget": 133000000.00,
+    "revenue": 300135367.00,
+    "websiteURL": "https://www.themoviedb.org/movie/10137-stuart-little",
+    "facebookPage": "https://en-gb.facebook.com/public/Stuart-Little",
+    "instagramPage": "https://www.instagram.com/stuartlittlemouse/?hl=en",
+    "trailorLink": "https://www.youtube.com/watch?v=k--OdtbKyqE",
+    "certificate": "kids"
+}

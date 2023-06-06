@@ -1,0 +1,86 @@
+{ 
+    "title": "Evil Dead Rise",
+    "tagline": "Mommy loves you to death",
+    "overview": "Three siblings find an ancient vinyl that gives birth to bloodthirsty demons that run amok in a Los Angeles apartment building and thrusts them into a primal battle for survival as they face the most nightmarish version of family imaginable.",
+    "genres": [
+        "Thriller",
+         "Horror"
+    ],
+    "originCountry": "United States",
+    "languages": [
+        "English"
+    ],
+    "currency": "USD",
+    "duration": "01:30:00",
+    "releaseDate": "21/04/2023",
+    "budget": 15000000.00,
+    "revenue": 141512122.00,
+    "websiteURL": "https://www.evildeadrisemovie.com/",
+    "facebookPage": "https://www.facebook.com/evildead",
+    "instagramPage": "https://www.instagram.com/evildead/",
+    "trailorLink": "https://www.youtube.com/watch?v=BqQNO7BzN08",
+    "certificate": "rated R(18+)"
+}
+
+# Cast
+[
+    {
+        "movieCastType": "Directing",
+        "originalFirstName": "Lee",
+        "originalLastName": " Cronin"
+    },
+    {
+        "movieCastType": "Writing",
+        "originalFirstName": "Lee",
+        "originalLastName": " Cronin"
+    },
+    {
+        "movieCastType": "Actors",
+        "originalFirstName": "Mirabai",
+        "originalLastName": "Pease",
+        "movieFirstName": "Teresa"
+    },
+    {
+        "movieCastType": "Actors",
+        "originalFirstName": "Richard",
+        "originalLastName": "Crouchley",
+        "movieFirstName": "Caleb"
+    },
+    {
+        "movieCastType": "Actors",
+        "originalFirstName": "Anna-Maree",
+        "originalLastName": "Thomas",
+        "movieFirstName": "Jessica"
+    },
+    {
+        "movieCastType": "Actors",
+        "originalFirstName": "Lily",
+        "originalLastName": "Sullivan",
+        "movieFirstName": "Beth"
+    },
+    {
+        "movieCastType": "Actors",
+        "originalFirstName": "Noah",
+        "originalLastName": "Paul",
+        "movieFirstName": "Bruce"
+    }
+]
+
+# Review
+{
+    "rating": 6,
+    "reviewTitle": "I can't explain why I didn't like this more",
+    "reviewContent": "I haven't seen any of the previous Evil Dead movies. I judged this solely on its own merits. It's well made in many ways. It starts with a really cool opening scene that had my jaw dropped. And an epic opening title shot that reminded me of Fury Road's.\n \n The entire movie is so loud and bombastic. You could say the same about the violence. It's brutal. I love that they take full advantage of the R-rating. It doesn't hold back. I liked all of the kill scenes and carnage.\n \n So why didn't I like this more? I have no idea. I was having a decent time. But I wasn't fully engaged or attached. My mind wandered a couple times. I didn't care about the wellbeing of the characters. It doesn't feel like something I will revisit. There are a few dumb moments but nothing too egregious. I just wasn't that into it."
+}
+
+{
+    "rating": 8,
+    "reviewTitle": "You get exactly what you pay for",
+    "reviewContent": "Fans of the evil dead movies will love everything about this one. There's blood and gore along with some scary stuff thrown in there to creep you out.\n \n I was a little bummed though there's still no Ash in this one but I still enjoyed it.\n \n The evil dead movies have left the woods and bring their bloodthirsty spirits to Los Angeles in an apartment building where a woman is raising her kids alone. One of the kids finds the book of the dead and decides messing around with it is a good idea. Enter the younger sister of the single mom who plays pretty much the go between trying to hold the family together once the kid finds out things should be left alone for a reason.\n \n There's some good, gooey make up effects and some thrills here. You've seen it all before but even fans of 1986's Dario Argento's Demons movies might even recognize a little homage here. Anyhow, you get your money's worth here but for originality I recommend Nefarious instead. Still, this is a bloody (literally) good time."
+}
+
+{
+    "rating": 3.5,
+    "reviewTitle": "👎After a While, The Stakes are Stagnant as Hell 👎",
+    "reviewContent": "The Problem with this Film is that around 30 Minutes after The Main Woman Gets Possessed, the Script Turns To Trash and the Stakes are Stagnant as Hell.\n \n Positives of the Film -\n \n 1. They Got the Main Woman Casted Correctly, Her Face is Scary as Hell at Times.\n \n 2. The Dilapidated Apartment Building Setup was Perfect However..........\n \n Problems with this Film -\n \n 1. As Mentioned, Maybe 30 Minutes after the Main Woman Gets Possessed, the Stakes are Stagnant as Hell.\n \n 2. They Don't Give us the audience enough time to Build With the Main Woman and so when she gets Possessed, you don't give a damn about her. She's just the Evil Lady Now.\n \n 3. They should of had all kinds of Characters in that Apartment and Some of the Characters, the Audience should actually Care About. Apart from the Little Girl, you don't give a Damn about these Characters.\n \n Overall, they Failed in the making of 3 Major Aspects of this Film, the Script, the Characters and Stakes. What a Waste."
+}

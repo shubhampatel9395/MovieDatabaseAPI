@@ -1,0 +1,80 @@
+{ 
+    "title": "Prem Ratan Dhan Payo",
+    "tagline": "Har family mein problem hai ... par woh khush naseeb hai jinki family hoti hai",
+    "overview": "Prem, who looks like Prince Yuvraj Vijay Singh, replaces him just before his half-brother is set to be crowned as the king. Although Princess Maithili is engaged to Vijay, she falls in love with Prem.",
+    "genres": [
+        "Romance",
+         "Drama",
+	"Action"
+    ],
+    "originCountry": "India",
+    "languages": [
+        "Hindi"
+    ],
+    "currency": "INR",
+    "duration": "02:44:00",
+    "releaseDate": "12/11/2015",
+    "budget": 900000000,
+    "revenue": 4320000000,
+    "websiteURL": "https://www.themoviedb.org/movie/362136-prem-ratan-dhan-payo",
+    "facebookPage": "https://www.facebook.com/premratandhanpayopage/",
+    "instagramPage": "https://www.instagram.com/explore/locations/674004972807142/prem-ratan-dhan-payo/",
+    "trailorLink": "https://www.youtube.com/watch?v=Vd4iNPuRlx4",
+    "certificate": "'U' certificate"
+}
+
+# Cast
+[
+    {
+        "movieCastType": "Directing",
+        "originalFirstName": "Sooraj",
+        "originalLastName": "R. Barjatya"
+    },
+    {
+        "movieCastType": "Writing",
+        "originalFirstName": "Sooraj",
+        "originalLastName": "R. Barjatya"
+    },
+    {
+        "movieCastType": "Writing",
+        "originalFirstName": "Aash",
+        "originalLastName": "Karan Atal"
+    },
+    {
+        "movieCastType": "Actors",
+        "originalFirstName": "Salman",
+        "originalLastName": "Khan",
+        "movieFirstName": "Prem",
+        "movieLastName": "Dilwale"
+    },
+    {
+        "movieCastType": "Actors",
+        "originalFirstName": "Sonam",
+        "originalLastName": "Kapoor",
+        "movieFirstName": "Maithili"
+    },
+    {
+        "movieCastType": "Actors",
+        "originalFirstName": "Neil",
+        "originalLastName": " Nitin Mukesh",
+        "movieFirstName": "Yuvraj",
+        "movieLastName": "Ajay Singh"
+    }
+]
+
+# Review
+{
+    "rating": 3,
+    "reviewTitle": "Horrible",
+    "reviewContent": "It is one of most poorly made movies I have watched in a long time. Don't know what Sooraj Barjatya was thinking while making this one. No story, no theme, no soul, no sense, no base....what was this Sir\n \n Salman you just did Bajrangi Baijaan, which is so good. Why did you have to do such a movie. What was the football match about. So unreal, so unwanted. Sonam Kapoor I thought could act when I saw Ranjhana, guess it was just a fluke. I am so disappointed because I have always loved Sooraj Barjatya's movies. Now next time I have to be really careful before watching his movies \n Sad and disappointed"
+}
+
+{
+    "rating": 7,
+    "reviewTitle": "A Bit Regressive Here, a Bit Outdated There, but Innocently Endearing and Naively Charming on the Whole"
+}
+
+{
+    "rating": 2,
+    "reviewTitle": "Seriously?"
+}

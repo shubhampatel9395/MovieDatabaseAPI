@@ -1,0 +1,103 @@
+{
+    "title": "Housefull",
+    "tagline": "He found the girl of his dreams, he fell in love and he got married... to all three.",
+    "overview": "Believing himself to be a jinx and bringing bad luck upon himself and others, a man attempts to find true love, but ends up in very complicated relationships.",
+    "genres": [
+        "Romance",
+        "Comedy",
+        "Drama"
+    ],
+    "originCountry": "India",
+    "languages": [
+        "Hindi"
+    ],
+    "currency": "INR",
+    "duration": "02:15:00",
+    "releaseDate": "30/04/2010",
+    "budget": 300000000,
+    "revenue": 980000000,
+    "websiteURL": "https://g.co/kgs/ZWuur3",
+    "facebookPage": "https://www.facebook.com/HousefullTheMovie/",
+    "instagramPage": "https://www.instagram.com/explore/tags/housefull/top/",
+    "trailorLink": "https://www.youtube.com/watch?v=0eRVTe98Lz4",
+    "certificate": "12+"
+}
+
+# Cast
+[
+    {
+        "movieCastType": "Directing",
+        "originalFirstName": "Sajid",
+        "originalLastName": "Khan"
+    },
+    {
+        "movieCastType": "Writing",
+        "originalFirstName": "Sajid",
+        "originalLastName": "Khan"
+    },
+    {
+        "movieCastType": "Writing",
+        "originalFirstName": "Sajid",
+        "originalLastName": "Nadiadwala"
+    },
+    {
+        "movieCastType": "Writing",
+        "originalFirstName": "Anvita",
+        "originalLastName": "Dutt"
+    },
+    {
+        "movieCastType": "Actors",
+        "originalFirstName": "Akshay",
+        "originalLastName": "Kumar",
+        "movieFirstName": "Aarush"
+    },
+    {
+        "movieCastType": "Actors",
+        "originalFirstName": "Deepika",
+        "originalLastName": "Padukone",
+        "movieFirstName": "Sandy"
+    },
+    {
+        "movieCastType": "Actors",
+        "originalFirstName": "Riteish",
+        "originalLastName": "Deshmukh",
+        "movieFirstName": "Bob"
+    },
+    {
+        "movieCastType": "Actors",
+        "originalFirstName": "Lara",
+        "originalLastName": "Dutta",
+        "movieFirstName": "Hetal"
+    },
+    {
+        "movieCastType": "Actors",
+        "originalFirstName": "Arjun",
+        "originalLastName": "Rampal",
+        "movieFirstName": "Major Krishna",
+        "movieLastName": "Rao"
+    },
+    {
+        "movieCastType": "Actors",
+        "originalFirstName": "Boman",
+        "originalLastName": "Irani",
+        "movieFirstName": "Batuk",
+        "movieLastName": "Pappa"
+    }
+]
+
+# Reviews
+{
+    "rating": 8,
+    "reviewTitle": "Funny After A While",
+    "reviewContent": "Housefull started out funny and grew funnier. The movie was a little long, yet the last one hour was incredibly funny. There were a few good settings as well including an Italian beach resort and an English manor. Akshay Kumar delivered a stiff, unlucky bachelor, and Deepika Padukone made a great star-struck romantic. Chemistry amongst these and the supporting cast played out well with all the physical comedy and dramatic irony. Characters quickly grew related in all sorts of twisted accidents of romance and friendship. Charades and one's love interests tested the boundaries of loyalty to family and honesty. Fresh comedy and a few cheesy dance numbers kept the plot rolling through a hilarious climax."
+}
+
+{
+    "rating": 4,
+    "reviewTitle": "This was a very average movie. One in which I expected a lot more",
+    "reviewContent": "After having watched all the video blogs and so forth on Bollywood Hungama, I was really looking forward to this one. But what a major disappointment. I don't think they were able to carry a common thread of a plot throughout the movie and only parts of it were funny. And those funny parts were so reminiscent of this other Bollywood film. What was the name.... it had Anil Kapoor, Fardeen Khan, and Salman Khan.\n \n I was also SHOCKED to see a 4-star rating on Bollywood Hungama. Definitely won't put any faith in to Taran Adarsh's reviews from here on out. Just because the movie heavily advertised and promoted via the site, they inflated the ratings. Complete BS. That made it all the more disappointing to watch."
+}
+
+{
+    "rating": 3.5
+}

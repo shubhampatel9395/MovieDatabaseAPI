@@ -1,0 +1,79 @@
+{ 
+    "title": "Sita Ramam",
+    "tagline": "A love story written with war",
+    "overview": "Afreen, a rebellious Pakistani student sets ablaze the car of an Indian in London. Angered Afreen returns to Pakistan to ask for money from her grandfather that she has to pay in a month's time as damages. However, she gets to know that he is no more and the only thing he has left for her is a letter-delivering task, written by Ram to Sita. As Afreen sets out to find Ram, there begins her journey of discovering the secret behind the 20-year-old letter.",
+    "genres": [
+        "Romance",
+        "Drama"
+    ],
+    "originCountry": "India",
+    "languages": [
+		"Telugu"
+    ],
+    "currency": "INR",
+    "duration": "02:58:00",
+    "releaseDate": "05/08/2022",
+    "budget": 300000000,
+    "revenue": 980000000,
+    "websiteURL": "https://www.themoviedb.org/movie/894803-lieutenant-ram",
+    "facebookPage": "https://www.facebook.com/public/Sita-Raman",
+    "instagramPage": "https://www.instagram.com/explore/tags/sitaramam/top/",
+    "trailorLink": "https://www.youtube.com/watch?v=Ljk6tGZ1l3A",
+    "certificate": "14+"
+}
+
+# Cast
+[
+    {
+        "movieCastType": "Directing",
+        "originalFirstName": "Hanu",
+        "originalLastName": "Raghavapudi"
+    },
+    {
+        "movieCastType": "Writing",
+        "originalFirstName": "Hanu",
+        "originalLastName": "Raghavapudi"
+    },
+    {
+        "movieCastType": "Writing",
+        "originalFirstName": "Jay",
+        "originalLastName": "Krishna"
+    },
+    {
+        "movieCastType": "Writing",
+        "originalFirstName": "Raj",
+        "originalLastName": "Kumar Kandamudi"
+    },
+    {
+        "movieCastType": "Actors",
+        "originalFirstName": "Dulquer",
+        "originalLastName": "Salmaan",
+        "movieFirstName": "Lieut. Ram"
+    },
+    {
+        "movieCastType": "Actors",
+        "originalFirstName": "Mrunal",
+        "originalLastName": "Thakur",
+        "movieFirstName": "Sita",
+        "movieLastName": "Mahalakshmi"
+    }
+]
+
+# Reviews
+{
+    "rating": 10,
+    "reviewTitle": "Best movie of DS.",
+    "reviewContent": "I can only tell that the hatred this movie is getting is not by the ones who watched the movie but ones who didn't even watch it. They just comment on what ever they want to tell just because they hate DS or director or rashmika idk. But actually this movie is a masterpiece and deserves to be a masterpiece with lots and lots of positive talks. I'm kannadiga and this is my first non Kannada movie review. Since I loved this movie with my whole heart.\n \n If you are thinking of going to this movie by analyzing these comments then you should definitely ignore the hatred ones."
+}
+
+{
+    "rating": 9,
+    "reviewTitle": "Beautiful love story",
+    "reviewContent": "An emotional lovestory with enough twists and a good message Director handled the India Pakistan fight along with a love story very well worth watching Songs are plus in some scenes but u feel like there are more songs(short songs) Dulquer and mrunal nailed it."
+}
+
+{
+    "rating": 10,
+    "reviewTitle": "Timeless Tale of Love Story",
+    "reviewContent": "Director Hanu has proved his brilliance of work one more time. He crafted a beautiful love story connecting all the elements of story with a good suspense. The movie is clean and watchable for all ages. Its very rare we get such beautiful films. Kudos to all the team for making such a simple but awesome movie."
+}

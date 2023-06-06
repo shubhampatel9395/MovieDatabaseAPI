@@ -1,0 +1,87 @@
+{ 
+    "title": "Stuart Little",
+    "tagline": "The Little family just got bigger.",
+    "overview": "The adventures of a heroic and debonair stalwart mouse named Stuart Little with human qualities, who faces some comic misadventures while searching for his lost bird friend and living with a human family as their child.",
+    "genres": [
+        "Family",
+        "Adventure",
+        "Fantasy"
+    ],
+    "originCountry": "United States",
+    "languages": [
+		"English",
+		"Hindi"
+    ],
+    "currency": "INR",
+    "duration": "01:24:00",
+    "releaseDate": "17/12/1999",
+    "budget": 133000000.00,
+    "revenue": 300135367.00,
+    "websiteURL": "https://www.themoviedb.org/movie/10137-stuart-little",
+    "facebookPage": "https://en-gb.facebook.com/public/Stuart-Little",
+    "instagramPage": "https://www.instagram.com/stuartlittlemouse/?hl=en",
+    "trailorLink": "https://www.youtube.com/watch?v=Wlo-sYrADlw",
+    "certificate": "kids"
+}
+
+# Cast
+[
+    {
+        "movieCastType": "Directing",
+        "originalFirstName": "Rob",
+        "originalLastName": "Minkoff"
+    },
+    {
+        "movieCastType": "Writing",
+        "originalFirstName": "E.B.",
+        "originalLastName": "White"
+    },
+    {
+        "movieCastType": "Writing",
+        "originalFirstName": "M. Night",
+        "originalLastName": "Shyamalan"
+    },
+    {
+        "movieCastType": "Writing",
+        "originalFirstName": "Greg",
+        "originalLastName": "Brooker"
+    },
+    {
+        "movieCastType": "Sound",
+        "originalFirstName": "Michael",
+        "originalLastName": "J. Fox",
+        "movieFirstName": "Stuart Little"
+    },
+    {
+        "movieCastType": "Sound",
+        "originalFirstName": "Steve",
+        "originalLastName": "Zahn",
+        "movieFirstName": "Monty"
+    },
+    {
+        "movieCastType": "Actors",
+        "originalFirstName": "Geena",
+        "originalLastName": "Davis",
+        "movieFirstName": "Mrs. Little"
+    },
+    {
+        "movieCastType": "Actors",
+        "originalFirstName": "Jonathan",
+        "originalLastName": "Lipnicki",
+        "movieFirstName": "George",
+        "movieLastName": "Little"
+    }
+]
+
+# Reviews
+{
+    "rating": 8,
+    "reviewTitle": "Sweet and memorable movie.",
+    "reviewContent": "This movie is really sweet, and I enjoyed it enormously. Sometimes it is a bit overly sentimental, and the human characters aren't as charming as the animal characters. Jonathan Lipnicki was sweet as George, but doesn't quite have the charm he brought to the The Little Vampire. Geena Davis and Hugh Laurie do amiably as the parents, but both seem subdued. Luckily, the human characters don't interfere too much with the animals, and still bring a certain charm to the screen. Stuart is wonderfully voiced by Michael J.Fox, and he joined by a hilarious Nathan Lane as Snowbell and a villainous Chazz Palminteri as Smoky. The script is intelligent and sweet, and there are plenty of charming scenes with Stuart and George. All in all, really sweet, fun and memorable. 8/10 Bethany Cox."
+}
+
+{
+    "rating": 5,
+    "reviewTitle": "Little hi, little low...",
+    "reviewContent": "'Stuart Little (1999)' is a very slight adventure, though it does have its 'larger' moments. It doesn't really do all that much with its high-concept premise, nor does it deliver on the analogy it initially seems to be setting up. As such, it's basically just a basic family drama except one of its members is a mouse. The film has its own subtle charm to it and it, essentially, does exactly what it needs to. However, outside of its few set-pieces, it's quite a passive viewing experience. Its emotional core is decent enough but it isn't massively affecting. Basically, the whole thing is just alright. It isn't bad, but it isn't particularly good, either. There's not all that much else to say, really. 6/10."
+}

@@ -1,0 +1,90 @@
+{
+    "title": "BlackBerry",
+    "tagline": "Work hard. Fail hard.",
+    "overview": "Two mismatched entrepreneurs – egghead innovator Mike Lazaridis and cut-throat businessman Jim Balsillie – joined forces in an endeavour that was to become a worldwide hit in little more than a decade. The story of the meteoric rise and catastrophic demise of the world's first smartphone.",
+    "genres": [
+        "History",
+        "Drama"
+    ],
+    "originCountry": "United States",
+    "languages": [
+        "English",
+        "Hindi"
+    ],
+    "currency": "USD",
+    "duration": "02:01:00",
+    "releaseDate": "12/05/2023",
+    "websiteURL": "https://www.themoviedb.org/movie/1016084-blackberry",
+    "facebookPage": "https://www.facebook.com/blackberrymovie/",
+    "instagramPage": "https://www.instagram.com/blackberry/?hl=en",
+    "trailorLink": "https://www.youtube.com/watch?v=cXL_HDzBQsM",
+    "certificate": "PG-13"
+}
+
+# Cast
+[
+    {
+        "movieCastType": "Directing",
+        "originalFirstName": "Matt",
+        "originalLastName": "Johnson"
+    },
+    {
+        "movieCastType": "Writing",
+        "originalFirstName": "Matt",
+        "originalLastName": "Johnson"
+    },
+    {
+        "movieCastType": "Writing",
+        "originalFirstName": "Jacquie",
+        "originalLastName": "McNish"
+    },
+    {
+        "movieCastType": "Writing",
+        "originalFirstName": "Sean",
+        "originalLastName": "Silcoff"
+    },
+    {
+        "movieCastType": "Actors",
+        "originalFirstName": "Jay",
+        "originalLastName": "Baruchel",
+        "movieFirstName": "Mike"
+    },
+    {
+        "movieCastType": "Actors",
+        "originalFirstName": "Glenn",
+        "originalLastName": "Howertonv",
+        "movieFirstName": "Jim"
+    },
+    {
+        "movieCastType": "Actors",
+        "originalFirstName": "Matt",
+        "originalLastName": "Johnson",
+        "movieFirstName": "Doug"
+    },
+    {
+        "movieCastType": "Actors",
+        "originalFirstName": "Kelly",
+        "originalLastName": "Van der Burg",
+        "movieFirstName": "Jasmine"
+    }
+]
+
+
+# Reviews
+{
+    "rating": 8,
+    "reviewTitle": "rise and fall of crackberry",
+    "reviewContent": "Greetings again from the darkness. There aren't too many companies who have reached the pinnacle of their industry, only to later flop due to lack of innovation or a stubborn insistence on holding on to the past. Tremendous success and absolute failure are not typically associated with the same company. Blockbuster Video and Pan Am Airlines come to mind as examples of industry leaders whose refusal to adapt, culminated with closure, and it's likely that Blackberry belongs in the category, at least as presented here by writer-director Matt Johnson and co-writer Matthew Miller, adapting the book by Jacquie McNish.\n \n Socially awkward pals, Mike Lazaridis (played by Jay Baruchel) and Doug Fregin (played by the film's director Matt Johnson), co-founded Research in Motion (RIM). The film picks up in 1996 when Mike and Doug are making their first presentation of their breakthrough handheld data delivery-email machine, which they have named Pocket Link. These are two genius nerds with no concept of how the outside business worlds functions, and the executive to whom they are pitching is so distracted that his only feedback is, \"You need a new name.\" In a fascinating twist, that same executive, Jim Balsillie (Glenn Howerton, \"It's Always Sunny in Philadelphia\") ends up saving not just the new product, but also the company.\n \n Balsillie presents himself as a fireball, take charge, full-steam-ahead kind of guy. It's quite a contrast to nerdy Mike and easy-going Doug. Mike is a quiet guy committed to perfection in his work, while Doug wrangles the tech developers with a culture of video games, movie night, and an overall fraternity environment. Balsillie's arrival as a vocal outrage expert and brash businessman changes everything, and he and Mike drive the newly named BlackBerry to levels not previously seen. We do get a humorous anecdote from a shirt stain (even though it's not a true story), and in fact, there is quite a bit of humor throughout.\n \n We are informed that the film was \"inspired by real people and real events\", so some dramatic license is expected. Perhaps the best comparison is THE SOCIAL NETWORK (2010), and while that film was more polished, I personally found this one more entertaining and accurate from a business sense. An excellent supporting cast includes Cary Elwes, Saul Rubinek, Michael Ironside, Martin Donovan, Rich Sommer, and SungWon Cho, and the film's real draw is the contrast between Jay Baruchel's mousy but brilliant Mike, and Glenn Howard's powerhouse portrayal of the egotistical Balsillie. Baruchel's scene where he reacts to the new iPhone is alone worth the price of admission.\n \n At its peak, BlackBerry had 45% market share and had earned it's \"CrackBerry\" label in the business world. Apple's 2007 introduction of the iPhone not only rocked the BlackBerry company, it shook up the world. The Canada perspective is noted (RIM was based in Waterloo, Ontario), as is Mike's aversion to 'made in China', perhaps the ultimate reason for the fall. It's likely that BlackBerry has become a Case Study in Business Schools, although the fast-paced and pressure-packed world of tech continues to require a balance of decisions focused on current markets and never-ending innovation for the future."
+}
+
+{
+    "rating": 7,
+    "reviewTitle": "The Grape of Wrath...",
+    "reviewContent": "There's a rather angry man by name of Jim, expecting others to dance to, his latest whim, can get quite shouty if confronted, he'll ensure you are affronted, has a fury that can't be contained by rim. But he's managed to create a new black gold, taking gullible and naïve to a mould, casting out a new tech giant, though it's not quite all compliant, the board of keys has broken ground, and taken hold. Alas like all technology there is a trend, and in this case it's closely linked to a u-bend, as the stock goes down the pan, the innovation had no plan, to evolve and to compete, as Jobs transcends.\n \n It's worth a watch, and may get you thinking of all those brands of the past that now reside in the graveyard of complacent, missed opportunity."
+}
+
+{
+    "rating": 10,
+    "reviewTitle": "One Hell of a Story",
+    "reviewContent": "Films about the making of a product can either be interesting or dull. In my opinion, there's not a lot of room in between because it was either a good story or not. In the case of Blackberry, I was obviously aware of the phone but never knew the behind-the-scenes stuff. I'm also slightly biased being a Canadian, with this film taking place very close to where I'm from, so if that makes you take this review with a grain of salt, so be it. I absolutely loved it from start to finish and here's why.\n \n Blackberry tells the story of Mike Lazaridis (Jay Baruchel) and his genius mind that creates the world's first smartphone, the Blackberry.\n \n Jim Balsillie (Glenn Howerton) steps in and buys his way into being the Co-CEO of the company in order to sell the phone. Balsillie is determined to shoot for the moon and nothing else, which in turn may or may not hurt the company overall. If you know the story, you know what I mean, but I won't ruin it. My favourite thing about watching this film though was the fact that I didn't know half of what went down in real life. This was a riveting and engaging lesson of school that I felt like a sat through.\n \n Adapted from the novel by Matthew Miller and Matt Johnson (who also did a fantastic job directing this film), the dialogue here was stellar. I was glued to the screen, even when two characters were just sitting in a room and talking. I'm not saying this film is as great as The Social Network, but the story itself is in my opinion. It's a fascinating tale of the dog-eat-dog world that we live in. On top of the fantastic dialogue, Baruchel and Howerton sell these roles and probably each delivers the performances of their careers (especially Howerton).\n \n From the editing style that genuinely impressed me to the great direction, performances, and even music choices, Blackberry is a film that I have little to no complaints about. The camera work with all the snap zooms annoyed me a bit, but that's really all I can nitpick. I also give it props for being a Canadian film, made by Canadians, starring some Canadian actors. I would also be remiss if I didn't mention the fact that while the story is very interesting, it's also funny when it needs to be. It almost becomes a satire at times and I loved it even more for that. It took the story seriously, but not exactly the movie around it, which worked so well. If you can't tell, I'll be gushing about this one for a while. I highly recommend checking out Blackberry, now playing in theatres."
+}

@@ -1,0 +1,77 @@
+{ 
+    "title": "Love Aaj Kal(2009)",
+    "tagline": "Jaane se pehle, ek aakhri baar milna kyun zaroori hota hai?",
+    "overview": "Two lovers break up after they realize that their career goals are pulling them in different directions.",
+    "genres": [
+        "Romance",
+        "Drama"
+    ],
+    "originCountry": "India",
+    "languages": [
+        "Hindi"
+    ],
+    "currency": "INR",
+    "duration": "02:08:00",
+    "releaseDate": "31/07/2009",
+    "budget": 560000000,
+    "revenue": 892600000,
+    "websiteURL": "https://www.themoviedb.org/movie/19663-love-aaj-kal",
+    "facebookPage": "https://www.facebook.com/LoveAajKalMovie/",
+    "instagramPage": "https://www.instagram.com/deepikaapadukoonee/p/Bdjyj5ElJWA/?img_index=1",
+    "trailorLink": "https://www.youtube.com/watch?v=dLH1gmk9_iE",
+    "certificate": "18+"
+}
+
+# Cast
+[
+    {
+        "movieCastType": "Directing",
+        "originalFirstName": "Imtiaz",
+        "originalLastName": "Ali"
+    },
+    {
+        "movieCastType": "Writing",
+        "originalFirstName": "Imtiaz",
+        "originalLastName": "Ali"
+    },
+    {
+        "movieCastType": "Actors",
+        "originalFirstName": "Saif",
+        "originalLastName": "Ali Khan",
+        "movieFirstName": "Jai",
+        "movieLastName": "Vardhan Singh"
+    },
+    {
+        "movieCastType": "Actors",
+        "originalFirstName": "Deepika",
+        "originalLastName": "Padukone",
+        "movieFirstName": "Meera",
+        "movieLastName": "Pandit"
+    },
+    {
+        "movieCastType": "Actors",
+        "originalFirstName": "Rishi",
+        "originalLastName": "Kapoor",
+        "movieFirstName": "Veer",
+        "movieLastName": "Singh"
+    }
+]
+
+# Review
+{
+    "rating": 7,
+    "reviewTitle": "A Nutshell Review: Love Aaj Kal",
+    "reviewContent": "Unlike the complex games people play nowadays, as Jai Vardhan Singh (Saif Ali Khan) and Meera Pandit (Deepika Padukone) engages in. The first few minutes of the film might be a little strange and frustrating even, where it plays out like an advertisement for modern love moving at a breakneck pace of a whirlwind romance. Jai and Meera meet, fall madly in love, spend incredible moments together, only to allow reasons of practicality spoil everything. Since their careers are going to put them thousands of miles apart – Meera heading towards Delhi and Jai dreaming of eventually relocating to San Francisco, having no trust in long distance relationship means the logical decision to break up and remain friends.\n \n In the other story, Veer Singh (Saif Ali Khan again) meets and falls in love with Harleen Kaur (newcomer Gisele), but being the old-fashioned Romeo and with a process in place to woo the woman of your dreams, he finds it extremely difficult to break the ice, and only to learn that his task has been made doubly complex with the dimension of distance getting in the way as Harleen's family uproots to Kolkata. Swearing a pledge that he will marry her, and for all lifetimes, he journeys to the other side of India, happy to just catch a glimpse of his lady love. And so begins a very tough courtship of stolen glances and secret rendezvous against stacked up odds of opposition.\n \n As a romance, this film has plenty put on its plate. A good looking and charismatic cast, beautiful landscapes and visuals thanks to the jetsetting nature of the story from London to Delhi to Kolkata to San Francisco, and a number of fantastic lines of dialogue sprinkled with a reasonable dose of comedy, and touching moments too. What's there not to like and make you fall in love with the characters, and wring your hand at their predicament, most of which were self-inflicted? Its two stories tell the stark difference between the modern rules of courtship based on practicality, versus that of the more traditional way, though the common thread will always, and has been to follow your heart. The thrill of the chase for instant gratification looks flimsy when set against the old fashioned notion of earning and justifying one's sincerity through action, rather than cheap talk which Saif Ali Khan's Jai is expert at.\n \n The song and dance numbers are OK, though personally nothing was memorable enough to have stuck in my head way after the end credits start rolling. There were fun numbers of course where both leads in their modern roles seem to relish in, highlighting their personal, playful nature as they paint the town red in their secret rendezvous without the knowledge of their newfound partners. I thought there would be enough moments for each to showcase the pain of their ill-informed decisions of breaking up, but all we got was from the guy's point of view, and that was very much after the fact, which I felt time would probably start to heal all wounds, unless of course you let little personal details of milestones in your ex's life to come in and disrupt your current lifestyle.\n \n Though of course in this story's love found, love lost and love gained, there were set pieces which tests the characters resolve, especially the one where their crazy game of double dating on the sly with their new partners, Jai's Jo (Florence Brudenell-Bruce) and Meera's Vikram (Rahul Khanna), rang through some intense pain and uncomfortable jealousy, providing a cliffhanger for the perennial interval.\n \n If there's one thing I dislike and one of the themes as expounded in the film, it's the lack of honesty in the games people play. The romances of old are seemingly simple enough, without facades put up and masks worn to hide true intentions. Contrasted with today's of course, where both Jai and Meera find it too cool to be acknowledging their feelings properly for each other, and go on a round-about journey before they start to realize their true emotions, and face up to them sincerely. Needless to say, between the two stories, I had preferred the older one which is more engaging, honest and wistful even.\n \n All in all, Love Aaj Kal didn't manage to hit the heights that its star billing had the potential to, but still came across as a better than average romantic movie that's suitable for a date."
+}
+
+{
+    "rating": 10,
+    "reviewTitle": "Its amazing!!",
+    "reviewContent": "One of my personal favorite love story with imtiaz ali's amazing direction and both the actor's brilliant performance.The story doesn't feel.over the top or unreal.Imtiaz ali surely has a brilliant mind and different way to see romance.kudous to the dialouge writer.Melodious songs and great clothes man!"
+}
+
+{
+    "rating": 10,
+    "reviewTitle": "Its amazing!!",
+    "reviewContent": "It was very fresh kind of film at that time. Dialogues were very real, how we usually talk everyday. I really loved both the stories. Even though Harleen character barely speak anything but it looks kind of apt as girls were \"supposed\" to be shy in those times - still liked her performance, and I hoped to see her in more films. But. :(\n \n Deepika & Saif - an odd pair but after watching the film I really liked them.\n \n Both timelines have many relatable elements - my environment is mix of both tradition and modernity.\n \n And the songs are absolutely brilliant. I can still recall all the lyrics of all the songs.\n \n It was a perfect movie. And obviously the LAJ (2020) was not at all needed or at least they could have spared the album."
+}

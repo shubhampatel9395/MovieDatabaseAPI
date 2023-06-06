@@ -56,9 +56,9 @@ public class ReviewEntity extends Auditable<String> {
 	@NotNull
 	private Double rating;
 
-	@Column(length = 100)
+	@Column(length = 500)
 	@NotBlankString(message = "Movie's review title must not be blank.")
-	@Size(max = 100, message = "Movie's review title must be within 100 characters.")
+	@Size(max = 500, message = "Movie's review title must be within 500 characters.")
 	private String reviewTitle;
 
 	@Column(length = 5000)

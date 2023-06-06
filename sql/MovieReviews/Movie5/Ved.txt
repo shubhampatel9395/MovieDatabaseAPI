@@ -1,0 +1,74 @@
+{ 
+    "title": "Ved",
+    "tagline": "Every Ved needs a Tara in his life",
+    "overview": "After being abandoned by his lover, Satya finds himself entangled with alcohol and to overcome the grief his childhood lover and neighbour Shravani decides to marry him.",
+    "genres": [
+        "Romance",
+        "Drama"
+    ],
+    "originCountry": "India",
+    "languages": [
+		"Hindi"
+    ],
+    "currency": "INR",
+    "duration": "02:28:00",
+    "releaseDate": "30/12/2022",
+    "budget": 150000000,
+    "revenue": 456700000,
+    "websiteURL": "https://g.co/kgs/nE7SwA",
+    "facebookPage": "https://www.facebook.com/hashtag/ved/",
+    "instagramPage": "https://www.instagram.com/explore/tags/ved/",
+    "trailorLink": "https://www.youtube.com/watch?v=CBivT-3KjJQ",
+    "certificate": "14+"
+}
+
+# Cast
+[
+    {
+        "movieCastType": "Directing",
+        "originalFirstName": "Riteish",
+        "originalLastName": "Deshmukh"
+    },
+    {
+        "movieCastType": "Writing",
+        "originalFirstName": "Prajakt",
+        "originalLastName": "Deshmukh"
+    },
+    {
+        "movieCastType": "Writing",
+        "originalFirstName": "Shiva",
+        "originalLastName": "Nirvana"
+    },
+    {
+        "movieCastType": "Writing",
+        "originalFirstName": "Shivkumar",
+        "originalLastName": "Parthasarathy"
+    },
+    {
+        "movieCastType": "Actors",
+        "originalFirstName": "Riteish",
+        "originalLastName": "Deshmukh",
+        "movieFirstName": "Satya",
+        "movieLastName": "Dinkar Jadhav"
+    },
+    {
+        "movieCastType": "Actors",
+        "originalFirstName": "Genelia",
+        "originalLastName": "D'Souza",
+        "movieFirstName": "Shravani",
+        "movieLastName": "Satya Jadhav"
+    }
+]
+
+# Review
+{
+    "rating": 10,
+    "reviewTitle": "Perhaps the only remake which is more beautiful than the original..... Kudos to Shravani (Genelia's Character)",
+    "reviewContent": "Gennneliaaa !! She nailed the character. Hats off to her! Although the movie is an official remake of south movie, I still believe that this marathi movie has its own audience. Ritesh and Genelia deshmukh proved not only they are off screen best couples but also on screen too.\n \n A story of husband and wife, where husband still mourning for his ex and still having a wife, so many twist and turns and how the story revealing about the selfless love, the care, the madness.\n \n Other actors includes Satya's father, the little girl, Satya's friend, Satya's in laws, Nisha, the heart winning shravani.\n \n The screenplay for Ritesh's and Generlia's story is ever green."
+}
+
+{
+    "rating": 9,
+    "reviewTitle": "Unique and entertaining",
+    "reviewContent": "Music is mind blowing. Kudos to Ajay-Atul as they never disappoint.\n \n The cast is amazing.\n \n They justify the characters and also the chemistry is just awesome. They fit in the roles given the context. RD has grown into a more matured actor and is only getting better with time like a special cask of a scotch. The direction, acting, music and everything is just so good.\n \n I think more of such movies should be made and change how people look at the entertainment.\n \n Congratulations to RVD and GRD!\n \n I hope it's released worldwide as I miss my wife in London and wish I take her for this movie soon.\n \n Interesting to read reviews from others."
+}
