@@ -57,7 +57,7 @@ public class MessageConstants {
 	// Movie
 	public static final Long DUPLICATE_MOVIE_ERROR_CODE = 703L;
 
-	public static final String DUPLICATE_MOVIE_ERROR_MESSAGE = "Given movie title on the given release date is already present in the system.";
+	public static final String DUPLICATE_MOVIE_ERROR_MESSAGE = "Given movie title released on the given release date is already present in the system.";
 	
 	public static final Long INVALID_GENRE_ERROR_CODE = 704L;
 

@@ -2,6 +2,7 @@ package com.moviesdbapi.controller;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,7 +57,6 @@ public class ReviewConroller {
 	}
 
 	@GetMapping("/reviews")
-	@PreAuthorize(value = "hasAnyAuthority('Admin','User')")
 	public ResponseEntity<Map<String, Object>> getAllReviews(@PathVariable Long movieId) {
 		MovieEntity movie = checkValidMovie(movieId);
 		List<ReviewEntity> reviews = iReviewService.findByMovie(movie);
@@ -68,6 +68,20 @@ public class ReviewConroller {
 
 		return new ResponseEntity<>(ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE,
 				HttpStatus.OK.value(), reviews, "Record(s) fetched successfully."), HttpStatus.OK);
+	}
+
+	@GetMapping("/reviews/{reviewId}")
+	public ResponseEntity<Map<String, Object>> getIndividualReview(@PathVariable Long movieId,
+			@PathVariable Long reviewId) {
+		MovieEntity movie = checkValidMovie(movieId);
+		Optional<ReviewEntity> review = iReviewService.findOneByMovieAndReviewId(movie, reviewId);
+
+		if (review.isEmpty()) {
+			throw new IdNotFoundException(reviewId, movie.getMovieId());
+		}
+
+		return new ResponseEntity<>(ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE,
+				HttpStatus.OK.value(), review, "Record fetched successfully."), HttpStatus.OK);
 	}
 
 	@GetMapping("/review")

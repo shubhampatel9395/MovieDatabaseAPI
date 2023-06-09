@@ -62,14 +62,12 @@ public class MovieCastController {
 	}
 
 	@GetMapping("/cast")
-	@PreAuthorize(value = "hasAnyAuthority('User','Admin')")
 	public ResponseEntity<List<MovieCastDTO>> getAllCast(@PathVariable Long movieId) {
 		checkValidMovie(movieId);
 		return new ResponseEntity<List<MovieCastDTO>>(iMovieCastService.findAllByMovieId(movieId), HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/cast/{castId}", headers = "type=id")
-	@PreAuthorize(value = "hasAnyAuthority('User','Admin')")
 	public ResponseEntity<Map<String, Object>> getCast(@PathVariable Long movieId, @PathVariable Long castId) {
 		MovieEntity movie = checkValidMovie(movieId);
 
@@ -93,7 +91,6 @@ public class MovieCastController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/cast/{castType}", headers = "type=type")
-	@PreAuthorize(value = "hasAnyAuthority('User','Admin')")
 	public ResponseEntity<Map<String, Object>> getCastByType(@PathVariable Long movieId,
 			@PathVariable String castType) {
 		checkValidMovie(movieId);

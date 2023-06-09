@@ -98,4 +98,9 @@ public class ReviewService implements IReviewService {
 		}
 		
 	}
+
+	@Override
+	public Optional<ReviewEntity> findOneByMovieAndReviewId(MovieEntity movie, Long reviewId) {
+		return reviewDAO.findOneByMovieAndReviewId(movie, reviewId);
+	}
 }

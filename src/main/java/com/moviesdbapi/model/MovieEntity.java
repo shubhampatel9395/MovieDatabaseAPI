@@ -17,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.moviesdbapi.validation.CustomDateDeserializer;
 import com.moviesdbapi.validation.CustomTimeDeserializer;
+import com.moviesdbapi.validation.NotBlankString;
 import com.moviesdbapi.validation.NotNullEntity;
 import com.moviesdbapi.validation.NotNullEntityCollection;
 
@@ -152,6 +153,7 @@ public class MovieEntity extends Auditable<String> {
 	@URL
 	private String trailorLink;
 
+	@NotBlankString
 	private String certificate;
 
 	@NotNullEntity

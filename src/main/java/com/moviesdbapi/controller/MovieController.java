@@ -42,13 +42,11 @@ public class MovieController {
 	IReviewService iMovieReviewService;
 
 	@GetMapping("/movies")
-	@PreAuthorize(value = "hasAnyAuthority('Admin','User')")
 	public ResponseEntity<List<MovieEntity>> getAllMovies() {
 		return new ResponseEntity<List<MovieEntity>>(iMovieService.findAll(), HttpStatus.OK);
 	}
 
 	@GetMapping("/movies/{id}")
-	@PreAuthorize(value = "hasAnyAuthority('Admin','User')")
 	public ResponseEntity<Map<String, Object>> getMovie(@PathVariable Long id) {
 		Optional<MovieEntity> existing = iMovieService.findById(id);
 

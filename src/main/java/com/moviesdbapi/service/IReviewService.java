@@ -17,6 +17,8 @@ public interface IReviewService {
 	
 	public ReviewDTO findOneByMovieIdUserId(Long movieId, Long userId);
 	
+	public Optional<ReviewEntity> findOneByMovieAndReviewId(MovieEntity movie, Long reviewId);
+	
 	public ReviewEntity findOneByMovieAndUser(MovieEntity movie, UserDetailsEntity user);
 	
 	public List<ReviewEntity> findByMovie(MovieEntity movie);
@@ -34,4 +36,5 @@ public interface IReviewService {
 	public void delete(ReviewEntity entity);
 	
 	public void deleteAll(List<ReviewEntity> entities);
+
 }

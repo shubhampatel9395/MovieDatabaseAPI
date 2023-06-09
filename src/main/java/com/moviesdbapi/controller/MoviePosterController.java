@@ -107,14 +107,12 @@ public class MoviePosterController {
 	}
 
 	@GetMapping("/posters")
-	@PreAuthorize(value = "hasAnyAuthority('User','Admin')")
 	public ResponseEntity<List<PosterEntity>> getAllPosters(@PathVariable Long movieId) {
 		MovieEntity movie = checkValidMovie(movieId);
 		return new ResponseEntity<List<PosterEntity>>(iPosterService.findAllByMovie(movie), HttpStatus.OK);
 	}
 
 	@GetMapping("/posters/{posterId}")
-	@PreAuthorize(value = "hasAnyAuthority('User','Admin')")
 	public ResponseEntity<Resource> getPoster(@PathVariable Long movieId, @PathVariable Long posterId) {
 		MovieEntity movie = checkValidMovie(movieId);
 

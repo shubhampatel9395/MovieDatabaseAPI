@@ -2,6 +2,7 @@ package com.moviesdbapi.authentication;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -34,10 +35,17 @@ public class WebSecurityConfig {
 
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		return http.csrf().disable().authorizeHttpRequests().requestMatchers("/api/v1/login", "/api/v1/signup")
-				.permitAll()
-				// .and()
-				// .authorizeHttpRequests().requestMatchers("/api/v1/users/**").authenticated()
+		return http.csrf().disable().authorizeHttpRequests()
+				.requestMatchers("/api/v1/login", "/api/v1/signup").permitAll()
+				.requestMatchers(HttpMethod.GET, "/api/v1/movies").permitAll()
+				.requestMatchers(HttpMethod.GET, "/api/v1/movies/{id}").permitAll()
+				.requestMatchers(HttpMethod.GET, "/api/v1/movies/{movieId}/reviews").permitAll()
+				.requestMatchers(HttpMethod.GET, "/api/v1/movies/{movieId}/reviews/{reviewId}").permitAll()
+				.requestMatchers(HttpMethod.GET, "/api/v1/movies/{movieId}/cast").permitAll()
+				.requestMatchers(HttpMethod.GET, "/api/v1/movies/{movieId}/cast/{castId}").permitAll()
+				.requestMatchers(HttpMethod.GET, "/api/v1/movies/{movieId}/cast/{castType}").permitAll()
+				.requestMatchers(HttpMethod.GET, "/api/v1/movies/{movieId}/posters").permitAll()
+				.requestMatchers(HttpMethod.GET, "/api/v1/movies/{movieId}/posters/{posterId}").permitAll()
 				.anyRequest().authenticated().and().logout().logoutUrl("/logout").invalidateHttpSession(true)
 				.permitAll().and().httpBasic().and().build();
 	}

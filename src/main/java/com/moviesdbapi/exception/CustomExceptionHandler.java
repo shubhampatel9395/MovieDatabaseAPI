@@ -37,16 +37,6 @@ public class CustomExceptionHandler {
 		return new ResponseEntity<ExceptionDetails>(exceptionDetails, HttpStatus.FORBIDDEN);
 	}
 
-	@ExceptionHandler(Exception.class)
-	public ResponseEntity<ExceptionDetails> OtherExceptionHandler(Exception exp, WebRequest req) {
-		ExceptionDetails exceptionDetails = new ExceptionDetails();
-		exceptionDetails.setTimestamp(LocalDateTime.now());
-		exceptionDetails.setMessage(exp.getLocalizedMessage());
-		exceptionDetails.setDescription(req.getDescription(false));
-
-		return new ResponseEntity<ExceptionDetails>(exceptionDetails, HttpStatus.BAD_REQUEST);
-	}
-
 	@ExceptionHandler(ParameterMissingException.class)
 	public ResponseEntity<ExceptionDetails> ParameterMissingExceptionHandler(ParameterMissingException exp,
 			WebRequest req) {
@@ -116,7 +106,7 @@ public class CustomExceptionHandler {
 
 		return new ResponseEntity<ExceptionDetails>(exceptionDetails, HttpStatus.BAD_REQUEST);
 	}
-	
+
 	@ExceptionHandler(InvalidTimeException.class)
 	public ResponseEntity<ExceptionDetails> InvalidTimeExceptionHandler(InvalidTimeException exp, WebRequest req) {
 		ExceptionDetails exceptionDetails = new ExceptionDetails();
@@ -173,7 +163,7 @@ public class CustomExceptionHandler {
 
 		return new ResponseEntity<ExceptionDetails>(exceptionDetails, HttpStatus.BAD_REQUEST);
 	}
-	
+
 	@ExceptionHandler(InvalidFilePathException.class)
 	public ResponseEntity<ExceptionDetails> InvalidFilePathExceptionHandler(InvalidFilePathException exp,
 			WebRequest req) {
@@ -185,10 +175,9 @@ public class CustomExceptionHandler {
 
 		return new ResponseEntity<ExceptionDetails>(exceptionDetails, HttpStatus.BAD_REQUEST);
 	}
-	
+
 	@ExceptionHandler(AddFileException.class)
-	public ResponseEntity<ExceptionDetails> AddFileExceptionHandler(AddFileException exp,
-			WebRequest req) {
+	public ResponseEntity<ExceptionDetails> AddFileExceptionHandler(AddFileException exp, WebRequest req) {
 		ExceptionDetails exceptionDetails = new ExceptionDetails();
 		exceptionDetails.setErrorCode(MessageConstants.ADD_FILE_ERROR_CODE);
 		exceptionDetails.setTimestamp(LocalDateTime.now());
@@ -197,10 +186,9 @@ public class CustomExceptionHandler {
 
 		return new ResponseEntity<ExceptionDetails>(exceptionDetails, HttpStatus.BAD_REQUEST);
 	}
-	
+
 	@ExceptionHandler(GetFileException.class)
-	public ResponseEntity<ExceptionDetails> GetFileExceptionHandler(GetFileException exp,
-			WebRequest req) {
+	public ResponseEntity<ExceptionDetails> GetFileExceptionHandler(GetFileException exp, WebRequest req) {
 		ExceptionDetails exceptionDetails = new ExceptionDetails();
 		exceptionDetails.setErrorCode(MessageConstants.GET_FILE_ERROR_CODE);
 		exceptionDetails.setTimestamp(LocalDateTime.now());
@@ -209,10 +197,10 @@ public class CustomExceptionHandler {
 
 		return new ResponseEntity<ExceptionDetails>(exceptionDetails, HttpStatus.BAD_REQUEST);
 	}
-	
+
 	@ExceptionHandler(NotAllowedImageFileExtensionException.class)
-	public ResponseEntity<ExceptionDetails> NotAllowedImageFileExtensionExceptionHandler(NotAllowedImageFileExtensionException exp,
-			WebRequest req) {
+	public ResponseEntity<ExceptionDetails> NotAllowedImageFileExtensionExceptionHandler(
+			NotAllowedImageFileExtensionException exp, WebRequest req) {
 		ExceptionDetails exceptionDetails = new ExceptionDetails();
 		exceptionDetails.setErrorCode(MessageConstants.NOT_ALLOWED_IMAGE_FILE_EXTENSION_ERROR_CODE);
 		exceptionDetails.setTimestamp(LocalDateTime.now());
@@ -221,7 +209,7 @@ public class CustomExceptionHandler {
 
 		return new ResponseEntity<ExceptionDetails>(exceptionDetails, HttpStatus.BAD_REQUEST);
 	}
-	
+
 	@ExceptionHandler(DuplicateMovieException.class)
 	public ResponseEntity<ExceptionDetails> DuplicateMovieExceptionHandler(DuplicateMovieException exp,
 			WebRequest req) {
@@ -233,7 +221,7 @@ public class CustomExceptionHandler {
 
 		return new ResponseEntity<ExceptionDetails>(exceptionDetails, HttpStatus.BAD_REQUEST);
 	}
-	
+
 	@ExceptionHandler(InvalidMovieCastTypeException.class)
 	public ResponseEntity<ExceptionDetails> InvalidMovieCastTypeExceptionHandler(InvalidMovieCastTypeException exp,
 			WebRequest req) {
@@ -245,7 +233,7 @@ public class CustomExceptionHandler {
 
 		return new ResponseEntity<ExceptionDetails>(exceptionDetails, HttpStatus.BAD_REQUEST);
 	}
-	
+
 	@ExceptionHandler(DuplicateMovieCastException.class)
 	public ResponseEntity<ExceptionDetails> DuplicateMovieCastExceptionHandler(DuplicateMovieCastException exp,
 			WebRequest req) {
@@ -253,6 +241,17 @@ public class CustomExceptionHandler {
 		exceptionDetails.setErrorCode(MessageConstants.DUPLICATE_MOVIE_CAST_ERROR_CODE);
 		exceptionDetails.setTimestamp(LocalDateTime.now());
 		exceptionDetails.setMessage(MessageConstants.DUPLICATE_MOVIE_CAST_ERROR_MESSAGE);
+		exceptionDetails.setDescription(req.getDescription(false));
+
+		return new ResponseEntity<ExceptionDetails>(exceptionDetails, HttpStatus.BAD_REQUEST);
+	}
+
+	@ExceptionHandler(Exception.class)
+	public ResponseEntity<ExceptionDetails> OtherExceptionHandler(Exception exp, WebRequest req) {
+		ExceptionDetails exceptionDetails = new ExceptionDetails();
+		exceptionDetails.setErrorCode((long) HttpStatus.BAD_REQUEST.value());
+		exceptionDetails.setTimestamp(LocalDateTime.now());
+		exceptionDetails.setMessage(exp.getLocalizedMessage());
 		exceptionDetails.setDescription(req.getDescription(false));
 
 		return new ResponseEntity<ExceptionDetails>(exceptionDetails, HttpStatus.BAD_REQUEST);

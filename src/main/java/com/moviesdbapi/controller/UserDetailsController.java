@@ -54,6 +54,7 @@ public class UserDetailsController {
 
 	@GetMapping("/users")
 	@PreAuthorize(value = "hasAuthority('Admin')")
+//	@PreAuthorize(value = "hasAnyRole('Admin','User')")
 	public ResponseEntity<List<UserDetailsEntity>> getAllUsers() {
 		return new ResponseEntity<List<UserDetailsEntity>>(userDetailsService.findAll(), HttpStatus.OK);
 	}

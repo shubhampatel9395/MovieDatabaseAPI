@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.moviesdbapi.validation.CustomDateDeserializer;
+import com.moviesdbapi.validation.NotBlankString;
 import com.moviesdbapi.validation.NotNullEntity;
 
 import jakarta.persistence.CascadeType;
@@ -68,6 +69,7 @@ public class UserDetailsEntity extends Auditable<String> {
 	@NotBlank(message = "Password must not be blank.")
 	private String password;
 
+	@NotBlankString
 	private String gender;
 
 	@PastOrPresent
