@@ -37,6 +37,7 @@ public class WebSecurityConfig {
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		return http.csrf().disable().authorizeHttpRequests()
 				.requestMatchers("/api/v1/login", "/api/v1/signup").permitAll()
+				.requestMatchers("/api/v1/auth/**","/v3/api-docs/**","/v3/api-docs.yaml","/swagger-ui/**","/swagger-ui.html", "/api-docs.html","/api-docs/**").permitAll()
 				.requestMatchers(HttpMethod.GET, "/api/v1/movies").permitAll()
 				.requestMatchers(HttpMethod.GET, "/api/v1/movies/{id}").permitAll()
 				.requestMatchers(HttpMethod.GET, "/api/v1/movies/{movieId}/reviews").permitAll()

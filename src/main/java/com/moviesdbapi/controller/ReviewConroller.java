@@ -29,10 +29,14 @@ import com.moviesdbapi.model.UserDetailsEntity;
 import com.moviesdbapi.service.IMovieService;
 import com.moviesdbapi.service.IReviewService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/v1/movies/{movieId}")
+@Tag(name = "Movie Review")
 public class ReviewConroller {
 	@Autowired
 	IMovieService iMovieService;
@@ -56,6 +60,9 @@ public class ReviewConroller {
 		return currentUser.getUser();
 	}
 
+	@Operation(summary = "Get all reviews of a movie", description = "Get all reviews of a movie", responses = {
+			@ApiResponse(responseCode = "200", description = "Operation success"),
+			@ApiResponse(responseCode = "400", description = "Bad request") })
 	@GetMapping("/reviews")
 	public ResponseEntity<Map<String, Object>> getAllReviews(@PathVariable Long movieId) {
 		MovieEntity movie = checkValidMovie(movieId);
@@ -70,6 +77,9 @@ public class ReviewConroller {
 				HttpStatus.OK.value(), reviews, "Record(s) fetched successfully."), HttpStatus.OK);
 	}
 
+	@Operation(summary = "Get a particular review of a movie", description = "Get a particular review of a movie", responses = {
+			@ApiResponse(responseCode = "200", description = "Operation success"),
+			@ApiResponse(responseCode = "400", description = "Bad request") })
 	@GetMapping("/reviews/{reviewId}")
 	public ResponseEntity<Map<String, Object>> getIndividualReview(@PathVariable Long movieId,
 			@PathVariable Long reviewId) {
@@ -84,6 +94,11 @@ public class ReviewConroller {
 				HttpStatus.OK.value(), review, "Record fetched successfully."), HttpStatus.OK);
 	}
 
+	@Operation(summary = "Get a review of a movie given by the current user", description = "Get a review of a movie given by the current user", responses = {
+			@ApiResponse(responseCode = "200", description = "Operation success"),
+			@ApiResponse(responseCode = "400", description = "Bad request"),
+			@ApiResponse(responseCode = "401", description = "Unauthorized access"),
+			@ApiResponse(responseCode = "403", description = "Forbidden") })
 	@GetMapping("/review")
 	@PreAuthorize(value = "hasAuthority('User')")
 	public ResponseEntity<Map<String, Object>> getReview(@PathVariable Long movieId) {
@@ -102,6 +117,11 @@ public class ReviewConroller {
 				HttpStatus.OK.value(), review, "Record fetched successfully."), HttpStatus.OK);
 	}
 
+	@Operation(summary = "Add a review of a movie by the current user", description = "Add a review of a movie by the current user", responses = {
+			@ApiResponse(responseCode = "200", description = "Operation success"),
+			@ApiResponse(responseCode = "400", description = "Bad request"),
+			@ApiResponse(responseCode = "401", description = "Unauthorized access"),
+			@ApiResponse(responseCode = "403", description = "Forbidden") })
 	@PostMapping("/review")
 	@PreAuthorize(value = "hasAuthority('User')")
 	public ResponseEntity<Map<String, Object>> addReview(@PathVariable Long movieId,
@@ -134,6 +154,11 @@ public class ReviewConroller {
 		}
 	}
 
+	@Operation(summary = "Update a review of a movie given by the current user", description = "Update a review of a movie given by the current user", responses = {
+			@ApiResponse(responseCode = "200", description = "Operation success"),
+			@ApiResponse(responseCode = "400", description = "Bad request"),
+			@ApiResponse(responseCode = "401", description = "Unauthorized access"),
+			@ApiResponse(responseCode = "403", description = "Forbidden") })
 	@PutMapping("/review")
 	@PreAuthorize(value = "hasAuthority('User')")
 	public ResponseEntity<Map<String, Object>> updateReview(@PathVariable Long movieId,
@@ -166,6 +191,11 @@ public class ReviewConroller {
 		}
 	}
 
+	@Operation(summary = "Delete a review of a movie given by the current user", description = "Delete a review of a movie given by the current user", responses = {
+			@ApiResponse(responseCode = "200", description = "Operation success"),
+			@ApiResponse(responseCode = "400", description = "Bad request"),
+			@ApiResponse(responseCode = "401", description = "Unauthorized access"),
+			@ApiResponse(responseCode = "403", description = "Forbidden") })
 	@DeleteMapping("/review")
 	@PreAuthorize(value = "hasAuthority('User')")
 	public ResponseEntity<Map<String, Object>> deleteReview(@PathVariable Long movieId) {

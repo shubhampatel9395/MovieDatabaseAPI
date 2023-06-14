@@ -26,10 +26,14 @@ import com.moviesdbapi.service.IMovieCastService;
 import com.moviesdbapi.service.IMovieService;
 import com.moviesdbapi.service.IReviewService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/v1")
+@Tag(name = "Movie")
 public class MovieController {
 
 	@Autowired
@@ -41,11 +45,17 @@ public class MovieController {
 	@Autowired
 	IReviewService iMovieReviewService;
 
+	@Operation(summary = "Get all movies", description = "Get all movies", responses = {
+			@ApiResponse(responseCode = "200", description = "Operation success"),
+			@ApiResponse(responseCode = "400", description = "Bad request") })
 	@GetMapping("/movies")
 	public ResponseEntity<List<MovieEntity>> getAllMovies() {
 		return new ResponseEntity<List<MovieEntity>>(iMovieService.findAll(), HttpStatus.OK);
 	}
 
+	@Operation(summary = "Get a particular movie", description = "Get a particular movie", responses = {
+			@ApiResponse(responseCode = "200", description = "Operation success"),
+			@ApiResponse(responseCode = "400", description = "Bad request") })
 	@GetMapping("/movies/{id}")
 	public ResponseEntity<Map<String, Object>> getMovie(@PathVariable Long id) {
 		Optional<MovieEntity> existing = iMovieService.findById(id);
@@ -58,6 +68,11 @@ public class MovieController {
 				HttpStatus.OK.value(), existing.get(), "Record fetched successfully."), HttpStatus.OK);
 	}
 
+	@Operation(summary = "Add a movie", description = "Add a movie", responses = {
+			@ApiResponse(responseCode = "200", description = "Operation success"),
+			@ApiResponse(responseCode = "400", description = "Bad request"),
+			@ApiResponse(responseCode = "401", description = "Unauthorized access"),
+			@ApiResponse(responseCode = "403", description = "Forbidden") })
 	@PostMapping("/movies")
 	@PreAuthorize(value = "hasAuthority('Admin')")
 	public ResponseEntity<Map<String, Object>> addMovie(@Valid @RequestBody MovieEntity MovieEntity)
@@ -67,6 +82,11 @@ public class MovieController {
 				HttpStatus.CREATED);
 	}
 
+	@Operation(summary = "Update a movie", description = "Update a movie", responses = {
+			@ApiResponse(responseCode = "200", description = "Operation success"),
+			@ApiResponse(responseCode = "400", description = "Bad request"),
+			@ApiResponse(responseCode = "401", description = "Unauthorized access"),
+			@ApiResponse(responseCode = "403", description = "Forbidden") })
 	@PutMapping("/movies/{id}")
 	@PreAuthorize(value = "hasAuthority('Admin')")
 	public ResponseEntity<Map<String, Object>> updateMovie(@Valid @RequestBody MovieEntity updatedMovieEntity,
@@ -109,6 +129,11 @@ public class MovieController {
 				HttpStatus.OK);
 	}
 
+	@Operation(summary = "Delete a movie", description = "Delete a movie", responses = {
+			@ApiResponse(responseCode = "200", description = "Operation success"),
+			@ApiResponse(responseCode = "400", description = "Bad request"),
+			@ApiResponse(responseCode = "401", description = "Unauthorized access"),
+			@ApiResponse(responseCode = "403", description = "Forbidden") })
 	@DeleteMapping("/movies/{id}")
 	@PreAuthorize(value = "hasAuthority('Admin')")
 	public ResponseEntity<Map<String, Object>> deleteMovie(@PathVariable Long id) {

@@ -25,11 +25,15 @@ import com.moviesdbapi.model.UserDetailsEntity;
 import com.moviesdbapi.model.dto.LoginDTO;
 import com.moviesdbapi.service.IUserDetailsService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/v1")
+@Tag(name = "Login")
 public class LoginController {
 
 	@Autowired
@@ -38,6 +42,9 @@ public class LoginController {
 	@Autowired
 	IUserDetailsService userDetailsService;
 
+	@Operation(summary = "Login", description = "Login to the application", responses = {
+			@ApiResponse(responseCode = "200", description = "Operation success"),
+			@ApiResponse(responseCode = "400", description = "Bad request") })
 	@PostMapping("/login")
 	public Map<String, Object> login(HttpServletRequest request, @Valid @RequestBody LoginDTO user) throws Exception {
 
@@ -60,6 +67,9 @@ public class LoginController {
 				"User logged in successfully.");
 	}
 
+	@Operation(summary = "Sign-up", description = "Sign up to the application", responses = {
+			@ApiResponse(responseCode = "200", description = "Operation success"),
+			@ApiResponse(responseCode = "400", description = "Bad request") })
 	@PostMapping("/signup")
 	public ResponseEntity<Map<String, Object>> signUp(HttpServletRequest request,
 			@Valid @RequestBody UserDetailsEntity userDetailsEntity) throws Exception {

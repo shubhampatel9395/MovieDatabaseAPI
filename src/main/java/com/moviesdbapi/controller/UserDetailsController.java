@@ -29,10 +29,14 @@ import com.moviesdbapi.model.UserDetailsEntity;
 import com.moviesdbapi.service.IReviewService;
 import com.moviesdbapi.service.IUserDetailsService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/v1")
+@Tag(name = "User")
 public class UserDetailsController {
 	@Autowired
 	IUserDetailsService userDetailsService;
@@ -52,6 +56,11 @@ public class UserDetailsController {
 		return currentUser.getUser();
 	}
 
+	@Operation(summary = "Get all users", description = "Get all users", responses = {
+			@ApiResponse(responseCode = "200", description = "Operation success"),
+			@ApiResponse(responseCode = "400", description = "Bad request"),
+			@ApiResponse(responseCode = "401", description = "Unauthorized access"),
+			@ApiResponse(responseCode = "403", description = "Forbidden") })
 	@GetMapping("/users")
 	@PreAuthorize(value = "hasAuthority('Admin')")
 //	@PreAuthorize(value = "hasAnyRole('Admin','User')")
@@ -59,6 +68,11 @@ public class UserDetailsController {
 		return new ResponseEntity<List<UserDetailsEntity>>(userDetailsService.findAll(), HttpStatus.OK);
 	}
 
+	@Operation(summary = "Get a particular user", description = "Get a particular user", responses = {
+			@ApiResponse(responseCode = "200", description = "Operation success"),
+			@ApiResponse(responseCode = "400", description = "Bad request"),
+			@ApiResponse(responseCode = "401", description = "Unauthorized access"),
+			@ApiResponse(responseCode = "403", description = "Forbidden") })
 	@GetMapping("/users/{id}")
 	@PreAuthorize(value = "hasAuthority('Admin')")
 	public ResponseEntity<Map<String, Object>> getUser(@PathVariable Long id) {
@@ -72,6 +86,11 @@ public class UserDetailsController {
 				HttpStatus.OK.value(), existingUser.get(), "Record fetched successfully."), HttpStatus.OK);
 	}
 
+	@Operation(summary = "Add a user", description = "Add a user", responses = {
+			@ApiResponse(responseCode = "200", description = "Operation success"),
+			@ApiResponse(responseCode = "400", description = "Bad request"),
+			@ApiResponse(responseCode = "401", description = "Unauthorized access"),
+			@ApiResponse(responseCode = "403", description = "Forbidden") })
 	@PostMapping("/users")
 	@PreAuthorize(value = "hasAuthority('Admin')")
 	public ResponseEntity<Map<String, Object>> addUser(@Valid @RequestBody UserDetailsEntity userDetailsEntity)
@@ -82,6 +101,11 @@ public class UserDetailsController {
 				HttpStatus.CREATED);
 	}
 
+	@Operation(summary = "Update a user", description = "Update a user", responses = {
+			@ApiResponse(responseCode = "200", description = "Operation success"),
+			@ApiResponse(responseCode = "400", description = "Bad request"),
+			@ApiResponse(responseCode = "401", description = "Unauthorized access"),
+			@ApiResponse(responseCode = "403", description = "Forbidden") })
 	@PutMapping("/users/{id}")
 	@PreAuthorize(value = "hasAuthority('Admin')")
 	public ResponseEntity<Map<String, Object>> updateUser(@Valid @RequestBody UserDetailsEntity userDetailsEntity,
@@ -115,6 +139,11 @@ public class UserDetailsController {
 				HttpStatus.OK);
 	}
 
+	@Operation(summary = "Delete a user", description = "Delete a user", responses = {
+			@ApiResponse(responseCode = "200", description = "Operation success"),
+			@ApiResponse(responseCode = "400", description = "Bad request"),
+			@ApiResponse(responseCode = "401", description = "Unauthorized access"),
+			@ApiResponse(responseCode = "403", description = "Forbidden") })
 	@DeleteMapping("/users/{id}")
 	@PreAuthorize(value = "hasAuthority('Admin')")
 	public ResponseEntity<Map<String, Object>> deleteUser(@PathVariable Long id) {
@@ -131,7 +160,12 @@ public class UserDetailsController {
 				HttpStatus.OK.value(), returnEntity, "Record deleted and returned successfully."), HttpStatus.OK);
 	}
 
-	@GetMapping("/reviews")
+	@Operation(summary = "Get all reviews given by the current user", description = "Get all reviews given by the current user", responses = {
+			@ApiResponse(responseCode = "200", description = "Operation success"),
+			@ApiResponse(responseCode = "400", description = "Bad request"),
+			@ApiResponse(responseCode = "401", description = "Unauthorized access"),
+			@ApiResponse(responseCode = "403", description = "Forbidden") })
+	@GetMapping("/user/reviews")
 	@PreAuthorize(value = "hasAnyAuthority('User')")
 	public ResponseEntity<Map<String, Object>> getAllReviews() {
 		UserDetailsEntity currentUser = getCurrentUser();

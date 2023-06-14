@@ -40,10 +40,14 @@ import com.moviesdbapi.model.PosterEntity;
 import com.moviesdbapi.service.IMovieService;
 import com.moviesdbapi.service.IPosterService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/v1/movies/{movieId}")
+@Tag(name = "Movie Poster")
 public class MoviePosterController {
 
 	@Autowired
@@ -106,12 +110,18 @@ public class MoviePosterController {
 		return imageContent;
 	}
 
+	@Operation(summary = "Get all posters of a movie", description = "Get all posters of a movie", responses = {
+			@ApiResponse(responseCode = "200", description = "Operation success"),
+			@ApiResponse(responseCode = "400", description = "Bad request") })
 	@GetMapping("/posters")
 	public ResponseEntity<List<PosterEntity>> getAllPosters(@PathVariable Long movieId) {
 		MovieEntity movie = checkValidMovie(movieId);
 		return new ResponseEntity<List<PosterEntity>>(iPosterService.findAllByMovie(movie), HttpStatus.OK);
 	}
 
+	@Operation(summary = "Get particular poster of a movie", description = "Get particular poster of a movie", responses = {
+			@ApiResponse(responseCode = "200", description = "Operation success"),
+			@ApiResponse(responseCode = "400", description = "Bad request") })
 	@GetMapping("/posters/{posterId}")
 	public ResponseEntity<Resource> getPoster(@PathVariable Long movieId, @PathVariable Long posterId) {
 		MovieEntity movie = checkValidMovie(movieId);
@@ -126,6 +136,11 @@ public class MoviePosterController {
 				.body(new ByteArrayResource(getByteImage(posterEntity.get().getPoster())));
 	}
 
+	@Operation(summary = "Add a poster of a movie", description = "Add a poster of a movie", responses = {
+			@ApiResponse(responseCode = "200", description = "Operation success"),
+			@ApiResponse(responseCode = "400", description = "Bad request"),
+			@ApiResponse(responseCode = "401", description = "Unauthorized access"),
+			@ApiResponse(responseCode = "403", description = "Forbidden") })
 	@RequestMapping(method = RequestMethod.POST, value = "/posters", headers = "action=individual")
 	@PreAuthorize(value = "hasAuthority('Admin')")
 	public ResponseEntity<?> addSinglePoster(@PathVariable Long movieId,
@@ -148,6 +163,11 @@ public class MoviePosterController {
 		}
 	}
 
+	@Operation(summary = "Add multiple posters of a movie", description = "Add multiple posters of a movie", responses = {
+			@ApiResponse(responseCode = "200", description = "Operation success"),
+			@ApiResponse(responseCode = "400", description = "Bad request"),
+			@ApiResponse(responseCode = "401", description = "Unauthorized access"),
+			@ApiResponse(responseCode = "403", description = "Forbidden") })
 	@PostMapping("/posters")
 	@PreAuthorize(value = "hasAuthority('Admin')")
 	public ResponseEntity<?> addAllPoster(@PathVariable Long movieId,
@@ -173,6 +193,11 @@ public class MoviePosterController {
 				HttpStatus.CREATED);
 	}
 
+	@Operation(summary = "Delete a poster of a movie", description = "Delete a poster of a movie", responses = {
+			@ApiResponse(responseCode = "200", description = "Operation success"),
+			@ApiResponse(responseCode = "400", description = "Bad request"),
+			@ApiResponse(responseCode = "401", description = "Unauthorized access"),
+			@ApiResponse(responseCode = "403", description = "Forbidden") })
 	@DeleteMapping("/posters/{posterId}")
 	@PreAuthorize(value = "hasAuthority('Admin')")
 	public ResponseEntity<?> deletePoster(@PathVariable Long movieId, @PathVariable Long posterId) {
@@ -190,6 +215,11 @@ public class MoviePosterController {
 				HttpStatus.OK.value(), "Poster removed successfully.", "Record Deleted Successfully."), HttpStatus.OK);
 	}
 
+	@Operation(summary = "Delete all posters of a movie", description = "Delete all posters of a movie", responses = {
+			@ApiResponse(responseCode = "200", description = "Operation success"),
+			@ApiResponse(responseCode = "400", description = "Bad request"),
+			@ApiResponse(responseCode = "401", description = "Unauthorized access"),
+			@ApiResponse(responseCode = "403", description = "Forbidden") })
 	@DeleteMapping("/posters")
 	@PreAuthorize(value = "hasAuthority('Admin')")
 	public ResponseEntity<?> deleteAllPoster(@PathVariable Long movieId) {

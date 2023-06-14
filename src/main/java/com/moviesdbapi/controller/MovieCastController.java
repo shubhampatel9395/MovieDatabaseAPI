@@ -34,10 +34,14 @@ import com.moviesdbapi.model.dto.MovieCastDTO;
 import com.moviesdbapi.service.IMovieCastService;
 import com.moviesdbapi.service.IMovieService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/v1/movies/{movieId}")
+@Tag(name = "Movie Cast")
 public class MovieCastController {
 	@Autowired
 	IMovieCastService iMovieCastService;
@@ -61,12 +65,18 @@ public class MovieCastController {
 		return movie;
 	}
 
+	@Operation(summary = "Get all cast of a movie", description = "Get all cast of a movie", responses = {
+			@ApiResponse(responseCode = "200", description = "Operation success"),
+			@ApiResponse(responseCode = "400", description = "Bad request") })
 	@GetMapping("/cast")
 	public ResponseEntity<List<MovieCastDTO>> getAllCast(@PathVariable Long movieId) {
 		checkValidMovie(movieId);
 		return new ResponseEntity<List<MovieCastDTO>>(iMovieCastService.findAllByMovieId(movieId), HttpStatus.OK);
 	}
 
+	@Operation(summary = "Get particular cast of a movie", description = "Get particular cast of a movie", responses = {
+			@ApiResponse(responseCode = "200", description = "Operation success"),
+			@ApiResponse(responseCode = "400", description = "Bad request") })
 	@RequestMapping(method = RequestMethod.GET, value = "/cast/{castId}", headers = "type=id")
 	public ResponseEntity<Map<String, Object>> getCast(@PathVariable Long movieId, @PathVariable Long castId) {
 		MovieEntity movie = checkValidMovie(movieId);
@@ -90,6 +100,9 @@ public class MovieCastController {
 				HttpStatus.OK);
 	}
 
+	@Operation(summary = "Get all cast of particular type of a movie", description = "Get all cast of particular type of a movie", responses = {
+			@ApiResponse(responseCode = "200", description = "Operation success"),
+			@ApiResponse(responseCode = "400", description = "Bad request") })
 	@RequestMapping(method = RequestMethod.GET, value = "/cast/{castType}", headers = "type=type")
 	public ResponseEntity<Map<String, Object>> getCastByType(@PathVariable Long movieId,
 			@PathVariable String castType) {
@@ -115,6 +128,11 @@ public class MovieCastController {
 				HttpStatus.OK.value(), returnDTOs, "Record(s) fetched successfully."), HttpStatus.OK);
 	}
 
+	@Operation(summary = "Add particular cast of a movie", description = "Add particular cast of a movie", responses = {
+			@ApiResponse(responseCode = "200", description = "Operation success"),
+			@ApiResponse(responseCode = "400", description = "Bad request"),
+			@ApiResponse(responseCode = "401", description = "Unauthorized access"),
+			@ApiResponse(responseCode = "403", description = "Forbidden") })
 	@RequestMapping(method = RequestMethod.POST, value = "/cast", headers = "action=individual")
 	@PreAuthorize(value = "hasAuthority('Admin')")
 	public ResponseEntity<Map<String, Object>> addCast(@PathVariable Long movieId,
@@ -124,6 +142,11 @@ public class MovieCastController {
 		return addAllCast(movieId, lst);
 	}
 
+	@Operation(summary = "Add multiple cast of a movie", description = "Add multiple cast of a movie", responses = {
+			@ApiResponse(responseCode = "200", description = "Operation success"),
+			@ApiResponse(responseCode = "400", description = "Bad request"),
+			@ApiResponse(responseCode = "401", description = "Unauthorized access"),
+			@ApiResponse(responseCode = "403", description = "Forbidden") })
 	@PostMapping("/cast")
 	@PreAuthorize(value = "hasAuthority('Admin')")
 	public ResponseEntity<Map<String, Object>> addAllCast(@PathVariable Long movieId,
@@ -141,6 +164,11 @@ public class MovieCastController {
 				HttpStatus.CREATED);
 	}
 
+	@Operation(summary = "Update particular cast of a movie", description = "Update particular cast of a movie", responses = {
+			@ApiResponse(responseCode = "200", description = "Operation success"),
+			@ApiResponse(responseCode = "400", description = "Bad request"),
+			@ApiResponse(responseCode = "401", description = "Unauthorized access"),
+			@ApiResponse(responseCode = "403", description = "Forbidden") })
 	@PutMapping("/cast/{castId}")
 	@PreAuthorize(value = "hasAuthority('Admin')")
 	public ResponseEntity<Map<String, Object>> updateCast(@PathVariable Long movieId, @PathVariable Long castId,
@@ -175,6 +203,11 @@ public class MovieCastController {
 				HttpStatus.OK);
 	}
 
+	@Operation(summary = "Delete particular cast of a movie", description = "Delete particular cast of a movie", responses = {
+			@ApiResponse(responseCode = "200", description = "Operation success"),
+			@ApiResponse(responseCode = "400", description = "Bad request"),
+			@ApiResponse(responseCode = "401", description = "Unauthorized access"),
+			@ApiResponse(responseCode = "403", description = "Forbidden") })
 	@DeleteMapping("/cast/{castId}")
 	@PreAuthorize(value = "hasAuthority('Admin')")
 	public ResponseEntity<Map<String, Object>> deleteCast(@PathVariable Long movieId, @PathVariable Long castId) {
@@ -203,6 +236,11 @@ public class MovieCastController {
 				HttpStatus.OK);
 	}
 
+	@Operation(summary = "Delete all cast of a movie", description = "Delete all cast of a movie", responses = {
+			@ApiResponse(responseCode = "200", description = "Operation success"),
+			@ApiResponse(responseCode = "400", description = "Bad request"),
+			@ApiResponse(responseCode = "401", description = "Unauthorized access"),
+			@ApiResponse(responseCode = "403", description = "Forbidden") })
 	@DeleteMapping("/cast")
 	@PreAuthorize(value = "hasAuthority('Admin')")
 	public ResponseEntity<Map<String, Object>> deleteAllCast(@PathVariable Long movieId) {
