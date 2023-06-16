@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 public class ReviewDTO {
 	private Long reviewId;
 	private Long movieId;
-	private String movieTitle;
 	private Long userId;
 	private String userFirstName;
 	private String userLastName;

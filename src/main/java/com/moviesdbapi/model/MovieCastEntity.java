@@ -38,8 +38,7 @@ public class MovieCastEntity extends Auditable<String> {
 	@Valid
 	@NotNullEntity
 	@ManyToOne
-	@JoinColumns(value = { @JoinColumn(name = "movieId", referencedColumnName = "movieId", nullable = false),
-			@JoinColumn(name = "movieTitle", referencedColumnName = "title", nullable = false) })
+	@JoinColumn(name = "movieId", referencedColumnName = "movieId", nullable = false)
 	private MovieEntity movie;
 
 	@Valid

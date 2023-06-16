@@ -4,7 +4,6 @@ import org.hibernate.annotations.ColumnDefault;
 
 import com.moviesdbapi.validation.NotBlankString;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -38,15 +37,12 @@ public class ReviewEntity extends Auditable<String> {
 
 	@Valid
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumns({ @JoinColumn(name = "firstName", referencedColumnName = "firstName", nullable = false),
-			@JoinColumn(name = "lastName", referencedColumnName = "lastName", nullable = false),
-			@JoinColumn(name = "userId", referencedColumnName = "userId", nullable = false) })
+	@JoinColumn(name = "userId", referencedColumnName = "userId", nullable = false)
 	private UserDetailsEntity user;
 
 	@Valid
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumns({ @JoinColumn(name = "movieId", referencedColumnName = "movieId", nullable = false),
-			@JoinColumn(name = "movieTitle", referencedColumnName = "title", nullable = false) })
+	@JoinColumn(name = "movieId", referencedColumnName = "movieId", nullable = false)
 	private MovieEntity movie;
 
 	@DecimalMin(value = "0", message = "Movie rating must be between 0 to 10.")

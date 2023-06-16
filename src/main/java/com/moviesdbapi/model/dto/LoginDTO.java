@@ -12,8 +12,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class LoginDTO {
 	@Email(message = "Invalid Email Address")
-	@NotEmpty(message = "Email must not be empty.")
-	@NotBlank(message = "Email must not be blank.")
+	@NotEmpty(message = "Username or Email must not be empty.")
+	@NotBlank(message = "Username or Email must not be blank.")
 	public String username;
 
 	@NotEmpty(message = "Password must not be empty.")

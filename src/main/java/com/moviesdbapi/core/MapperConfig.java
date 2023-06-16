@@ -51,7 +51,6 @@ public class MapperConfig {
 				MovieCastDTO dto = new MovieCastDTO();
 				dto.setMovieCastId(entity.getMovieCastId());
 				dto.setMovieId(entity.getMovie().getMovieId());
-				dto.setMovieTitle(entity.getMovie().getTitle());
 				dto.setMovieCastTypeId(entity.getCastType().getMovieCastTypeId());
 				dto.setMovieCastType(entity.getCastType().getMovieCastType());
 				dto.setOriginalFirstName(entity.getOriginalNames().getFirstName());

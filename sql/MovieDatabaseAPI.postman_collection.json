@@ -42,7 +42,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"basicDetails\": {\r\n        \"firstName\": \"User3\",\r\n        \"lastName\": \"User3\"\r\n    },\r\n    \"email\": \"user3@gmail.com\",\r\n    \"password\": \"IAmUser3@123\",\r\n    \"country\": \"India\",\r\n    \"gender\": \"Female\",\r\n    \"dob\": \"01/01/1950\",\r\n    \"userRole\": \"User\"\r\n}",
+					"raw": "{\r\n    \"basicDetails\": {\r\n        \"firstName\": \"User4\",\r\n        \"lastName\": \"User4\"\r\n    },\r\n    \"email\": \"user4@gmail.com\",\r\n    \"password\": \"IAmUser4@123\",\r\n    \"country\": \"Turkey\",\r\n    \"gender\": \"Male\",\r\n    \"dob\": \"01/01/1953\",\r\n    \"userRole\": \"User\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -71,13 +71,13 @@
 					"type": "basic",
 					"basic": [
 						{
-							"key": "password",
-							"value": "{{AdminPassword}}",
+							"key": "username",
+							"value": "{{AdminEmail}}",
 							"type": "string"
 						},
 						{
-							"key": "username",
-							"value": "{{NormalUserEmail}}",
+							"key": "password",
+							"value": "{{AdminPassword}}",
 							"type": "string"
 						}
 					]
@@ -107,12 +107,12 @@
 					"basic": [
 						{
 							"key": "password",
-							"value": "{{NormalUserPassword}}",
+							"value": "{{AdminPassword}}",
 							"type": "string"
 						},
 						{
 							"key": "username",
-							"value": "{{NormalUserEmail}}",
+							"value": "{{AdminEmail}}",
 							"type": "string"
 						}
 					]
@@ -120,7 +120,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/api/v1/users/28",
+					"raw": "localhost:8080/api/v1/users/6",
 					"host": [
 						"localhost"
 					],
@@ -129,7 +129,7 @@
 						"api",
 						"v1",
 						"users",
-						"28"
+						"6"
 					]
 				}
 			},
@@ -143,12 +143,12 @@
 					"basic": [
 						{
 							"key": "password",
-							"value": "{{NormalUserPassword}}",
+							"value": "{{AdminPassword}}",
 							"type": "string"
 						},
 						{
 							"key": "username",
-							"value": "{{NormalUserEmail}}",
+							"value": "{{AdminEmail}}",
 							"type": "string"
 						}
 					]
@@ -157,7 +157,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"basicDetails\": {\r\n        \"firstName\": \"FirstName\",\r\n        \"lastName\": \"LastName\"\r\n    },\r\n    \"password\": \"123Sadfad#s\",\r\n    \"email\": \"sss1231@gswewaaaeeasasswewewewsss.com\",\r\n    \"country\": \"Japan\",\r\n    \"dob\": \"01/02/2002\",\r\n    \"userRole\": \"User\"\r\n}",
+					"raw": "{\r\n    \"basicDetails\": {\r\n        \"firstName\": \"User5\",\r\n        \"lastName\": \"User5\"\r\n    },\r\n    \"email\": \"user5@gmail.com\",\r\n    \"password\": \"IAmUser4@123\",\r\n    \"country\": \"Japan\",\r\n    \"gender\": \"Female\",\r\n    \"dob\": \"01/01/2002\",\r\n    \"userRole\": \"Admin\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -187,12 +187,12 @@
 					"basic": [
 						{
 							"key": "password",
-							"value": "{{NormalUserPassword}}",
+							"value": "{{AdminPassword}}",
 							"type": "string"
 						},
 						{
 							"key": "username",
-							"value": "{{NormalUserEmail}}",
+							"value": "{{AdminEmail}}",
 							"type": "string"
 						}
 					]
@@ -201,7 +201,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n        \"createdBy\": \"User\",\r\n        \"createdDate\": \"2023-05-29T08:44:56.880+00:00\",\r\n        \"lastModifiedBy\": \"User\",\r\n        \"lastModifiedDate\": \"2023-05-29T08:44:56.881+00:00\",\r\n        \"userId\": 24,\r\n        \"basicDetails\": {\r\n            \"firstName\": \"First Name\",\r\n            \"lastName\": \"Last Name\"\r\n        },\r\n        \"email\": \"update@gmail.com\",\r\n        \"password\": \"newPassword@123\",\r\n        \"dob\": \"12/10/2002\",\r\n        \"country\": {\r\n            \"countryId\": 2,\r\n            \"country\": \"India\",\r\n            \"isActive\": true\r\n        },\r\n        \"userRole\": {\r\n            \"userRoleId\": 1,\r\n            \"role\": \"Admin\",\r\n            \"isActive\": true\r\n        },\r\n        \"isActive\": true\r\n    }",
+					"raw": "{\r\n    \"createdBy\": \"Admin\",\r\n    \"createdDate\": \"2023-06-16T08:41:22.160+00:00\",\r\n    \"lastModifiedBy\": \"Admin\",\r\n    \"lastModifiedDate\": \"2023-06-16T08:41:22.160+00:00\",\r\n    \"userId\": 6,\r\n    \"basicDetails\": {\r\n        \"firstName\": \"This\",\r\n        \"lastName\": \"works now\"\r\n    },\r\n    \"email\": \"user5@gmail.com\",\r\n    \"password\": \"IAmUser5@123\",\r\n    \"gender\": \"Female\",\r\n    \"dob\": \"12/12/2002\",\r\n    \"country\": {\r\n        \"countryId\": 109,\r\n        \"country\": \"Turkey\",\r\n        \"isActive\": true\r\n    },\r\n    \"userRole\": {\r\n        \"userRoleId\": 1,\r\n        \"role\": \"User\",\r\n        \"isActive\": true\r\n    },\r\n    \"isActive\": true\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -209,7 +209,7 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/api/v1/users/24",
+					"raw": "localhost:8080/api/v1/users/6",
 					"host": [
 						"localhost"
 					],
@@ -218,7 +218,7 @@
 						"api",
 						"v1",
 						"users",
-						"24"
+						"6"
 					]
 				}
 			},
@@ -245,7 +245,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/api/v1/users/16",
+					"raw": "localhost:8080/api/v1/users/5",
 					"host": [
 						"localhost"
 					],
@@ -254,7 +254,43 @@
 						"api",
 						"v1",
 						"users",
-						"16"
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all reviews of a logged in user",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{User1Password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{User1Email}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/user/reviews",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"reviews"
 					]
 				}
 			},
@@ -264,19 +300,7 @@
 			"name": "Get All Movies",
 			"request": {
 				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "{{NormalUserPassword}}",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "{{NormalUserEmail}}",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "GET",
 				"header": [],
@@ -299,24 +323,12 @@
 			"name": "Get Movie",
 			"request": {
 				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "{{AdminPassword}}",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "{{AdminEmail}}",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/api/v1/movies/1",
+					"raw": "localhost:8080/api/v1/movies/10",
 					"host": [
 						"localhost"
 					],
@@ -325,7 +337,7 @@
 						"api",
 						"v1",
 						"movies",
-						"1"
+						"10"
 					]
 				}
 			},
@@ -353,7 +365,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"title\": \"Housefull\",\r\n    \"tagline\": \"He found the girl of his dreams, he fell in love and he got married... to all three.\",\r\n    \"overview\": \"Believing himself to be a jinx and bringing bad luck upon himself and others, a man attempts to find true love, but ends up in very complicated relationships.\",\r\n    \"genres\": [\r\n        \"Romance\",\r\n        \"Comedy\",\r\n        \"Drama\"\r\n    ],\r\n    \"originCountry\": \"India\",\r\n    \"languages\": [\r\n        \"Hindi\"\r\n    ],\r\n    \"currency\": \"INR\",\r\n    \"duration\": \"02:15:00\",\r\n    \"releaseDate\": \"30/04/2010\",\r\n    \"budget\": 300000000,\r\n    \"revenue\": 980000000,\r\n    \"websiteURL\": \"https://g.co/kgs/ZWuur3\",\r\n    \"facebookPage\": \"https://www.facebook.com/HousefullTheMovie/\",\r\n    \"instagramPage\": \"https://www.instagram.com/explore/tags/housefull/top/\",\r\n    \"trailorLink\": \"https://www.youtube.com/watch?v=0eRVTe98Lz4\",\r\n    \"certificate\": \"12+\"\r\n}",
+					"raw": "{\r\n    \"title\": \"Housefull 3\",\r\n    \"tagline\": \"He found the girl of his dreams, he fell in love and he got married... to all three.\",\r\n    \"overview\": \"Believing himself to be a jinx and bringing bad luck upon himself and others, a man attempts to find true love, but ends up in very complicated relationships.\",\r\n    \"genres\": [\r\n        \"Romance\",\r\n        \"Comedy\",\r\n        \"Drama\"\r\n    ],\r\n    \"originCountry\": \"India\",\r\n    \"languages\": [\r\n        \"Hindi\",\"Gujarati\"\r\n    ],\r\n    \"currency\": \"INR\",\r\n    \"duration\": \"02:15:00\",\r\n    \"releaseDate\": \"30/04/2015\",\r\n    \"budget\": 300000000,\r\n    \"revenue\": 980000000,\r\n    \"websiteURL\": \"https://g.co/kgs/ZWuur3\",\r\n    \"facebookPage\": \"https://www.facebook.com/HousefullTheMovie/\",\r\n    \"instagramPage\": \"https://www.instagram.com/explore/tags/housefull/top/\",\r\n    \"trailorLink\": \"https://www.youtube.com/watch?v=0eRVTe98Lz4\",\r\n    \"certificate\": \"12+\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -383,12 +395,12 @@
 					"basic": [
 						{
 							"key": "password",
-							"value": "{{NormalUserPassword}}",
+							"value": "{{AdminPassword}}",
 							"type": "string"
 						},
 						{
 							"key": "username",
-							"value": "{{NormalUserEmail}}",
+							"value": "{{AdminEmail}}",
 							"type": "string"
 						}
 					]
@@ -397,7 +409,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n        \"createdBy\": \"User\",\r\n        \"createdDate\": \"2023-05-29T08:42:36.301+00:00\",\r\n        \"lastModifiedBy\": \"User\",\r\n        \"lastModifiedDate\": \"2023-05-31T13:00:57.054+00:00\",\r\n        \"movieId\": 21,\r\n        \"title\": \"Movie Update\",\r\n        \"tagline\": \"This is a movie tagline.\",\r\n        \"overview\": \"Movie overview should not be empty.!!!!!!!!!!!!!\",\r\n        \"genres\": [\r\n            {\r\n                \"genreId\": 1,\r\n                \"genre\": \"Action\",\r\n                \"isActive\": true\r\n            }\r\n        ],\r\n        \"originCountry\": {\r\n            \"countryId\": 2,\r\n            \"country\": \"Japan\",\r\n            \"isActive\": true\r\n        },\r\n        \"languages\": [\r\n            {\r\n                \"languageId\": 1,\r\n                \"language\": \"Hindi\",\r\n                \"isActive\": true\r\n            },\r\n            \"urdu\"\r\n        ],\r\n        \"currency\": {\r\n            \"currencyId\": 2,\r\n            \"currencyName\": \"USD\",\r\n            \"currencySymbol\": \"$\",\r\n            \"isActive\": true\r\n        },\r\n        \"budget\":10,\r\n        \"revenue\": 100.25,\r\n        \"websiteURL\": \"https://www.google.co.in/\",\r\n        \"facebookPage\": \"https://docs.jboss.org/hibernate/validator/4.1/reference/en-US/html/validator-customconstraints.html#validator-customconstraints-validator\",\r\n        \"instagramPage\": \"https://docs.jboss.org/hibernate/validator/4.1/reference/en-US/html/validator-customconstraints.html#validator-customconstraints-validator\",\r\n        \"trailorLink\": \"https://docs.jboss.org/hibernate/validator/4.1/reference/en-US/html/validator-customconstraints.html#validator-customconstraints-validator\",\r\n        \"certificate\": \"null\",\r\n        \"releaseDate\": \"22/12/2012\",\r\n        \"duration\": \"02:25:00\",\r\n        \"avgRatings\": 0.0,\r\n        \"isActive\": true\r\n    }",
+					"raw": "{\r\n    \"createdBy\": \"Admin\",\r\n    \"createdDate\": \"2023-06-16T08:46:21.400+00:00\",\r\n    \"lastModifiedBy\": \"Admin\",\r\n    \"lastModifiedDate\": \"2023-06-16T08:46:21.400+00:00\",\r\n    \"movieId\": 10,\r\n    \"title\": \"Housefull 33\",\r\n    \"tagline\": \"He found the girl of his dreams, he fell in love and he got married... to all three.\",\r\n    \"overview\": \"Believing himself to be a jinx and bringing bad luck upon himself and others, a man attempts to find true love, but ends up in very complicated relationships.\",\r\n    \"genres\": [\r\n        {\r\n            \"genreId\": 4,\r\n            \"genre\": \"Drama\",\r\n            \"isActive\": true\r\n        },\r\n        {\r\n            \"genreId\": 6,\r\n            \"genre\": \"Romance\",\r\n            \"isActive\": true\r\n        }\r\n    ],\r\n    \"originCountry\": {\r\n        \"countryId\": 101,\r\n        \"country\": \"India\",\r\n        \"isActive\": true\r\n    },\r\n    \"languages\": [\r\n        {\r\n            \"languageId\": 105,\r\n            \"language\": \"Gujarati\",\r\n            \"isActive\": true\r\n        }\r\n    ],\r\n    \"currency\": {\r\n        \"currencyId\": 1,\r\n        \"currencyName\": \"INR\",\r\n        \"currencySymbol\": \"₹\",\r\n        \"isActive\": true\r\n    },\r\n    \"budget\": 3.0E8,\r\n    \"revenue\": 9.8E8,\r\n    \"websiteURL\": \"https://g.co/kgs/ZWuur3\",\r\n    \"facebookPage\": \"https://www.facebook.com/HousefullTheMovie/\",\r\n    \"instagramPage\": \"https://www.instagram.com/explore/tags/housefull/top/\",\r\n    \"trailorLink\": \"https://www.youtube.com/watch?v=0eRVTe98Lz4\",\r\n    \"certificate\": \"12+\",\r\n    \"releaseDate\": \"30/04/2015\",\r\n    \"duration\": \"02:15:00\",\r\n    \"avgRatings\": 0.0,\r\n    \"isActive\": true\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -405,7 +417,7 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/api/v1/movies/21",
+					"raw": "localhost:8080/api/v1/movies/10",
 					"host": [
 						"localhost"
 					],
@@ -414,7 +426,7 @@
 						"api",
 						"v1",
 						"movies",
-						"21"
+						"10"
 					]
 				}
 			},
@@ -441,7 +453,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/api/v1/movies/17",
+					"raw": "localhost:8080/api/v1/movies/10",
 					"host": [
 						"localhost"
 					],
@@ -450,7 +462,7 @@
 						"api",
 						"v1",
 						"movies",
-						"17"
+						"10"
 					]
 				}
 			},
@@ -460,24 +472,12 @@
 			"name": "Get All Cast of a Movie",
 			"request": {
 				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "{{AdminPassword}}",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "{{AdminEmail}}",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/api/v1/movies/17/cast",
+					"raw": "localhost:8080/api/v1/movies/10/cast",
 					"host": [
 						"localhost"
 					],
@@ -486,7 +486,7 @@
 						"api",
 						"v1",
 						"movies",
-						"17",
+						"10",
 						"cast"
 					]
 				}
@@ -496,6 +496,9 @@
 		{
 			"name": "Get Particular Cast of a Movie",
 			"request": {
+				"auth": {
+					"type": "noauth"
+				},
 				"method": "GET",
 				"header": [
 					{
@@ -505,7 +508,7 @@
 					}
 				],
 				"url": {
-					"raw": "localhost:8080/api/v1/movies/19/cast/11",
+					"raw": "localhost:8080/api/v1/movies/10/cast/99",
 					"host": [
 						"localhost"
 					],
@@ -514,9 +517,9 @@
 						"api",
 						"v1",
 						"movies",
-						"19",
+						"10",
 						"cast",
-						"11"
+						"99"
 					]
 				}
 			},
@@ -525,6 +528,9 @@
 		{
 			"name": "Get Cast of a Movie by Type",
 			"request": {
+				"auth": {
+					"type": "noauth"
+				},
 				"method": "GET",
 				"header": [
 					{
@@ -534,7 +540,7 @@
 					}
 				],
 				"url": {
-					"raw": "localhost:8080/api/v1/movies/20/cast/fashion",
+					"raw": "localhost:8080/api/v1/movies/10/cast/actors",
 					"host": [
 						"localhost"
 					],
@@ -543,9 +549,9 @@
 						"api",
 						"v1",
 						"movies",
-						"20",
+						"10",
 						"cast",
-						"fashion"
+						"actors"
 					]
 				}
 			},
@@ -579,7 +585,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"movieCastType\": \"Fashion\",\r\n    \"originalFirstName\": \"Shubham1\",\r\n    \"originalLastName\": \"Patel1\"\r\n}",
+					"raw": "{\r\n    \"movieCastType\": \"Costume & Make-Up\",\r\n    \"originalFirstName\": \"Shubham1\",\r\n    \"originalLastName\": \"Patel1\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -587,7 +593,7 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/api/v1/movies/17/cast",
+					"raw": "localhost:8080/api/v1/movies/10/cast",
 					"host": [
 						"localhost"
 					],
@@ -596,7 +602,7 @@
 						"api",
 						"v1",
 						"movies",
-						"17",
+						"10",
 						"cast"
 					]
 				}
@@ -633,7 +639,7 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/api/v1/movies/9/cast",
+					"raw": "localhost:8080/api/v1/movies/10/cast",
 					"host": [
 						"localhost"
 					],
@@ -642,7 +648,7 @@
 						"api",
 						"v1",
 						"movies",
-						"9",
+						"10",
 						"cast"
 					]
 				}
@@ -656,13 +662,13 @@
 					"type": "basic",
 					"basic": [
 						{
-							"key": "username",
-							"value": "{{NormalUserEmail}}",
+							"key": "password",
+							"value": "{{AdminPassword}}",
 							"type": "string"
 						},
 						{
-							"key": "password",
-							"value": "{{NormalUserPassword}}",
+							"key": "username",
+							"value": "{{AdminEmail}}",
 							"type": "string"
 						}
 					]
@@ -671,7 +677,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"movieCastId\": 9,\r\n    \"movieId\": 17,\r\n    \"movieTitle\": \"Movie New12 121q1211132\",\r\n    \"movieCastTypeId\": 1,\r\n    \"movieCastType\": \"Action\",\r\n    \"originalFirstName\": \"One\",\r\n    \"originalLastName\": \"Last\",\r\n    \"movieFirstName\": \"One\",\r\n    \"movieLastName\": \"null\",\r\n    \"isActive\": true,\r\n    \"createdDate\": \"2023-06-02T11:27:40.695+00:00\",\r\n    \"createdBy\": \"User\",\r\n    \"lastModifiedDate\": \"2023-06-02T11:27:40.696+00:00\",\r\n    \"lastModifiedBy\": \"User\"\r\n}",
+					"raw": "{\r\n    \"movieCastId\": 45,\r\n    \"movieId\": 10,\r\n    \"movieCastTypeId\": 45,\r\n    \"movieCastType\": \"Crew\",\r\n    \"originalFirstName\": \"Anvita 8\",\r\n    \"originalLastName\": \"Dutt 9\",\r\n    \"movieFirstName\": null,\r\n    \"movieLastName\": null,\r\n    \"isActive\": true,\r\n    \"createdDate\": \"2023-06-16T08:56:41.177+00:00\",\r\n    \"createdBy\": \"Admin\",\r\n    \"lastModifiedDate\": \"2023-06-16T08:56:41.177+00:00\",\r\n    \"lastModifiedBy\": \"Admin\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -679,7 +685,7 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/api/v1/movies/17/cast/9",
+					"raw": "localhost:8080/api/v1/movies/10/cast/97",
 					"host": [
 						"localhost"
 					],
@@ -688,9 +694,9 @@
 						"api",
 						"v1",
 						"movies",
-						"17",
+						"10",
 						"cast",
-						"9"
+						"97"
 					]
 				}
 			},
@@ -721,29 +727,6 @@
 		{
 			"name": "Delete Particular Cast of a Movie",
 			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "localhost:8080/api/v1/movies/20/cast/8",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"v1",
-						"movies",
-						"20",
-						"cast",
-						"8"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get All Reviews of Movie",
-			"request": {
 				"auth": {
 					"type": "basic",
 					"basic": [
@@ -759,10 +742,10 @@
 						}
 					]
 				},
-				"method": "GET",
+				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/api/v1/movies/17/reviews",
+					"raw": "localhost:8080/api/v1/movies/10/cast/97",
 					"host": [
 						"localhost"
 					],
@@ -771,7 +754,33 @@
 						"api",
 						"v1",
 						"movies",
-						"17",
+						"10",
+						"cast",
+						"97"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Reviews of Movie",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/movies/9/reviews",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"movies",
+						"9",
 						"reviews"
 					]
 				}
@@ -779,27 +788,15 @@
 			"response": []
 		},
 		{
-			"name": "Get Review",
+			"name": "Get Individual Review",
 			"request": {
 				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "{{NormalUserPassword}}",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "{{NormalUserEmail}}",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/api/v1/movies/17/review",
+					"raw": "localhost:8080/api/v1/movies/9/reviews/24",
 					"host": [
 						"localhost"
 					],
@@ -808,15 +805,16 @@
 						"api",
 						"v1",
 						"movies",
-						"17",
-						"review"
+						"9",
+						"reviews",
+						"24"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Add Review",
+			"name": "Get Logged-In User Review",
 			"request": {
 				"auth": {
 					"type": "basic",
@@ -833,11 +831,48 @@
 						}
 					]
 				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/movies/10/review",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"movies",
+						"10",
+						"review"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Review",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{User2Password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{User2Email}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"rating\": ,\r\n    \"reviewTitle\": \"\",\r\n    \"reviewContent\": \"\"\r\n}",
+					"raw": "{\r\n    \"rating\": 4,\r\n    \"reviewTitle\": \"T\",\r\n    \"reviewContent\": \"V\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -868,13 +903,13 @@
 					"type": "basic",
 					"basic": [
 						{
-							"key": "username",
-							"value": "{{NormalUserEmail}}",
+							"key": "password",
+							"value": "{{User3Password}}",
 							"type": "string"
 						},
 						{
-							"key": "password",
-							"value": "{{NormalUserPassword}}",
+							"key": "username",
+							"value": "{{User3Email}}",
 							"type": "string"
 						}
 					]
@@ -883,7 +918,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"rating\": 4,\r\n    \"reviewTitle\": \"It's a very critical movie 17.\",\r\n    \"reviewContent\":\"It's working.\"\r\n}",
+					"raw": "{\r\n    \"rating\": 10,\r\n    \"reviewTitle\": \"It's a very critical movie 17.\",\r\n    \"reviewContent\":\"It's working.\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -891,7 +926,7 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/api/v1/movies/17/review",
+					"raw": "localhost:8080/api/v1/movies/10/review",
 					"host": [
 						"localhost"
 					],
@@ -900,7 +935,7 @@
 						"api",
 						"v1",
 						"movies",
-						"17",
+						"10",
 						"review"
 					]
 				}
@@ -914,13 +949,13 @@
 					"type": "basic",
 					"basic": [
 						{
-							"key": "username",
-							"value": "admin@gmail.com",
+							"key": "password",
+							"value": "{{User1Password}}",
 							"type": "string"
 						},
 						{
-							"key": "password",
-							"value": "IamAdmin@123",
+							"key": "username",
+							"value": "{{User1Email}}",
 							"type": "string"
 						}
 					]
@@ -928,7 +963,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/api/v1/movies/19/review",
+					"raw": "localhost:8080/api/v1/movies/10/review",
 					"host": [
 						"localhost"
 					],
@@ -937,43 +972,8 @@
 						"api",
 						"v1",
 						"movies",
-						"19",
+						"10",
 						"review"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get All Reviews of a User",
-			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "username",
-							"value": "newEmail111@gmail.com",
-							"type": "string"
-						},
-						{
-							"key": "password",
-							"value": "{{NormalUser2Password}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:8080/api/v1/reviews",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"v1",
-						"reviews"
 					]
 				}
 			},
@@ -1016,7 +1016,7 @@
 					]
 				},
 				"url": {
-					"raw": "localhost:8080/api/v1/movies/9/posters",
+					"raw": "localhost:8080/api/v1/movies/10/posters",
 					"host": [
 						"localhost"
 					],
@@ -1025,7 +1025,7 @@
 						"api",
 						"v1",
 						"movies",
-						"9",
+						"10",
 						"posters"
 					],
 					"query": [
@@ -1065,21 +1065,12 @@
 						{
 							"key": "posters",
 							"type": "file",
-							"src": [
-								"/C:/Users/Admin/Downloads/2_IoT.pdf",
-								"/C:/Users/Admin/Downloads/Post2.png"
-							]
-						},
-						{
-							"key": "posters",
-							"type": "file",
-							"src": [],
-							"disabled": true
+							"src": []
 						}
 					]
 				},
 				"url": {
-					"raw": "localhost:8080/api/v1/movies/21/posters",
+					"raw": "localhost:8080/api/v1/movies/10/posters",
 					"host": [
 						"localhost"
 					],
@@ -1088,7 +1079,7 @@
 						"api",
 						"v1",
 						"movies",
-						"21",
+						"10",
 						"posters"
 					]
 				}
@@ -1103,12 +1094,12 @@
 					"basic": [
 						{
 							"key": "password",
-							"value": "{{AdminPassword}}",
+							"value": "{{User3Password}}",
 							"type": "string"
 						},
 						{
 							"key": "username",
-							"value": "{{AdminEmail}}",
+							"value": "{{User3Email}}",
 							"type": "string"
 						}
 					]
@@ -1116,7 +1107,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/api/v1/movies/17/posters",
+					"raw": "localhost:8080/api/v1/movies/10/posters",
 					"host": [
 						"localhost"
 					],
@@ -1125,7 +1116,7 @@
 						"api",
 						"v1",
 						"movies",
-						"17",
+						"10",
 						"posters"
 					]
 				}
@@ -1136,24 +1127,12 @@
 			"name": "Get individual poster",
 			"request": {
 				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "{{AdminPassword}}",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "{{AdminEmail}}",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/api/v1/movies/21/posters/23",
+					"raw": "localhost:8080/api/v1/movies/10/posters/13",
 					"host": [
 						"localhost"
 					],
@@ -1162,9 +1141,9 @@
 						"api",
 						"v1",
 						"movies",
-						"21",
+						"10",
 						"posters",
-						"23"
+						"13"
 					]
 				}
 			},
@@ -1191,7 +1170,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/api/v1/movies/17/posters/1",
+					"raw": "localhost:8080/api/v1/movies/10/posters/13",
 					"host": [
 						"localhost"
 					],
@@ -1200,9 +1179,9 @@
 						"api",
 						"v1",
 						"movies",
-						"17",
+						"10",
 						"posters",
-						"1"
+						"13"
 					]
 				}
 			},

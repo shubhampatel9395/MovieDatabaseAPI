@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 public class MovieCastDTO {
 	private Long movieCastId;
 	private Long movieId;
-	private String movieTitle;
 	private Long movieCastTypeId;
 	private String movieCastType;
 	private String originalFirstName;

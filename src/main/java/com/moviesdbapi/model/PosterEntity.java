@@ -36,15 +36,14 @@ public class PosterEntity extends Auditable<String> {
 	@NotNull
 	@Column(columnDefinition = "LONGBLOB NOT NULL")
 	private Blob poster;
-	
+
 	@NotEmpty(message = "Image type must not be empty.")
 	@NotBlank(message = "Image type must not be blank.")
 	private String type;
 
 	@Valid
 	@ManyToOne
-	@JoinColumns(value = { @JoinColumn(name = "movieId", referencedColumnName = "movieId", nullable = false),
-			@JoinColumn(name = "movieTitle", referencedColumnName = "title", nullable = false) })
+	@JoinColumn(name = "movieId", referencedColumnName = "movieId", nullable = false)
 	private MovieEntity movie;
 
 	@Column(name = "isActive", nullable = false, columnDefinition = "BOOLEAN")

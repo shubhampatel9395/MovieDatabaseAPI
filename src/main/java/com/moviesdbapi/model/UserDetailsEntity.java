@@ -100,7 +100,7 @@ public class UserDetailsEntity extends Auditable<String> {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 	private Set<ReviewEntity> reviews = new HashSet<>();
-	
+
 	public void addReview(ReviewEntity entity) {
 		this.reviews.add(entity);
 		entity.setUser(this);
