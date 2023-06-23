@@ -26,6 +26,7 @@ import com.moviesdbapi.exception.IdNotFoundException;
 import com.moviesdbapi.exception.MessageConstants;
 import com.moviesdbapi.model.ReviewEntity;
 import com.moviesdbapi.model.UserDetailsEntity;
+import com.moviesdbapi.service.IMovieService;
 import com.moviesdbapi.service.IReviewService;
 import com.moviesdbapi.service.IUserDetailsService;
 
@@ -43,6 +44,9 @@ public class UserDetailsController {
 
 	@Autowired
 	IReviewService iReviewService;
+
+	@Autowired
+	IMovieService iMovieService;
 
 //	@GetMapping("/users")
 //	@PreAuthorize(value = "hasAuthority('Admin')")
@@ -155,6 +159,7 @@ public class UserDetailsController {
 		UserDetailsEntity returnEntity = existingUser.get();
 
 		userDetailsService.delete(id);
+		iMovieService.updateAvgRatingsOnUserDeletion();
 
 		return new ResponseEntity<>(ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE,
 				HttpStatus.OK.value(), returnEntity, "Record deleted and returned successfully."), HttpStatus.OK);

@@ -61,14 +61,16 @@ public class ReviewService implements IReviewService {
 
 	@Override
 	public ReviewEntity insert(ReviewEntity entity) throws RuntimeException {
+		ReviewEntity ent = reviewDAO.save(entity);
 		updateMovieAverageRatings(entity.getMovie().getMovieId());
-		return reviewDAO.save(entity);
+		return ent;
 	}
 
 	@Override
 	public ReviewEntity update(ReviewEntity entity) throws RuntimeException {
+		ReviewEntity ent = reviewDAO.save(entity);
 		updateMovieAverageRatings(entity.getMovie().getMovieId());
-		return reviewDAO.save(entity);
+		return ent;
 	}
 
 	@Override
@@ -96,7 +98,6 @@ public class ReviewService implements IReviewService {
 			reviewDAO.deleteAll(entities);
 			updateMovieAverageRatings(movieId);
 		}
-		
 	}
 
 	@Override

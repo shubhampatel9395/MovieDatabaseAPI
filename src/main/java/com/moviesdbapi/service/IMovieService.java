@@ -26,4 +26,6 @@ public interface IMovieService {
 	public void delete(Long id);
 
 	public void delete(MovieEntity entity);
+	
+	public void updateAvgRatingsOnUserDeletion();
 }

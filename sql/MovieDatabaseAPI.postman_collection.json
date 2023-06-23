@@ -36,6 +36,41 @@
 			"response": []
 		},
 		{
+			"name": "Logout",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "{{AdminEmail}}",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "{{AdminPassword}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/logout",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Sign-Up",
 			"request": {
 				"method": "POST",
@@ -245,7 +280,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/api/v1/users/5",
+					"raw": "localhost:8080/api/v1/users/4",
 					"host": [
 						"localhost"
 					],
@@ -254,7 +289,7 @@
 						"api",
 						"v1",
 						"users",
-						"5"
+						"4"
 					]
 				}
 			},
@@ -880,7 +915,7 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/api/v1/movies/9/review",
+					"raw": "localhost:8080/api/v1/movies/1/review",
 					"host": [
 						"localhost"
 					],
@@ -889,7 +924,7 @@
 						"api",
 						"v1",
 						"movies",
-						"9",
+						"1",
 						"review"
 					]
 				}
@@ -926,7 +961,7 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/api/v1/movies/10/review",
+					"raw": "localhost:8080/api/v1/movies/1/review",
 					"host": [
 						"localhost"
 					],
@@ -935,7 +970,7 @@
 						"api",
 						"v1",
 						"movies",
-						"10",
+						"1",
 						"review"
 					]
 				}
@@ -963,7 +998,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/api/v1/movies/10/review",
+					"raw": "localhost:8080/api/v1/movies/1/review",
 					"host": [
 						"localhost"
 					],
@@ -972,7 +1007,7 @@
 						"api",
 						"v1",
 						"movies",
-						"10",
+						"1",
 						"review"
 					]
 				}

@@ -1,17 +1,21 @@
 package com.moviesdbapi.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +33,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 
 @RestController
@@ -65,6 +70,33 @@ public class LoginController {
 		return ResponseEntityUtil.getSuccessResponse("Login Success", HttpStatus.OK.value(),
 				((UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser(),
 				"User logged in successfully.");
+	}
+
+	@Operation(summary = "Logout", description = "Logout from the application", responses = {
+			@ApiResponse(responseCode = "200", description = "Operation success"),
+			@ApiResponse(responseCode = "400", description = "Bad request") })
+	@GetMapping("/logout")
+	public ResponseEntity<Map<String, Object>> logOut(HttpServletRequest request, HttpServletResponse response) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (auth != null && !(auth instanceof AnonymousAuthenticationToken)) {
+			UserDetailsEntity currentUser = ((UserPrincipal) SecurityContextHolder.getContext().getAuthentication()
+					.getPrincipal()).getUser();
+			String userName = currentUser.getEmail();
+
+			new SecurityContextLogoutHandler().logout(request, response, auth);
+
+			Map<String, Object> data = new HashMap<>();
+			data.put("redirectURI", "/api/v1/login");
+
+			return new ResponseEntity<>(ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE,
+					HttpStatus.OK.value(), data, userName + " logged out successfully."), HttpStatus.OK);
+		} else {
+			Map<String, Object> data = new HashMap<>();
+			data.put("redirectURI", "/api/v1/login");
+
+			return new ResponseEntity<>(ResponseEntityUtil.getSuccessResponse("Error", HttpStatus.BAD_REQUEST.value(),
+					data, "Please login before logging out."), HttpStatus.BAD_REQUEST);
+		}
 	}
 
 	@Operation(summary = "Sign-up", description = "Sign up to the application", responses = {

@@ -160,4 +160,8 @@ public class MovieService implements IMovieService {
 		movieDAO.delete(entity);
 	}
 
+	@Override
+	public void updateAvgRatingsOnUserDeletion() {
+		movieDAO.updateAvgRatingsOnUserDeletion();
+	}
 }
