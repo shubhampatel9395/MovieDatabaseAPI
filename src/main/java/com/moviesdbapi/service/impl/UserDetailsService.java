@@ -163,15 +163,35 @@ public class UserDetailsService implements IUserDetailsService {
 	@Override
 	public UserDetailsEntity signup(UserDetailsEntity entity) throws Exception {
 		isValidUserDetails(entity);
-		
+
 		Long userId = userDetailsDAO.signup(entity);
 		Optional<UserDetailsEntity> returnEntity = findById(userId);
 
 		if (returnEntity.isEmpty()) {
 			throw new Exception("Error in signing up.");
 		}
-		
+
 		return returnEntity.get();
+	}
+
+	@Transactional
+	public void isValidUserProfileDetails(UserDetailsEntity entity) throws RuntimeException {
+		// Set Country
+		if (entity.getCountry() != null) {
+			List<EnuCountryEntity> countries = enuCountryDAO.findByCountry(entity.getCountry().getCountry());
+
+			if (countries.isEmpty() == true) {
+				throw new InvalidCountryException();
+			} else {
+				entity.setCountry(DataAccessUtils.singleResult(countries));
+			}
+		}
+	}
+
+	@Override
+	public UserDetailsEntity updateProfile(UserDetailsEntity entity) throws RuntimeException {
+		isValidUserProfileDetails(entity);
+		return userDetailsDAO.save(entity);
 	}
 
 }

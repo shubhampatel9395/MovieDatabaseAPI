@@ -26,6 +26,8 @@ public interface IUserDetailsService {
 	public UserDetailsEntity signup(UserDetailsEntity entity) throws Exception;
 
 	public UserDetailsEntity update(UserDetailsEntity entity) throws RuntimeException;
+	
+	public UserDetailsEntity updateProfile(UserDetailsEntity entity) throws RuntimeException;
 
 	public void delete(Long id);
 

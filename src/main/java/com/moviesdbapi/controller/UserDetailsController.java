@@ -26,6 +26,7 @@ import com.moviesdbapi.exception.IdNotFoundException;
 import com.moviesdbapi.exception.MessageConstants;
 import com.moviesdbapi.model.ReviewEntity;
 import com.moviesdbapi.model.UserDetailsEntity;
+import com.moviesdbapi.model.dto.UserProfileUpdateDTO;
 import com.moviesdbapi.service.IMovieService;
 import com.moviesdbapi.service.IReviewService;
 import com.moviesdbapi.service.IUserDetailsService;
@@ -183,5 +184,49 @@ public class UserDetailsController {
 
 		return new ResponseEntity<>(ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE,
 				HttpStatus.OK.value(), reviews, "Record(s) fetched successfully."), HttpStatus.OK);
+	}
+
+	@Operation(summary = "Update User Profile", description = "Update User Profile", responses = {
+			@ApiResponse(responseCode = "200", description = "Operation success"),
+			@ApiResponse(responseCode = "400", description = "Bad request"),
+			@ApiResponse(responseCode = "401", description = "Unauthorized access"),
+			@ApiResponse(responseCode = "403", description = "Forbidden") })
+	@PutMapping("/user/profile/edit")
+	@PreAuthorize(value = "hasAuthority('User')")
+	public ResponseEntity<Map<String, Object>> editProfile(@Valid @RequestBody UserProfileUpdateDTO userProfileUpdateDTO) {
+		UserDetailsEntity currentUser = getCurrentUser();
+
+		UserDetailsEntity existingEntity = new UserDetailsEntity();
+		new ModelMapper().map(currentUser, existingEntity);
+
+		existingEntity.setBasicDetails(userProfileUpdateDTO.getBasicDetails());
+		existingEntity.setGender(userProfileUpdateDTO.getGender());
+		existingEntity.setDob(userProfileUpdateDTO.getDob());
+		existingEntity.setCountry(userProfileUpdateDTO.getCountry());
+
+		return new ResponseEntity<>(
+				ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE, HttpStatus.OK.value(),
+						userDetailsService.updateProfile(existingEntity), "User profile updated successfully."),
+				HttpStatus.OK);
+	}
+
+	@Operation(summary = "Delete an account", description = "Delete an account", responses = {
+			@ApiResponse(responseCode = "200", description = "Operation success"),
+			@ApiResponse(responseCode = "400", description = "Bad request"),
+			@ApiResponse(responseCode = "401", description = "Unauthorized access"),
+			@ApiResponse(responseCode = "403", description = "Forbidden") })
+	@DeleteMapping("/user/delete")
+	@PreAuthorize(value = "hasAuthority('User')")
+	public ResponseEntity<Map<String, Object>> deleteUserAccount() {
+		UserDetailsEntity currentUser = getCurrentUser();
+
+		UserDetailsEntity returnEntity = new UserDetailsEntity();
+		new ModelMapper().map(currentUser, returnEntity);
+
+		userDetailsService.delete(currentUser.getUserId());
+		iMovieService.updateAvgRatingsOnUserDeletion();
+
+		return new ResponseEntity<>(ResponseEntityUtil.getSuccessResponse(MessageConstants.SUCCESS_MESSAGE,
+				HttpStatus.OK.value(), returnEntity, "User account deleted successfully."), HttpStatus.OK);
 	}
 }
