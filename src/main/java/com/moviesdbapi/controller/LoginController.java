@@ -75,7 +75,7 @@ public class LoginController {
 	@Operation(summary = "Logout", description = "Logout from the application", responses = {
 			@ApiResponse(responseCode = "200", description = "Operation success"),
 			@ApiResponse(responseCode = "400", description = "Bad request") })
-	@GetMapping("/logout")
+	@PostMapping("/logout")
 	public ResponseEntity<Map<String, Object>> logOut(HttpServletRequest request, HttpServletResponse response) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if (auth != null && !(auth instanceof AnonymousAuthenticationToken)) {
